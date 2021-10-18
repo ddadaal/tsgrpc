@@ -20,13 +20,16 @@ export async function generateProtos({ configPath, targetDir }: GenerateProtosPr
 
   rimraf.sync(targetDir);
 
-  const configFileContent = JSON.parse(await fs.promises.readFile(configPath, "utf-8"));
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const configFileContent = require(path.join(process.cwd(), configPath));
   const config: CliConfig = await cliConfigSchema.validateAsync(configFileContent);
 
-  await Promise.all(config.protos.map(async ({ path: protosPath, name }) => {
+  config.protos.forEach(({ path: protosPath, name }) => {
     const modelDir = path.join(targetDir, name);
 
-    await fs.promises.mkdir(modelDir, { recursive: true });
+    fs.mkdirSync(modelDir, { recursive: true });
+
+    console.log(`Generating protobuf files: ${protosPath}...`);
 
     const protoConfig = [
       `--plugin="protoc-gen-ts=\"${PROTOC_GEN_TS_PATH}"\"`,
@@ -38,7 +41,5 @@ export async function generateProtos({ configPath, targetDir }: GenerateProtosPr
 
     // https://github.com/agreatfool/grpc_tools_node_protoc_ts/tree/master/examples
     execSync(`${GRPC_TOOLS_NODE_PROTOC} ${protoConfig.join(" ")}`);
-  }),
-  );
-
+  });
 }

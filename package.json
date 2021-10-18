@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && tsc"
+    "build": "rimraf dist && tsc && tsc-alias"
   },
   "author": {
     "name": "Chen Junda",
@@ -23,8 +23,8 @@
     "yargs": "^17.2.1"
   },
   "devDependencies": {
-    "@ddadaal/eslint-config": "^1.1.1",
     "@types/google-protobuf": "^3.15.5",
+    "@ddadaal/eslint-config": "^1.1.1",
     "@types/rimraf": "^3.0.2",
     "@types/yargs": "^17.0.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
@@ -33,6 +33,7 @@
     "grpc-tools": "^1.11.2",
     "grpc_tools_node_protoc_ts": "^5.3.2",
     "joi": "^17.4.2",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "tsc-alias": "^1.3.10"
   }
 }

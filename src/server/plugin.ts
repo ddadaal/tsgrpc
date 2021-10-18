@@ -1,5 +1,5 @@
 // used for augmentation
-export interface ServerPlugins {
+export interface Plugins {
 
 }
 

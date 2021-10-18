@@ -2,19 +2,19 @@ import * as grpc from "@grpc/grpc-js";
 import { Config } from "src/utils/config";
 import { promisify } from "util";
 import { getLogger, Logger } from "src/utils/log";
-import type { ServerPlugins } from "src/server/plugin";
+import type { Plugins } from "./plugin";
 
-export type Plugin = (server: Server) => (void | Promise<void>);
+export type Plugin = (server: Server<any>) => (void | Promise<void>);
 
 export type CloseCallback = () => (void | Promise<void>);
 
-export class Server {
+export class Server<TPlugins = Plugins> {
 
   private closeHooks: CloseCallback[] = [];
 
   logger: Logger;
 
-  plugins: ServerPlugins = {} as any;
+  plugins: TPlugins = {} as any;
 
   server: grpc.Server = new grpc.Server();
 

@@ -16,7 +16,12 @@
     "importHelpers": true,
     "resolveJsonModule": true,
     "strict": false,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "src/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts"

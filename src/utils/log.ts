@@ -8,7 +8,7 @@ export const levels = {
 
 export type LogLevel = keyof typeof levels;
 
-let levelThreshold: number;
+let levelThreshold: number = levels.info;
 
 export function setLevelThreshold(level: LogLevel) {
   levelThreshold = levels[level] ?? levels.info;

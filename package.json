@@ -1,13 +1,18 @@
 {
   "name": "@ddadaal/tsgrpc",
-  "version": "1.0.0",
-  "description": "A simple gRPC Server Framework for TypeScript and Node.js",
+  "version": "0.0.0",
+  "description": "A simple gRPC Server Framework for TypeScript Node.js",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsc"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Chen Junda",
+    "email": "ddadaal@outlook.com",
+    "url": "https://ddadaal.me"
+  },
+  "license": "MIT",
   "dependencies": {
     "@grpc/grpc-js": "^1.4.1",
     "google-protobuf": "^3.19.0-rc.1",

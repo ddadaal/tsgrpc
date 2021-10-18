@@ -22,6 +22,9 @@ export class Server {
 
   constructor(private config: Config) {
     this.logger = getLogger("main");
+
+    this.config.host = this.config.host ?? "0.0.0.0";
+    this.config.port = this.config.port ?? 5000;
   }
 
   addCloseHook = (hook: CloseCallback) => {

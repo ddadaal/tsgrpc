@@ -15,14 +15,11 @@ export interface Plugins {
 
 }
 
-/**
- * The plugin type.
- *
- * Sometimes the user cannot infer all augmentations of Plugins interface,
- * At that situation, manually specify this type parameter as the `Plugins` interface imported from this library
- * and all Plugins augmentation can be used.
- **/
+
 export type Plugin<TPlugins = Plugins> = (server: Server<TPlugins>) => (void | Promise<void>);
+
+/** Helper identify function to build plugin. */
+export function plugin(p: Plugin) { return p; }
 
 export class Server<TPlugins = Plugins> {
 

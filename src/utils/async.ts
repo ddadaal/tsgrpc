@@ -1,10 +1,11 @@
-import { Client, handleUnaryCall, sendUnaryData, ServiceError } from "@grpc/grpc-js";
+import { Client, ServiceError } from "@grpc/grpc-js";
 
-export function asyncHandler<TReq, TReply>(
-  handler: (...args: Parameters<handleUnaryCall<TReq, TReply>>) => Promise<Parameters<sendUnaryData<TReply>>> ,
-): handleUnaryCall<TReq, TReply> {
-  return (call, callback) => {
-    handler(call, callback).then((x) => callback(...x));
+export function unpromisify<TArg, TReturn extends unknown[], TErr>(
+  promiseFunction: (args: TArg) => Promise<TReturn>,
+) {
+  return (arg: TArg, callback: (err: TErr | null, ...args: TReturn) => void) => {
+    // @ts-ignore
+    promiseFunction(arg).then((x) => callback(null, ...x)).catch((e) => callback(e));
   };
 }
 

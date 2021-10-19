@@ -1,12 +1,19 @@
 import * as grpc from "@grpc/grpc-js";
-import { Config } from "src/utils/config";
 import { promisify } from "util";
-import { getLogger, Logger } from "src/utils/log";
-import type { Plugins } from "./plugin";
-
+import { getLogger, Logger } from "src/log";
 export type Plugin = (server: Server<any>) => (void | Promise<void>);
 
 export type CloseCallback = () => (void | Promise<void>);
+
+export type ServerConfig = {
+  host?: string;
+  port?: number;
+}
+
+// used for augmentation
+export interface Plugins {
+
+}
 
 export class Server<TPlugins = Plugins> {
 
@@ -20,7 +27,7 @@ export class Server<TPlugins = Plugins> {
 
   port: number = -1;
 
-  constructor(private config: Config) {
+  constructor(private config: ServerConfig) {
     this.logger = getLogger("main");
 
     this.config.host = this.config.host ?? "0.0.0.0";

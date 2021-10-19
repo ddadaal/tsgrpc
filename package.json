@@ -2,7 +2,11 @@
   "name": "@ddadaal/tsgrpc",
   "version": "0.0.0",
   "description": "A simple gRPC Server Framework for TypeScript Node.js",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./config": "./dist/config.js"
+  },
   "bin": {
     "tsgrpc": "dist/cli/index.js"
   },
@@ -18,6 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "@grpc/grpc-js": "^1.4.1",
+    "envalid": "^7.2.1",
     "google-protobuf": "^3.19.0-rc.1",
     "typescript": "^4.4.4",
     "yargs": "^17.2.1"

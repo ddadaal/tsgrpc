@@ -1,7 +1,6 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
 import { getLogger, Logger } from "src/log";
-export type Plugin = (server: Server<any>) => (void | Promise<void>);
 
 export type CloseCallback = () => (void | Promise<void>);
 
@@ -14,6 +13,15 @@ export type ServerConfig = {
 export interface Plugins {
 
 }
+
+/**
+ * The plugin type.
+ *
+ * Sometimes the user cannot infer all augmentations of Plugins interface,
+ * At that situation, manually specify this type parameter as the `Plugins` interface imported from this library
+ * and all Plugins augmentation can be used.
+ **/
+export type Plugin<TPlugins = Plugins> = (server: Server<TPlugins>) => (void | Promise<void>);
 
 export class Server<TPlugins = Plugins> {
 
@@ -38,8 +46,9 @@ export class Server<TPlugins = Plugins> {
     this.closeHooks.push(hook);
   };
 
-  addService = <TImpl extends grpc.UntypedServiceImplementation>
-  (server: grpc.ServiceDefinition<TImpl>, impl: TImpl) => {
+  addService = <TImpl extends grpc.UntypedServiceImplementation>(
+    server: grpc.ServiceDefinition<TImpl>, impl: TImpl,
+  ) => {
     this.server.addService(server, impl);
   };
 

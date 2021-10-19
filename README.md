@@ -6,6 +6,7 @@ A minimal Node.JS TypeScript gRPC Server framework.
 # Features
 
 - Plugin system with similar API to fastify ([fastify plugin API](https://www.fastify.io/docs/latest/Plugins/))
+  - Use `module augmentation` to provide type information to all plugins in the project
 - Graceful shutdown with register-able on close hook
 - Custom logger ([source code](src/log.ts))
 - Type checked env config builder (powered by [envalid](https://github.com/af/envalid)) with built-in env value interpolation (`test_${JEST_WORKER_ID}` => `test_${process.env.JEST_WORKER_ID}`)

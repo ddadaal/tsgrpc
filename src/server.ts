@@ -1,6 +1,7 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
 import { getLogger, Logger } from "src/log";
+import { unpromisify } from "src/utils/async";
 
 export type CloseCallback = () => (void | Promise<void>);
 
@@ -49,6 +50,12 @@ export class Server<TPlugins = Plugins> {
   addService = <TImpl extends grpc.UntypedServiceImplementation>(
     server: grpc.ServiceDefinition<TImpl>, impl: TImpl,
   ) => {
+
+    for (const key in impl) {
+      // @ts-ignore
+      impl[key] = unpromisify(impl[key]);
+    }
+
     this.server.addService(server, impl);
   };
 

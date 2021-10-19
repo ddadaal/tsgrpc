@@ -2,4 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.1](https://github.com/ddadaal/tsgrpc/compare/v0.0.0...v0.0.1) (2021-10-19)
+
+
+### Bug Fixes
+
+* try fixing plugin module augmentation ([cebe048](https://github.com/ddadaal/tsgrpc/commit/cebe048a3e8a3c6ed3826c759db98e2bebdfbd37))
+
 ## 0.0.0 (2021-10-19)

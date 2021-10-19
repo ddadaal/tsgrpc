@@ -29,21 +29,18 @@ type TRes<TFunc> =
       : never
     : never
 
+/** Throws error if client call causes err */
 export function asyncClientCall<
   TClient extends Client, TKey extends keyof TClient,
 >(
   client: TClient,
   methodName: TKey,
   req: TRequest<TClient[TKey]>,
-): Promise<[
-  ServiceError | null,
-  TRes<TClient[TKey]>,
-]> {
-
+): Promise<TRes<TClient[TKey]>> {
   type Call = ClientCall<TRequest<TClient[TKey]>, TRes<TClient[TKey]>>;
 
-  return new Promise((res) => {
+  return new Promise((res, rej) => {
     (client[methodName] as any as Call)
-    (req, (...args) => res(args));
+    (req, (err, ...args) => err ? res(...args) : rej(err));
   });
 }

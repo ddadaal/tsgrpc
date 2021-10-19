@@ -15,19 +15,18 @@ export interface Plugins {
 
 }
 
-
-export type Plugin<TPlugins = Plugins> = (server: Server<TPlugins>) => (void | Promise<void>);
+export type Plugin = (server: Server) => (void | Promise<void>);
 
 /** Helper identify function to build plugin. */
 export function plugin(p: Plugin) { return p; }
 
-export class Server<TPlugins = Plugins> {
+export class Server {
 
   private closeHooks: CloseCallback[] = [];
 
   logger: Logger;
 
-  plugins: TPlugins = {} as any;
+  plugins: Plugins = {} as any;
 
   server: grpc.Server = new grpc.Server();
 

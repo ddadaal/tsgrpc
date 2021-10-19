@@ -31,7 +31,8 @@ export class Server<TPlugins = Plugins> {
     this.closeHooks.push(hook);
   };
 
-  addService: grpc.Server["addService"] = (server, impl) => {
+  addService = <TImpl extends grpc.UntypedServiceImplementation>
+  (server: grpc.ServiceDefinition<TImpl>, impl: TImpl) => {
     this.server.addService(server, impl);
   };
 

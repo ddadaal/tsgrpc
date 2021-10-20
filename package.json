@@ -1,6 +1,6 @@
 {
   "name": "@ddadaal/tsgrpc",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A simple gRPC Server Framework for TypeScript Node.js",
   "main": "./dist/index.js",
   "exports": {

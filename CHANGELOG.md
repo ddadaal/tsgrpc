@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/ddadaal/tsgrpc/compare/v0.1.2...v0.1.3) (2021-10-20)
+
+
+### Bug Fixes
+
+* **chore:** ignore source ([22fe742](https://github.com/ddadaal/tsgrpc/commit/22fe742e09a01b6debdfcd8cc7ed9b8c46e94b78))
+* **config:** fix versioning and npmignore ([eefc585](https://github.com/ddadaal/tsgrpc/commit/eefc585dcd51dbcf660b9fca579150ff33d84659))
+
+
+
+
+
 ## [0.1.2](https://github.com/ddadaal/tsgrpc/compare/v0.1.1...v0.1.2) (2021-10-20)
 
 

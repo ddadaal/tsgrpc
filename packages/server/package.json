@@ -1,6 +1,6 @@
 {
   "name": "@ddadaal/tsgrpc-server",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A simple gRPC Server Framework for TypeScript Node.js",
   "main": "./dist/index.js",
   "exports": {
@@ -18,7 +18,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@ddadaal/tsgrpc-utils": "^0.1.2",
+    "@ddadaal/tsgrpc-utils": "^0.1.3",
     "@grpc/grpc-js": "^1.4.1",
     "envalid": "^7.2.1",
     "google-protobuf": "^3.19.0-rc.1"

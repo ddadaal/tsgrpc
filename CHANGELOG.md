@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.5](https://github.com/ddadaal/tsgrpc/compare/v0.1.4...v0.1.5) (2021-10-20)
+
+
+### Bug Fixes
+
+* **cli:** wrong binary path ([17ab16c](https://github.com/ddadaal/tsgrpc/commit/17ab16cf05bffca8a7ff49e7a632d74dfc78e15e))
+
+
+
+
+
 ## [0.1.4](https://github.com/ddadaal/tsgrpc/compare/v0.1.3...v0.1.4) (2021-10-20)
 
 **Note:** Version bump only for package @ddadaal/tsgrpc

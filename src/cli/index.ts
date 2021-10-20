@@ -7,7 +7,6 @@ yargs(hideBin(process.argv))
   .command("protos", "Generate protos files", (yargs) => {
     return yargs.options({
       configPath: { type: "string", default: "tsgrpc.json" },
-      targetDir: { type: "string", default: "src/generated" },
     });
   }, (argv) => {
     generateProtos(argv);

@@ -13,19 +13,18 @@ const GRPC_TOOLS_NODE_PROTOC = path.join(__dirname, "../../node_modules/.bin/grp
 
 interface GenerateProtosProps {
   configPath: string;
-  targetDir: string;
 }
 
-export async function generateProtos({ configPath, targetDir }: GenerateProtosProps) {
-
-  rimraf.sync(targetDir);
+export async function generateProtos({ configPath }: GenerateProtosProps) {
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const configFileContent = require(path.join(process.cwd(), configPath));
   const config: CliConfig = await cliConfigSchema.validateAsync(configFileContent);
 
+  rimraf.sync(config.targetPath);
+
   config.protos.forEach(({ path: protosPath, name }) => {
-    const modelDir = path.join(targetDir, name);
+    const modelDir = path.join(config.targetPath, name);
 
     fs.mkdirSync(modelDir, { recursive: true });
 

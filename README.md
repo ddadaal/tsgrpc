@@ -30,6 +30,7 @@ Create `tsgrpc.json` with the following content to specify paths to proto files
 
 ```
 {
+  "targetPath": "src/generated",
   "protos": [
     {
       "path": "../protos",
@@ -45,7 +46,9 @@ Create `tsgrpc.json` with the following content to specify paths to proto files
 
 All paths are relative to pwd. The `name` field will be used as the name of the sub directory containing files of the protos.
 
-Run `npx tsgrpc protos`, and the files will be generated to `src/generated/${name of the proto}`
+Run `npx tsgrpc protos`, and the files will be generated to `${targetPath}/${name of the proto}`.
+
+If `targetPath` is undefined, it defaults to `src/generated`.
 
 # Dependencies
 

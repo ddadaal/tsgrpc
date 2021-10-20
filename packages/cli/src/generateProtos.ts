@@ -5,11 +5,11 @@ import rimraf from "rimraf";
 import fs from "fs";
 import { execSync } from "child_process";
 
-const PROTOC_GEN_TS_PATH = path.resolve("./node_modules/.bin/protoc-gen-ts")
+const PROTOC_GEN_TS_PATH = path.join(__dirname, "../node_modules/.bin/protoc-gen-ts")
   // https://github.com/improbable-eng/ts-protoc-gen/issues/15#issuecomment-317063814
   + (process.platform === "win32" ? ".cmd" : "");
 
-const GRPC_TOOLS_NODE_PROTOC = path.resolve("./node_modules/.bin/grpc_tools_node_protoc");
+const GRPC_TOOLS_NODE_PROTOC = path.join(__dirname, "../node_modules/.bin/grpc_tools_node_protoc");
 
 interface GenerateProtosProps {
   configPath: string;

@@ -5,7 +5,7 @@ import rimraf from "rimraf";
 import fs from "fs";
 import { execSync } from "child_process";
 
-const PROTOC_GEN_TS_PATH = path.join(__dirname, "../node_modules/.bin/protoc-gen-ts")
+const TS_PROTO_PATH = path.join(__dirname, "../node_modules/.bin/protoc-gen-ts_proto")
   // https://github.com/improbable-eng/ts-protoc-gen/issues/15#issuecomment-317063814
   + (process.platform === "win32" ? ".cmd" : "");
 
@@ -31,11 +31,12 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
     console.log(`Generating protobuf files: ${protosPath}...`);
 
     const protoConfig = [
-      `--plugin="protoc-gen-ts=\"${PROTOC_GEN_TS_PATH}"\"`,
-      `--grpc_out="grpc_js:\"${modelDir}\"" `,
-      `--js_out="import_style=commonjs,binary:\"${modelDir}\"" `,
-      `--ts_out="grpc_js:\"${modelDir}\"" `,
-      `--proto_path \"${protosPath}\" \"${protosPath}/*.proto\"`,
+      `--plugin=protoc-gen-ts_proto="${TS_PROTO_PATH}"`,
+      "--ts_proto_opt=esModuleInterop=true",
+      "--ts_proto_opt=outputServices=grpc-js",
+      `--ts_proto_out="${modelDir}"`,
+      "--ts_proto_opt=useOptionals=true",
+      `-I "${protosPath}" "${protosPath}/*.proto"`,
     ];
 
     // https://github.com/agreatfool/grpc_tools_node_protoc_ts/tree/master/examples

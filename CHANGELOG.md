@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/ddadaal/tsgrpc/compare/v0.1.1...v0.1.2) (2021-10-20)
+
+
+### Bug Fixes
+
+* **chore:** add npmignore ([08893dd](https://github.com/ddadaal/tsgrpc/commit/08893ddbdb28628323ee9ab366bb9f5fc089b35d))
+
+
+
+
+
 ## [0.1.1](https://github.com/ddadaal/tsgrpc/compare/v0.0.6...v0.1.1) (2021-10-20)
 
 

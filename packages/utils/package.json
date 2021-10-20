@@ -21,13 +21,9 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@grpc/grpc-js": ">=1.4.0",
-    "@types/google-protobuf": ">=3",
-    "google-protobuf": ">=3"
+    "@grpc/grpc-js": ">=1.4.0"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "^1.4.1",
-    "@types/google-protobuf": "^3.15.5",
-    "google-protobuf": "^3.19.0-rc.2"
+    "@grpc/grpc-js": "^1.4.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ddadaal/tsgrpc-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Utility functions to work with gRPC in TypeScript",
   "author": "Chen Junda <ddadaal@outlook.com>",
   "homepage": "https://github.com/ddadaal/tsgrpc#readme",
@@ -22,8 +22,8 @@
   },
   "peerDependencies": {
     "@grpc/grpc-js": ">=1.4.0",
-    "google-protobuf": ">=3",
-    "@types/google-protobuf": ">=3"
+    "@types/google-protobuf": ">=3",
+    "google-protobuf": ">=3"
   },
   "devDependencies": {
     "@grpc/grpc-js": "^1.4.1",

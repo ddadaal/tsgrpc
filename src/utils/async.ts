@@ -41,6 +41,6 @@ export function asyncClientCall<
 
   return new Promise((res, rej) => {
     (client[methodName] as any as Call)
-    (req, (err, ...args) => err ? res(...args) : rej(err));
+    (req, (err, ...args) => err ? rej(err) : res(...args));
   });
 }

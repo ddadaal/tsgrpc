@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/ddadaal/tsgrpc/compare/v0.0.4...v0.0.5) (2021-10-20)
+
+
+### Bug Fixes
+
+* protoc tool not found ([afb87be](https://github.com/ddadaal/tsgrpc/commit/afb87bee777afa9bf7dd9e023b2b190d6c22d8bd))
+
 ### [0.0.4](https://github.com/ddadaal/tsgrpc/compare/v0.0.3...v0.0.4) (2021-10-20)
 
 

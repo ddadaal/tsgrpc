@@ -3,7 +3,6 @@
     "jsx": "react",
     "module": "commonjs",
     "target": "esnext",
-    "outDir": "dist",
     "moduleResolution": "node",
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -15,20 +14,6 @@
     "declaration": true,
     "importHelpers": true,
     "resolveJsonModule": true,
-    "strict": false,
-    "baseUrl": ".",
-    "paths": {
-      "src/*": [
-        "src/*"
-      ]
-    }
+    "strict": false
   },
-  "include": [
-    "src/**/*.ts",
-    "tests/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
 }

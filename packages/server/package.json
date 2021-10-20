@@ -1,0 +1,41 @@
+{
+  "name": "@ddadaal/tsgrpc-server",
+  "version": "0.0.0",
+  "description": "A simple gRPC Server Framework for TypeScript Node.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./config": "./dist/config.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "rimraf dist && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
+  },
+  "author": {
+    "name": "Chen Junda",
+    "email": "ddadaal@outlook.com",
+    "url": "https://ddadaal.me"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@ddadaal/tsgrpc-utils": "^0.0.0",
+    "@grpc/grpc-js": "^1.4.1",
+    "envalid": "^7.2.1",
+    "google-protobuf": "^3.19.0-rc.1"
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.15.5",
+    "@types/jest": "^27.0.2",
+    "@types/rimraf": "^3.0.2",
+    "@types/yargs": "^17.0.4",
+    "jest": "^27.2.5",
+    "jest-extended": "^0.11.5",
+    "lerna": "^4.0.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

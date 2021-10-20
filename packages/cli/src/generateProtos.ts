@@ -1,4 +1,4 @@
-import { CliConfig, cliConfigSchema } from "src/cli/config";
+import { CliConfig, cliConfigSchema } from "src/config";
 
 import path from "path";
 import rimraf from "rimraf";

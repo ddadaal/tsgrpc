@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/ddadaal/tsgrpc/compare/v0.0.2...v0.0.3) (2021-10-20)
+
+
+### Bug Fixes
+
+* add missing dependencies ([88914c2](https://github.com/ddadaal/tsgrpc/commit/88914c27c70c67668ed9c33b84add80e1bcc284b))
+
 ### [0.0.2](https://github.com/ddadaal/tsgrpc/compare/v0.0.1...v0.0.2) (2021-10-19)
 
 

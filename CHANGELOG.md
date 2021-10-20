@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/ddadaal/tsgrpc/compare/v0.0.3...v0.0.4) (2021-10-20)
+
+
+### Features
+
+* add targetPath config ([92b9657](https://github.com/ddadaal/tsgrpc/commit/92b9657cd1c518f3009134f33df473659decfd8e))
+
+
+### Bug Fixes
+
+* proto tooling not installed ([07f2e76](https://github.com/ddadaal/tsgrpc/commit/07f2e7641984c477f804b89d76bd90016d0bc462))
+
 ### [0.0.3](https://github.com/ddadaal/tsgrpc/compare/v0.0.2...v0.0.3) (2021-10-20)
 
 

@@ -19,8 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "@ddadaal/tsgrpc-utils": "^0.1.4",
-    "@grpc/grpc-js": "^1.4.1",
-    "envalid": "^7.2.1"
+    "@grpc/grpc-js": "^1.4.1"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
@@ -28,7 +27,6 @@
     "@types/yargs": "^17.0.4",
     "jest": "^27.2.5",
     "jest-extended": "^0.11.5",
-    "lerna": "^4.0.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1"

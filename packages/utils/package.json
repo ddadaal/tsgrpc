@@ -25,5 +25,8 @@
   },
   "devDependencies": {
     "@grpc/grpc-js": "^1.4.1"
+  },
+  "dependencies": {
+    "envalid": "^7.2.1"
   }
 }

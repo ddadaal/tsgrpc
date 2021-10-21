@@ -19,4 +19,4 @@ export const envConfig = <T extends object>(
       strictProxyMiddleware(parsePlaceholder(env, rawEnv), rawEnv),
   );
 
-export * from "envalid";
+export * as envalid from "envalid";

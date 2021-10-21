@@ -13,7 +13,6 @@ npm install --save @ddadaal/tsgrpc-server
 - Plugin system with similar API to fastify ([fastify plugin API](https://www.fastify.io/docs/latest/Plugins/))
   - Use `module augmentation` to provide type information to all plugins in the project
 - Graceful shutdown with register-able on close hook
-- Custom logger ([source code](src/log.ts))
 - Allow writing `async` function as `handleUnaryCall`
 
 ## cli: gRPC code generation with minimal configuration
@@ -46,7 +45,7 @@ Run `npx tsgrpc-cli protos`, and the files will be generated to `${targetPath}/$
 
 If `targetPath` is undefined, it defaults to `src/generated`.
 
-## utils: Helper functions
+## utils: Helper components
 
 ```bash
 npm install --save @ddadaal/tsgrpc-utils
@@ -54,9 +53,11 @@ npm install --save @ddadaal/tsgrpc-utils
 
 - Type checked env config builder powered by [envalid](https://github.com/af/envalid)
   - with built-in env value interpolation (`test_${JEST_WORKER_ID}` => `test_${process.env.JEST_WORKER_ID}`)
-- [`unpromisify`](packages/utils/src/utils/async.ts): write server implementation as async function
-- [`asyncClientCall`](packages/utils/src/utils/async.ts): calling grpc client as promise. Throws if client call causes error.
-- [`ensureNotUndefined`](packages/utils/src/utils/validations.ts): check fields that must not be undefined. Return type has checked fields required!
+- Custom logger ([source code](packages/utils/src/log.ts))
+- Utilitiy functions:
+  - [`unpromisify`](packages/utils/src/utils/async.ts): write server implementation as async function
+  - [`asyncClientCall`](packages/utils/src/utils/async.ts): calling grpc client as promise. Throws if client call causes error.
+  - [`ensureNotUndefined`](packages/utils/src/utils/validations.ts): check fields that must not be undefined. Return type has checked fields required!
 
 # License
 

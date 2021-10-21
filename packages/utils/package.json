@@ -12,7 +12,8 @@
     "url": "git+https://github.com/ddadaal/tsgrpc.git"
   },
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
+    "build": "rimraf dist && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/ddadaal/tsgrpc/issues"
@@ -24,7 +25,12 @@
     "@grpc/grpc-js": ">=1.4.0"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "^1.4.1"
+    "@grpc/grpc-js": "^1.4.1",
+    "@types/jest": "^27.0.2",
+    "jest": "^27.2.5",
+    "jest-extended": "^0.11.5",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1"
   },
   "dependencies": {
     "envalid": "^7.2.1"

@@ -1,4 +1,4 @@
-import { ensureNotUndefined } from "@ddadaal/tsgrpc-utils";
+import { ensureNotUndefined } from "src/validations";
 import * as grpc from "@grpc/grpc-js";
 
 it("checks for undefined value", () => {

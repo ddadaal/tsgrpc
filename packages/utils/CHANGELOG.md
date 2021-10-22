@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ddadaal/tsgrpc/compare/v0.1.8...v0.2.0) (2021-10-22)
+
+
+### Features
+
+* **utils:** update logger ([3997b9f](https://github.com/ddadaal/tsgrpc/commit/3997b9f0bee2b0bae22a5de269667049f3f3ef0c))
+
+
+
+
+
 ## [0.1.8](https://github.com/ddadaal/tsgrpc/compare/v0.1.7...v0.1.8) (2021-10-21)
 
 

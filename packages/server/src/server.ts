@@ -1,6 +1,6 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
-import { unpromisify, getLogger, Logger } from "@ddadaal/tsgrpc-utils";
+import { getLogger, Logger } from "@ddadaal/tsgrpc-utils";
 
 export type CloseCallback = () => (void | Promise<void>);
 
@@ -13,6 +13,24 @@ export type ServerConfig = {
 export interface Plugins {
 
 }
+
+type Rest<T extends any[]> = T extends [infer _I, ...infer L] ? L : never;
+export type ResponseType<T extends (...args: any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
+
+export type Call<TOrig> = TOrig & {
+  logger: Logger;
+}
+
+type RemoveIndex<T> = {
+  [ K in keyof T as string extends K ? never : number extends K ? never : K ] : T[K]
+};
+export declare type TPromisifiedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
+    [K in keyof RemoveIndex<TImpl>]: (
+      call: Call<Parameters<RemoveIndex<TImpl>[K]>[0]>,
+       ...rest: Rest<Parameters<RemoveIndex<TImpl>[K]>>
+       ) => (void | Promise<void | ResponseType<RemoveIndex<TImpl>[K]>>);
+};
+
 
 export type Plugin = (server: Server) => (void | Promise<void>);
 
@@ -43,15 +61,30 @@ export class Server {
   };
 
   addService = <TImpl extends grpc.UntypedServiceImplementation>(
-    server: grpc.ServiceDefinition<TImpl>, impl: TImpl,
+    server: grpc.ServiceDefinition<TImpl>, impl: TPromisifiedImplementation<TImpl>,
   ) => {
+
+    const actualImpl = {} as TImpl;
 
     for (const key in impl) {
       // @ts-ignore
-      impl[key] = unpromisify(impl[key]);
+      actualImpl[key] = (call: any, callback: any) => {
+
+        // logger
+        const reqId = new Date().toISOString();
+        const logger = getLogger(`req-${reqId}`);
+
+        logger.trace(`Starting serving req-${reqId}`);
+
+        // @ts-ignore
+        const ret = impl[key]({ ...call, logger }, callback);
+        if (ret && callback) {
+          ret.then((x) => { if (x) { callback(null, ...x);}});
+        }
+      };
     }
 
-    this.server.addService(server, impl);
+    this.server.addService(server, actualImpl);
   };
 
 

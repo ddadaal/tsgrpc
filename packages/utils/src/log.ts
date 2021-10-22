@@ -1,35 +1,63 @@
-export const levels = {
+export const logLevels = {
   trace: 1,
   debug: 2,
   info: 3,
   warn: 4,
   error: 5,
-};
+} as const;
 
-export type LogLevel = keyof typeof levels;
-
-let levelThreshold: number = levels.info;
-
-export function setLevelThreshold(level: LogLevel) {
-  levelThreshold = levels[level] ?? levels.info;
+export enum LogOutputFormat {
+  JSON,
+  Pretty,
 }
 
-export const getLogger = (name: string): Record<LogLevel, (content: string) => void> => {
+export type LogLevel = keyof typeof logLevels;
+
+let config = {
+  levelThreshold: logLevels.info,
+  format: LogOutputFormat.JSON,
+};
+
+export type LogConfig = typeof config;
+
+export function setLogConfig(newConfig: Partial<LogConfig>) {
+  config = { ...config, ...newConfig };
+}
+
+export type Logger = Record<LogLevel, (content: string) => void> & {
+  child(...scopes: string[]): Logger;
+}
+
+export const getLogger = (...scopes: string[]): Logger => {
 
   const log = (level: string) => (content: string) => {
-    if (levelThreshold <= levels[level]) {
-      console.log(
-        `${new Date().toISOString()} ${level.toLocaleUpperCase()} [${name}] ${content}`,
-      );
+    if (config.levelThreshold <= logLevels[level]) {
+
+      if (config.format === LogOutputFormat.JSON) {
+        const info = {
+          time: new Date().toISOString(),
+          level: level.toUpperCase(),
+          content,
+          scopes,
+        };
+
+        console.log(JSON.stringify(info));
+      } else {
+        const scopeString = scopes.length > 0 ? `[${scopes.join(", ")}]` : "";
+
+        console.log(
+          `${new Date().toISOString()} ${level.toLocaleUpperCase()} ${scopeString} ${content}`,
+        );
+      }
     }
   };
 
-  const logger = {} as Record<string, (content: string) => void>;
+  const logger = {
+    child: (newScopes) => getLogger(...scopes.concat(newScopes)),
+  } as Logger;
 
-  Object.keys(levels).forEach((level) => logger[level] = log(level));
+  Object.keys(logLevels).forEach((level) => logger[level] = log(level));
 
   return logger;
 
 };
-
-export type Logger = ReturnType<typeof getLogger>;

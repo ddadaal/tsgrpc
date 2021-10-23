@@ -1,6 +1,6 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
-import { getLogger, Logger } from "@ddadaal/tsgrpc-utils";
+import { createLogger, Logger } from "@ddadaal/tsgrpc-utils/lib/log";
 
 export type CloseCallback = () => (void | Promise<void>);
 
@@ -50,7 +50,7 @@ export class Server {
   port: number = -1;
 
   constructor(private config: ServerConfig) {
-    this.logger = getLogger("main");
+    this.logger = createLogger("main");
 
     this.config.host = this.config.host ?? "0.0.0.0";
     this.config.port = this.config.port ?? 5000;
@@ -72,7 +72,7 @@ export class Server {
 
         // logger
         const reqId = new Date().toISOString();
-        const logger = getLogger(`req-${reqId}`);
+        const logger = createLogger(`req-${reqId}`);
 
         logger.trace(`Starting serving req-${reqId}`);
 

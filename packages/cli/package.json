@@ -5,16 +5,16 @@
   "author": "Chen Junda <ddadaal@outlook.com>",
   "homepage": "https://github.com/ddadaal/tsgrpc#readme",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "bin": {
-    "tsgrpc-cli": "dist/index.js"
+    "tsgrpc-cli": "lib/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ddadaal/tsgrpc.git"
   },
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
+    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
   },
   "bugs": {
     "url": "https://github.com/ddadaal/tsgrpc/issues"

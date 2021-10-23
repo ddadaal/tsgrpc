@@ -2,14 +2,14 @@
   "name": "@ddadaal/tsgrpc-server",
   "version": "0.2.0",
   "description": "A simple gRPC Server Framework for TypeScript Node.js",
-  "main": "./dist/index.js",
+  "main": "lib/index.js",
   "exports": {
-    ".": "./dist/index.js",
-    "./config": "./dist/config.js"
+    ".": "./lib/index.js",
+    "./config": "./lib/config.js"
   },
   "scripts": {
     "test": "jest",
-    "build": "rimraf dist && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
+    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
   },
   "author": {
     "name": "Chen Junda",

@@ -15,7 +15,7 @@ export type LogLevel = keyof typeof logLevels;
 
 let config = {
   levelThreshold: logLevels.info,
-  format: LogOutputFormat.JSON,
+  format: LogOutputFormat.Pretty,
 };
 
 export type LogConfig = typeof config;

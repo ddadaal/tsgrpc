@@ -1,4 +1,4 @@
-import { createLogger, LogOutputFormat, setLogConfig } from "src/log";
+import { createLogger, LogOutputFormat, setLogConfig } from "src/logger";
 
 let spy: jest.SpyInstance;
 

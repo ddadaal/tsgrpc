@@ -1,4 +1,4 @@
 export * from "./async";
 export * from "./validations";
 export * from "./config";
-export * from "./log";
+export * from "./logger";

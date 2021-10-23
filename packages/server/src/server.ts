@@ -1,6 +1,6 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
-import { createLogger, Logger } from "@ddadaal/tsgrpc-utils/lib/log";
+import { createLogger, Logger } from "@ddadaal/tsgrpc-utils/lib/logger";
 
 export type CloseCallback = () => (void | Promise<void>);
 

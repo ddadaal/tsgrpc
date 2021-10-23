@@ -1,4 +1,4 @@
-import { getLogger, LogOutputFormat, setLogConfig } from "src/log";
+import { createLogger, LogOutputFormat, setLogConfig } from "src/log";
 
 let spy: jest.SpyInstance;
 
@@ -12,7 +12,7 @@ afterEach(() => {
 
 it("outputs log info", async () => {
 
-  const logger = getLogger("orm");
+  const logger = createLogger("orm");
 
   logger.info("string");
 
@@ -20,7 +20,7 @@ it("outputs log info", async () => {
 });
 
 it("doesn't call log", async () => {
-  const logger = getLogger();
+  const logger = createLogger();
 
   logger.trace("string");
 
@@ -30,7 +30,7 @@ it("doesn't call log", async () => {
 it("appends new scopes for child logger", async () => {
   setLogConfig({ format: LogOutputFormat.JSON });
 
-  const logger = getLogger("123");
+  const logger = createLogger("123");
   const child = logger.child("456");
 
   child.info("haha");

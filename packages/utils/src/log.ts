@@ -28,7 +28,7 @@ export type Logger = Record<LogLevel, (content: string) => void> & {
   child(...scopes: string[]): Logger;
 }
 
-export const getLogger = (...scopes: string[]): Logger => {
+export const createLogger = (...scopes: string[]): Logger => {
 
   const log = (level: string) => (content: string) => {
     if (config.levelThreshold <= logLevels[level]) {
@@ -53,7 +53,7 @@ export const getLogger = (...scopes: string[]): Logger => {
   };
 
   const logger = {
-    child: (newScopes) => getLogger(...scopes.concat(newScopes)),
+    child: (newScopes) => createLogger(...scopes.concat(newScopes)),
   } as Logger;
 
   Object.keys(logLevels).forEach((level) => logger[level] = log(level));

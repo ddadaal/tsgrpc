@@ -37,8 +37,8 @@ export const createLogger = (...scopes: string[]): Logger => {
         const info = {
           time: new Date().toISOString(),
           level: level.toUpperCase(),
-          content,
           scopes,
+          content,
         };
 
         console.log(JSON.stringify(info));

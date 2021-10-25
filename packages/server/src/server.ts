@@ -91,7 +91,9 @@ export class Server {
         // @ts-ignore
         const ret = impl[key](request, callback);
         if (ret && callback) {
-          ret.then((x) => { if (x) { callback(null, ...x);}});
+          ret
+            .then((x) => { if (x) { callback(null, ...x);}})
+            .catch((e) => callback(e));
         }
       };
     }

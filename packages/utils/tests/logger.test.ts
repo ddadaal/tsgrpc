@@ -42,3 +42,4 @@ it("appends new scopes for child logger", async () => {
   });
 
 });
+

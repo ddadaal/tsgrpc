@@ -1,6 +1,9 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
 import { createLogger, Logger } from "@ddadaal/tsgrpc-utils/lib/logger";
+import { Plugins } from "src/plugins";
+import { Call, createReqIdGen, RequestDecorator } from "src/request";
+import { Rest } from "src/types";
 
 export type CloseCallback = () => (void | Promise<void>);
 
@@ -9,17 +12,7 @@ export type ServerConfig = {
   port?: number;
 }
 
-// used for augmentation
-export interface Plugins {
-
-}
-
-type Rest<T extends any[]> = T extends [infer _I, ...infer L] ? L : never;
 export type ResponseType<T extends (...args: any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
-
-export type Call<TOrig> = TOrig & {
-  logger: Logger;
-}
 
 type RemoveIndex<T> = {
   [ K in keyof T as string extends K ? never : number extends K ? never : K ] : T[K]
@@ -41,11 +34,15 @@ export class Server {
 
   private closeHooks: CloseCallback[] = [];
 
+  private reqIdGen = createReqIdGen();
+
   logger: Logger;
 
   plugins: Plugins = {} as any;
 
   server: grpc.Server = new grpc.Server();
+
+  requestDecorators: RequestDecorator[] = [];
 
   port: number = -1;
 
@@ -55,6 +52,10 @@ export class Server {
     this.config.host = this.config.host ?? "0.0.0.0";
     this.config.port = this.config.port ?? 5000;
   }
+
+  decorateRequest = (decorator: RequestDecorator) => {
+    this.requestDecorators.push(decorator);
+  };
 
   addCloseHook = (hook: CloseCallback) => {
     this.closeHooks.push(hook);
@@ -68,16 +69,27 @@ export class Server {
 
     for (const key in impl) {
       // @ts-ignore
-      actualImpl[key] = (call: any, callback: any) => {
+      actualImpl[key] = async (call: any, callback: any) => {
 
         // logger
-        const reqId = new Date().toISOString();
+        const reqId = this.reqIdGen();
         const logger = createLogger(`req-${reqId}`);
 
         logger.trace(`Starting serving req-${reqId}`);
 
+        const request = {
+          ...call,
+          logger,
+          reqId,
+        };
+
+        // apply request decorators
+        for (const decorator of this.requestDecorators) {
+          await decorator(request);
+        }
+
         // @ts-ignore
-        const ret = impl[key]({ ...call, logger }, callback);
+        const ret = impl[key](request, callback);
         if (ret && callback) {
           ret.then((x) => { if (x) { callback(null, ...x);}});
         }

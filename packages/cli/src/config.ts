@@ -4,7 +4,8 @@ export interface CliConfig {
   slient: boolean;
   targetPath: string;
   protos: {
-    path: string;
+    files: string;
+    path?: string;
     name: string;
   }[];
 }
@@ -13,8 +14,10 @@ export const cliConfigSchema = Joi.object({
   targetPath: Joi.string().description("The path protos are generated to. Relative to cwd.")
     .default("src/generated"),
   protos: Joi.array().items(Joi.object({
-    path: Joi.string().description("The path to the protos"),
-    name: Joi.string().description("The name of the protos"),
+    files: Joi.string().description("Files to be generated. Support wildcard *.").required(),
+    path: Joi.string().description("The path to the protos. If not specified, path.dirname(files) is used.")
+      .optional(),
+    name: Joi.string().description("The name of the protos").required(),
   })),
   slient: Joi.boolean().description("Should CLI output messages to console")
     .default(false),

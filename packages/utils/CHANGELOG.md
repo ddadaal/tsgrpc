@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ddadaal/tsgrpc/compare/v0.3.0...v0.4.0) (2021-10-25)
+
+
+### Features
+
+* **logger:** auto config log according to env value ([b7c4e39](https://github.com/ddadaal/tsgrpc/commit/b7c4e39985c2a2b6f9ec591164658b15dc4a819e))
+
+
+
+
+
+
 # [0.3.0](https://github.com/ddadaal/tsgrpc/compare/v0.2.0...v0.3.0) (2021-10-23)
 
 **Note:** Version bump only for package @ddadaal/tsgrpc-utils

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ddadaal/tsgrpc/compare/v0.3.0...v0.4.0) (2021-10-25)
+
+
+### Features
+
+* **server:** add decorateRequesst ([57ff524](https://github.com/ddadaal/tsgrpc/commit/57ff524fb1d63edf46c9bcdb5b85e9eacd07464a))
+
+
+
+
+
+
 # [0.3.0](https://github.com/ddadaal/tsgrpc/compare/v0.2.0...v0.3.0) (2021-10-23)
 
 **Note:** Version bump only for package @ddadaal/tsgrpc-server

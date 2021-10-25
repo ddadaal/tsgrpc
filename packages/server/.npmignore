@@ -16,8 +16,7 @@ coverage
 example
 tests
 
-tsconfig.json
-tsconfig.cli.json
+tsconfig.*
 *.config.js
 src
 .travis.yml

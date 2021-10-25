@@ -1,6 +1,7 @@
 import Joi from "joi";
 
 export interface CliConfig {
+  slient: boolean;
   targetPath: string;
   protos: {
     path: string;
@@ -15,4 +16,6 @@ export const cliConfigSchema = Joi.object({
     path: Joi.string().description("The path to the protos"),
     name: Joi.string().description("The name of the protos"),
   })),
+  slient: Joi.boolean().description("Should CLI output messages to console")
+    .default(false),
 });

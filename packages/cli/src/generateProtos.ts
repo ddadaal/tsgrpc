@@ -31,7 +31,9 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
 
     fs.mkdirSync(modelDir, { recursive: true });
 
-    console.log(`Generating protobuf files: ${protosPath}...`);
+    if (!config.slient) {
+      console.log(`Generating protobuf files: ${protosPath}...`);
+    }
 
     const protoConfig = [
       `--plugin=protoc-gen-ts_proto="${TS_PROTO_PATH}"`,

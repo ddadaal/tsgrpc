@@ -27,3 +27,5 @@ All paths are relative to pwd. The `name` field will be used as the name of the 
 Run `npx tsgrpc-cli protos`, and the files will be generated to `${targetPath}/${name of the proto}`.
 
 If `targetPath` is undefined, it defaults to `src/generated`.
+
+Extra config keys are in [src/config.ts](src/config.ts).

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ddadaal/tsgrpc/compare/v0.4.0...v0.4.1) (2021-10-25)
+
+
+### Bug Fixes
+
+* **server:** grpc handler not handling throw ([7c3915e](https://github.com/ddadaal/tsgrpc/commit/7c3915eca09d71ee6eaba5ef8ba9851ad2d70311))
+
+
+
+
+
 # [0.4.0](https://github.com/ddadaal/tsgrpc/compare/v0.3.0...v0.4.0) (2021-10-25)
 
 

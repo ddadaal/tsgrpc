@@ -1,6 +1,6 @@
 {
   "name": "@ddadaal/tsgrpc-utils",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "description": "Utility functions to work with gRPC in TypeScript",
   "author": "Chen Junda <ddadaal@outlook.com>",
   "homepage": "https://github.com/ddadaal/tsgrpc#readme",

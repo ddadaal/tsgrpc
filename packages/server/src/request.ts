@@ -1,4 +1,4 @@
-import type { Logger } from "@ddadaal/tsgrpc-utils";
+import type { Logger } from "@ddadaal/node-logger";
 import type { ServerDuplexStream,
   ServerReadableStream, ServerUnaryCall, ServerWritableStream } from "@grpc/grpc-js/build/src/server-call";
 

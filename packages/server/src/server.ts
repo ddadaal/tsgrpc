@@ -1,6 +1,6 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
-import { createLogger, Logger } from "@ddadaal/tsgrpc-utils/lib/logger";
+import { createLogger, Logger } from "@ddadaal/node-logger";
 import { Plugins } from "src/plugins";
 import { Call, createReqIdGen, RequestDecorator } from "src/request";
 import { Rest } from "src/types";

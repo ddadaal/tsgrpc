@@ -64,7 +64,6 @@ npm install --save @ddadaal/tsgrpc-utils
 
 - Type checked env config builder powered by [envalid](https://github.com/af/envalid)
   - with built-in env value interpolation (`test_${JEST_WORKER_ID}` => `test_${process.env.JEST_WORKER_ID}`)
-- Custom logger ([source code](packages/utils/src/log.ts))
 - Utilitiy functions:
   - [`unpromisify`](packages/utils/src/utils/async.ts): write server implementation as async function
   - [`asyncClientCall`](packages/utils/src/utils/async.ts): calling grpc client as promise. Throws if client call causes error.

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/ddadaal/tsgrpc/compare/v0.4.3...v0.4.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* **cli:** add glob support for proto file match ([3bc7483](https://github.com/ddadaal/tsgrpc/commit/3bc74831b1637f5829a19c9eb07659f251da28b4))
+* compiled files use lf as line break ([9c56f48](https://github.com/ddadaal/tsgrpc/commit/9c56f480db055954d4bc0031da4e206c9c5f916a))
+
+
+
+
+
+
 ## [0.4.3](https://github.com/ddadaal/tsgrpc/compare/v0.4.2...v0.4.3) (2021-10-25)
 
 **Note:** Version bump only for package @ddadaal/tsgrpc

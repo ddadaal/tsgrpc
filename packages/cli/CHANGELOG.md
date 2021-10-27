@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.4](https://github.com/ddadaal/tsgrpc/compare/v0.4.3...v0.4.4) (2021-10-27)
+
+
+### Bug Fixes
+
+* **cli:** add glob support for proto file match ([3bc7483](https://github.com/ddadaal/tsgrpc/commit/3bc74831b1637f5829a19c9eb07659f251da28b4))
+
+
+
+
+
+
 ## [0.4.2](https://github.com/ddadaal/tsgrpc/compare/v0.4.1...v0.4.2) (2021-10-25)
 
 **Note:** Version bump only for package @ddadaal/tsgrpc-cli

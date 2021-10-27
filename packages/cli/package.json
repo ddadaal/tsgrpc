@@ -20,6 +20,7 @@
     "url": "https://github.com/ddadaal/tsgrpc/issues"
   },
   "dependencies": {
+    "glob": "^7.2.0",
     "grpc-tools": "^1.11.2",
     "joi": "^17.4.2",
     "rimraf": "^3.0.2",

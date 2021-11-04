@@ -15,7 +15,7 @@ export const cliConfigSchema = Joi.object({
   targetPath: Joi.string().description("The path protos are generated to. Relative to cwd.")
     .default("src/generated"),
   protos: Joi.array().items(Joi.object({
-    files: Joi.string().description("Files to be generated. Support wildcard *.")
+    files: Joi.string().description("Files to be generated. Support glob.")
       .required(),
     path: Joi.string().description("The path to the protos. If not specified, path.dirname(files) is used.")
       .optional(),

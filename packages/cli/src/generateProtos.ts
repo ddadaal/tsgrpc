@@ -49,6 +49,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
       "--ts_proto_opt=outputServices=grpc-js",
       `--ts_proto_out="${modelDir}"`,
       "--ts_proto_opt=useOptionals=true",
+      ...(config.params || []),
       `-I "${I}"`,
       ...resolvedFiles,
     ];

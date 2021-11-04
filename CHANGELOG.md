@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ddadaal/tsgrpc/compare/v0.4.5...v0.5.0) (2021-11-04)
+
+
+### Features
+
+* **cli:** update config ([591063f](https://github.com/ddadaal/tsgrpc/commit/591063fdb0b3dd58058311c74e40842c6e200f14))
+
+
+
+
+
 ## [0.4.5](https://github.com/ddadaal/tsgrpc/compare/v0.4.4...v0.4.5) (2021-10-27)
 
 **Note:** Version bump only for package @ddadaal/tsgrpc

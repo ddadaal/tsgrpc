@@ -42,7 +42,7 @@ export class Server {
 
   server: grpc.Server = new grpc.Server();
 
-  requestDecorators: RequestDecorator[] = [];
+  requestHooks: RequestDecorator[] = [];
 
   port: number = -1;
 
@@ -53,8 +53,8 @@ export class Server {
     this.config.port = this.config.port ?? 5000;
   }
 
-  decorateRequest = (decorator: RequestDecorator) => {
-    this.requestDecorators.push(decorator);
+  addRequestHook = (hook: RequestDecorator) => {
+    this.requestHooks.push(hook);
   };
 
   addCloseHook = (hook: CloseCallback) => {
@@ -84,8 +84,8 @@ export class Server {
         };
 
         // apply request decorators
-        for (const decorator of this.requestDecorators) {
-          await decorator(request);
+        for (const hook of this.requestHooks) {
+          await hook(request);
         }
 
         // @ts-ignore

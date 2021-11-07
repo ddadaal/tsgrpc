@@ -24,6 +24,10 @@ export declare type TPromisifiedImplementation<TImpl extends grpc.UntypedService
        ) => (void | Promise<void | ResponseType<RemoveIndex<TImpl>[K]>>);
 };
 
+export declare type ProxifiedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
+  [K in keyof RemoveIndex<TImpl>]: grpc.UntypedHandleCall
+}
+
 
 export type Plugin = (server: Server) => (void | Promise<void>);
 
@@ -62,20 +66,21 @@ export class Server {
   };
 
   addService = <TImpl extends grpc.UntypedServiceImplementation>(
-    server: grpc.ServiceDefinition<TImpl>, impl: TPromisifiedImplementation<TImpl>,
+    service: grpc.ServiceDefinition<TImpl>, impl: TPromisifiedImplementation<TImpl>,
   ) => {
 
-    const actualImpl = {} as TImpl;
+    const actualImpl = {} as ProxifiedImplementation<TImpl>;
 
     for (const key in impl) {
-      // @ts-ignore
-      actualImpl[key] = async (call: any, callback: any) => {
 
+      const serviceDef = service[key];
+
+      actualImpl[key] = async (call, callback) => {
         // logger
         const reqId = this.reqIdGen();
         const logger = createLogger(`req-${reqId}`);
 
-        logger.trace(`Starting serving req-${reqId}`);
+        logger.trace(`Starting req-${reqId}. Path: ${serviceDef.path}`);
 
         const request = {
           ...call,
@@ -98,7 +103,7 @@ export class Server {
       };
     }
 
-    this.server.addService(server, actualImpl);
+    this.server.addService(service, actualImpl);
   };
 
 

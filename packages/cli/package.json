@@ -24,13 +24,13 @@
     "grpc-tools": "^1.11.2",
     "joi": "^17.4.2",
     "rimraf": "^3.0.2",
-    "ts-proto": "^1.83.1",
+    "ts-proto": "^1.85.0",
     "tslib": "^2.3.1",
     "yargs": "^17.2.1"
   },
   "devDependencies": {
     "@types/rimraf": "^3.0.2",
-    "@types/yargs": "^17.0.4"
+    "@types/yargs": "^17.0.5"
   },
   "publishConfig": {
     "access": "public"

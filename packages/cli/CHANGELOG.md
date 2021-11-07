@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ddadaal/tsgrpc/compare/v0.5.0...v0.6.0) (2021-11-07)
+
+**Note:** Version bump only for package @ddadaal/tsgrpc-cli
+
+
+
+
+
+
 # [0.5.0](https://github.com/ddadaal/tsgrpc/compare/v0.4.5...v0.5.0) (2021-11-04)
 
 

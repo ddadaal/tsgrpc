@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ddadaal/tsgrpc/compare/v0.5.0...v0.6.0) (2021-11-07)
+
+
+### Features
+
+* **server:** log service path when request is started ([e76e5fb](https://github.com/ddadaal/tsgrpc/commit/e76e5fb4a126adae8542e953207d9fd4bb3eba5c))
+
+
+
+
+
+
 # [0.5.0](https://github.com/ddadaal/tsgrpc/compare/v0.4.5...v0.5.0) (2021-11-04)
 
 **Note:** Version bump only for package @ddadaal/tsgrpc-server

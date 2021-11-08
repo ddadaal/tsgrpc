@@ -10,8 +10,7 @@ export async function createServer() {
   });
 
   await server.register(myPlugin);
-
-  server.register(testService);
+  await server.register(testService);
 
   return server;
 

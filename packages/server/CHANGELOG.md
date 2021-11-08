@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ddadaal/tsgrpc/compare/v0.6.0...v0.6.1) (2021-11-08)
+
+
+### Bug Fixes
+
+* **server:** fix tsc build error ([70fda6b](https://github.com/ddadaal/tsgrpc/commit/70fda6b667d73d9ab2ef8f698234c812ae5283ad))
+
+
+
+
+
+
 # [0.6.0](https://github.com/ddadaal/tsgrpc/compare/v0.5.0...v0.6.0) (2021-11-07)
 
 

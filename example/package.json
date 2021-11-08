@@ -1,0 +1,25 @@
+{
+  "name": "tsgrpc-example",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Example project for tsgrpc",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "serve": "node build/index.js",
+    "protos": "tsgrpc-cli protos",
+    "postinstall": "tsgrpc-cli protos"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ddadaal/tsgrpc-server": "^0.6.0"
+  },
+  "devDependencies": {
+    "@ddadaal/tsgrpc-cli": "^0.6.0",
+    "@ddadaal/tsgrpc-utils": "^0.6.0",
+    "ts-node": "^10.4.0"
+  }
+}

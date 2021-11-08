@@ -1,0 +1,14 @@
+{
+  "targetPath": "src/generated",
+  "protos": [
+    {
+      "path": "./protos",
+      "files": "./protos/*.proto",
+      "name": "."
+    }
+  ],
+  "params": [
+    "--ts_proto_opt=stringEnums=true"
+  ],
+  "slient": false
+}

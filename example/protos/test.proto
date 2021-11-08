@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package test;
+import "shared.proto";
+
+enum EnumTest {
+  A = 0;
+  B = 1;
+}
+
+message AMessage {
+  SharedMessage msg = 1;
+}
+
+message UnaryCallRequest {
+  AMessage msg = 1;
+}
+
+message UnaryCallReply {
+  EnumTest enumTest = 1;
+  string msg = 2;
+}
+
+service TestService {
+  rpc UnaryCall(UnaryCallRequest) returns (UnaryCallReply);
+}

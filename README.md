@@ -8,6 +8,10 @@ Utilities that help to work with gRPC using TypeScript.
 - [cli](./packages/cli/README.md): gRPC code generation with minimal configuration
 - [utils](./packages/utils/README.md): Helper components
 
+# Example project
+
+A example project is available at [example](example) folder.
+
 # License
 
 MIT

@@ -1,6 +1,6 @@
-import type { Logger } from "@ddadaal/node-logger";
 import type { ServerDuplexStream,
   ServerReadableStream, ServerUnaryCall, ServerWritableStream } from "@grpc/grpc-js/build/src/server-call";
+import type pino from "pino";
 
 // https://github.com/fastify/fastify/blob/7efd2540f1/lib/reqIdGenFactory.js
 export function createReqIdGen() {
@@ -14,7 +14,7 @@ export function createReqIdGen() {
 
 // used for augmentation
 export interface Request {
-  logger: Logger;
+  logger: pino.Logger;
   reqId: string;
 }
 

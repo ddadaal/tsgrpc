@@ -18,9 +18,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@ddadaal/node-logger": "^0.1.1",
     "@ddadaal/tsgrpc-utils": "^0.6.1",
     "@grpc/grpc-js": "^1.4.3",
+    "pino": "^7.2.0",
     "tslib": "^2.3.1"
   },
   "devDependencies": {

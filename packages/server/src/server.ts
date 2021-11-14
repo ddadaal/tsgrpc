@@ -1,15 +1,16 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
-import { createLogger, Logger } from "@ddadaal/node-logger";
 import { Plugins } from "src/plugins";
 import { Call, createReqIdGen, RequestDecorator } from "src/request";
 import { Rest } from "src/types";
+import pino from "pino";
 
 export type CloseCallback = () => (void | Promise<void>);
 
 export type ServerConfig = {
   host?: string;
   port?: number;
+  logger?: pino.LoggerOptions;
 }
 
 export type ResponseType<T extends (...args: any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
@@ -40,7 +41,7 @@ export class Server {
 
   private reqIdGen = createReqIdGen();
 
-  logger: Logger;
+  logger: pino.Logger;
 
   plugins: Plugins = {} as any;
 
@@ -51,7 +52,7 @@ export class Server {
   port: number = -1;
 
   constructor(private config: ServerConfig) {
-    this.logger = createLogger("main");
+    this.logger = pino(config.logger).child({ component: "server" });
 
     this.config.host = this.config.host ?? "0.0.0.0";
     this.config.port = this.config.port ?? 5000;
@@ -78,9 +79,9 @@ export class Server {
       actualImpl[key] = async (call, callback) => {
         // logger
         const reqId = this.reqIdGen();
-        const logger = createLogger(`req-${reqId}`);
+        const logger = this.logger.child({ req: reqId, path: serviceDef.path });
 
-        logger.trace(`Starting req-${reqId}. Path: ${serviceDef.path}`);
+        logger.trace("Starting req.");
 
         const request = {
           ...call,

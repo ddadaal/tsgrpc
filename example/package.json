@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ddadaal/tsgrpc-server": "^0.6.0"
+    "@ddadaal/tsgrpc-server": "file:../packages/server"
   },
   "devDependencies": {
     "@ddadaal/tsgrpc-cli": "^0.6.0",

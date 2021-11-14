@@ -1,7 +1,7 @@
 ## cli: gRPC code generation with minimal configuration
 
 ```bash
-npm install --save @ddadaal/tsgrpc-cli
+npm install -D @ddadaal/tsgrpc-cli
 ```
 
 Create `tsgrpc.json` with the following content to specify paths to proto files.
@@ -23,7 +23,7 @@ Create `tsgrpc.json` with the following content to specify paths to proto files.
   "params": [
     "--ts_proto_opt=stringEnums=true",
   ],
-  "slient": false,
+  "slient": false
 }
 ```
 

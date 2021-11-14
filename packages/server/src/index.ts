@@ -1,3 +1,3 @@
 export * from "./request";
-export * from "./plugins";
+export * from "./extension";
 export * from "./server";

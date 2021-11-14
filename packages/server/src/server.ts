@@ -1,6 +1,6 @@
 import * as grpc from "@grpc/grpc-js";
 import { promisify } from "util";
-import { Plugins } from "src/plugins";
+import { Extensions } from "src/extension";
 import { Call, createReqIdGen, RequestDecorator } from "src/request";
 import { Rest } from "src/types";
 import pino from "pino";
@@ -43,7 +43,7 @@ export class Server {
 
   logger: pino.Logger;
 
-  plugins: Plugins = {} as any;
+  ext: Extensions = {} as any;
 
   server: grpc.Server = new grpc.Server();
 
@@ -107,9 +107,8 @@ export class Server {
     this.server.addService(service, actualImpl);
   };
 
-
-  addPlugin = (key: PropertyKey, value: any) => {
-    this.plugins[key] = value;
+  addExtension = (key: PropertyKey, value: any) => {
+    this.ext[key] = value;
   };
 
   close = async () => {

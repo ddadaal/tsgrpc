@@ -3,6 +3,138 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.8.0 (2021-11-19)
+
+
+### Features
+
+* **server:** log success and error for handler ([8e97757](https://github.com/ddadaal/tsgrpc/commit/8e977577cba6d81a9cc4ee0959ee2aa396697b6e))
+
+
+
+# 0.7.0 (2021-11-14)
+
+
+### Features
+
+* **server:** migrate to pino logger ([297f468](https://github.com/ddadaal/tsgrpc/commit/297f468777548806e40c2ea1dd4bf8a6dd0cefab))
+
+
+
+## 0.6.1 (2021-11-08)
+
+
+### Bug Fixes
+
+* **server:** fix tsc build error ([70fda6b](https://github.com/ddadaal/tsgrpc/commit/70fda6b667d73d9ab2ef8f698234c812ae5283ad))
+
+
+
+# 0.6.0 (2021-11-07)
+
+
+### Features
+
+* **server:** log service path when request is started ([e76e5fb](https://github.com/ddadaal/tsgrpc/commit/e76e5fb4a126adae8542e953207d9fd4bb3eba5c))
+
+
+
+# 0.5.0 (2021-11-04)
+
+
+
+## 0.4.5 (2021-10-27)
+
+
+
+## 0.4.4 (2021-10-27)
+
+
+
+## 0.4.3 (2021-10-25)
+
+
+
+## 0.4.2 (2021-10-25)
+
+
+
+## 0.4.1 (2021-10-25)
+
+
+### Bug Fixes
+
+* **server:** grpc handler not handling throw ([7c3915e](https://github.com/ddadaal/tsgrpc/commit/7c3915eca09d71ee6eaba5ef8ba9851ad2d70311))
+
+
+
+# 0.4.0 (2021-10-25)
+
+
+### Features
+
+* **server:** add decorateRequesst ([57ff524](https://github.com/ddadaal/tsgrpc/commit/57ff524fb1d63edf46c9bcdb5b85e9eacd07464a))
+
+
+
+# 0.3.0 (2021-10-23)
+
+
+
+# 0.2.0 (2021-10-22)
+
+
+### Bug Fixes
+
+* add tslib ([8039e34](https://github.com/ddadaal/tsgrpc/commit/8039e3480d9c211c1e9cbe1dd2577589cd08292d))
+
+
+### Features
+
+* **server:** add logger to server handler ([81ad7df](https://github.com/ddadaal/tsgrpc/commit/81ad7df11b7cf1545596c5857322d76d3af6e5d2))
+
+
+
+## 0.1.8 (2021-10-21)
+
+
+
+## 0.1.7 (2021-10-21)
+
+
+
+## 0.1.6 (2021-10-21)
+
+
+
+## 0.1.4 (2021-10-20)
+
+
+
+## 0.1.3 (2021-10-20)
+
+
+### Bug Fixes
+
+* **config:** fix versioning and npmignore ([eefc585](https://github.com/ddadaal/tsgrpc/commit/eefc585dcd51dbcf660b9fca579150ff33d84659))
+
+
+
+## 0.1.2 (2021-10-20)
+
+
+### Bug Fixes
+
+* **chore:** add npmignore ([08893dd](https://github.com/ddadaal/tsgrpc/commit/08893ddbdb28628323ee9ab366bb9f5fc089b35d))
+
+
+
+## 0.1.1 (2021-10-20)
+
+
+
+
+
 # [0.7.0](https://github.com/ddadaal/tsgrpc/compare/v0.6.1...v0.7.0) (2021-11-14)
 
 

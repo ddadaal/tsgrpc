@@ -98,8 +98,14 @@ export class Server {
         const ret = impl[key](request, callback);
         if (ret && callback) {
           ret
-            .then((x) => { if (x) { callback(null, ...x);}})
-            .catch((e) => callback(e));
+            .then((x) => {
+              logger.info("Req completed.");
+              if (x) { callback(null, ...x);}
+            })
+            .catch((e) => {
+              logger.error("Error occurred. %o", e);
+              callback(e);
+            });
         }
       };
     }

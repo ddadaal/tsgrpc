@@ -6,14 +6,17 @@ import fs from "fs";
 import { execSync } from "child_process";
 import { glob } from "glob";
 
-// The binaries are installed on the root's .bin
-// So execute them from pwd
+// like: node_modules\ts-proto\build\plugin.js
+const TS_PROTO_SCRIPT_PATH = require.resolve("ts-proto");
 
-const TS_PROTO_PATH = resolve("./node_modules/.bin/protoc-gen-ts_proto")
+// to: node_modules\.bin
+const DOT_BIN_DIR = resolve(TS_PROTO_SCRIPT_PATH, "../../../.bin");
+
+const GRPC_TOOLS_NODE_PROTOC = resolve(DOT_BIN_DIR, "grpc_tools_node_protoc");
+
+const TS_PROTO_PATH = resolve(DOT_BIN_DIR, "./protoc-gen-ts_proto")
   // https://github.com/improbable-eng/ts-protoc-gen/issues/15#issuecomment-317063814
   + (process.platform === "win32" ? ".cmd" : "");
-
-const GRPC_TOOLS_NODE_PROTOC = resolve("./node_modules/.bin/grpc_tools_node_protoc");
 
 interface GenerateProtosProps {
   configPath: string;
@@ -54,7 +57,6 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
       ...resolvedFiles,
     ];
 
-    // https://github.com/agreatfool/grpc_tools_node_protoc_ts/tree/master/examples
     execSync(`${GRPC_TOOLS_NODE_PROTOC} ${protoConfig.join(" ")}`);
   });
 }

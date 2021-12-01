@@ -15,11 +15,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ddadaal/tsgrpc-server": "file:../packages/server"
+    "@ddadaal/tsgrpc-server": "0.8.1"
   },
   "devDependencies": {
-    "@ddadaal/tsgrpc-cli": "file:../packages/cli",
-    "@ddadaal/tsgrpc-utils": "file:../packages/utils",
+    "@ddadaal/tsgrpc-cli": "0.8.0",
+    "@ddadaal/tsgrpc-utils": "0.7.0",
     "ts-node": "^10.4.0"
   }
 }

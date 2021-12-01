@@ -21,6 +21,15 @@ message UnaryCallReply {
   string msg = 2;
 }
 
+message ErroredCallRequest {
+
+}
+
+message ErroredCallReply {
+
+}
+
 service TestService {
   rpc UnaryCall(UnaryCallRequest) returns (UnaryCallReply);
+  rpc ErroredCall(ErroredCallRequest) returns (ErroredCallReply);
 }

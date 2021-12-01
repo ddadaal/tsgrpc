@@ -1,12 +1,12 @@
 import { envConfig, envalid } from "@ddadaal/tsgrpc-utils";
 
-const { host, port } = envalid;
+const { host, num } = envalid;
 
 // Define env vars
 // Will be type checked when config is imported.
 // Fails the program if env is not correctly set.
 export const config = envConfig({
-  HOST: host({ default: "0.0.0.0" }),
-  PORT: port({ default: 5000 }),
+  HOST: host({ default: "localhost" }),
+  PORT: num({ default: 0 }),
 });
 

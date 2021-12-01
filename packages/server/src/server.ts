@@ -99,7 +99,7 @@ export class Server {
         if (ret && callback) {
           ret
             .then((x) => {
-              logger.info("Req completed.");
+              logger.trace("Req completed.");
               if (x) { callback(null, ...x);}
             })
             .catch((e) => {

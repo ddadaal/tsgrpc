@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.8.0...@ddadaal/tsgrpc-server@0.8.1) (2021-12-01)
+
+
+### Bug Fixes
+
+* **server:** change req complete log to trace level ([4acdfdb](https://github.com/ddadaal/tsgrpc/commit/4acdfdbfa90435cec4d10319936770c9dfa658e7))
+
+
+
+
+
+
 # 0.8.0 (2021-11-19)
 
 

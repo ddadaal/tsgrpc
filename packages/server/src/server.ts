@@ -103,7 +103,7 @@ export class Server {
               if (x) { callback(null, ...x);}
             })
             .catch((e) => {
-              logger.error("Error occurred. %o", e);
+              logger.error("Returning an error response %o", e);
               callback(e);
             });
         }

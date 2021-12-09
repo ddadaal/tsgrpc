@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.8.1...@ddadaal/tsgrpc-server@0.8.2) (2021-12-09)
+
+
+### Bug Fixes
+
+* **server:** changing log for error response ([9026e64](https://github.com/ddadaal/tsgrpc/commit/9026e6411b45e2fb9d0fb3af5796d5db75120f30))
+
+
+
+
+
+
 ## [0.8.1](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.8.0...@ddadaal/tsgrpc-server@0.8.1) (2021-12-01)
 
 

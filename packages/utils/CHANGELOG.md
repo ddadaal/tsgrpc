@@ -3,6 +3,105 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.8.0 (2021-12-09)
+
+
+### Features
+
+* **utils:** add portOrZero envalid validator ([27db3de](https://github.com/ddadaal/tsgrpc/commit/27db3de8dcca5dc85a54e75dc72645095ac2b132))
+
+
+
+# 0.7.0 (2021-11-14)
+
+
+
+## 0.6.1 (2021-11-08)
+
+
+
+# 0.6.0 (2021-11-07)
+
+
+
+# 0.5.0 (2021-11-04)
+
+
+
+## 0.4.5 (2021-10-27)
+
+
+
+## 0.4.4 (2021-10-27)
+
+
+
+## 0.4.2 (2021-10-25)
+
+
+
+# 0.4.0 (2021-10-25)
+
+
+### Features
+
+* **logger:** auto config log according to env value ([b7c4e39](https://github.com/ddadaal/tsgrpc/commit/b7c4e39985c2a2b6f9ec591164658b15dc4a819e))
+
+
+
+# 0.3.0 (2021-10-23)
+
+
+
+# 0.2.0 (2021-10-22)
+
+
+### Features
+
+* **utils:** update logger ([3997b9f](https://github.com/ddadaal/tsgrpc/commit/3997b9f0bee2b0bae22a5de269667049f3f3ef0c))
+
+
+
+## 0.1.8 (2021-10-21)
+
+
+### Bug Fixes
+
+* **utils:** add tslib dependency ([e906d12](https://github.com/ddadaal/tsgrpc/commit/e906d12e8871c7e3ddb30c01239599d35e0f8de4))
+
+
+
+## 0.1.7 (2021-10-21)
+
+
+
+## 0.1.6 (2021-10-21)
+
+
+
+## 0.1.4 (2021-10-20)
+
+
+
+## 0.1.3 (2021-10-20)
+
+
+### Bug Fixes
+
+* **config:** fix versioning and npmignore ([eefc585](https://github.com/ddadaal/tsgrpc/commit/eefc585dcd51dbcf660b9fca579150ff33d84659))
+
+
+
+## 0.1.2 (2021-10-20)
+
+
+
+## 0.1.1 (2021-10-20)
+
+
+
+
+
 # [0.7.0](https://github.com/ddadaal/tsgrpc/compare/v0.6.1...v0.7.0) (2021-11-14)
 
 **Note:** Version bump only for package @ddadaal/tsgrpc-utils

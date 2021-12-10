@@ -1,10 +1,19 @@
 import { customCleanEnv, EnvError, makeValidator, Spec, strictProxyMiddleware, ValidatorSpec } from "envalid";
 
-// convert ${a} to process.env.a
-function parsePlaceholder<T extends Record<string, any>>(env: T, rawEnv: any) {
+/**
+ * Replace ${a} to valueObj[a]. If valueObj[a] is undefined, replace with ""
+ * @param str the original string
+ * @param valueObj the object containing keys and values
+ * @returns replaced string
+ */
+export function parsePlaceholder(str: string, valueObj: object) {
+  return str.replace(/\$\{([a-zA-Z0-9_]+)\}/g, (_, p1: string) => valueObj[p1] ?? "");
+}
+
+function parsePlaceholders(env: Record<string, any>, rawEnv: any) {
   for (const k in env) {
     if (typeof env[k] === "string") {
-      env[k] = env[k].replace(/\$\{([a-zA-Z0-9_]+)\}/g, (_, p1: string) => (rawEnv as any)[p1]);
+      env[k] = parsePlaceholder(env[k], rawEnv);
     }
   }
   return env;
@@ -16,7 +25,7 @@ export const envConfig = <T extends object>(
 ) => customCleanEnv(
     envObject, specs,
     (env, rawEnv) =>
-      strictProxyMiddleware(parsePlaceholder(env, rawEnv), rawEnv),
+      strictProxyMiddleware(parsePlaceholders(env, rawEnv), rawEnv),
   );
 
 // eslint-disable-next-line max-len

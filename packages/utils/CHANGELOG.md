@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-utils@0.9.0...@ddadaal/tsgrpc-utils@0.9.1) (2021-12-10)
+
+
+### Bug Fixes
+
+* **utils:** config type inference ([46f7e2d](https://github.com/ddadaal/tsgrpc/commit/46f7e2decc2c12b09ca7fff0a09a2671c00bca39))
+
+
+
+
+
 # [0.9.0](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-utils@0.8.0...@ddadaal/tsgrpc-utils@0.9.0) (2021-12-10)
 
 

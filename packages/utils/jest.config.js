@@ -8,12 +8,12 @@ const { compilerOptions } = require("./tsconfig");
 module.exports = {
   rootDir: ".",
   preset: "ts-jest",
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths , { prefix: "<rootDir>/" }  ),
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: "<rootDir>/" }),
   testMatch: [
     "<rootDir>/tests/**/*.test.ts?(x)",
   ],
   coverageDirectory: `coverage/${process.env.NODE_ENV}`,
   testTimeout: 30000,
   coverageReporters: ["lcov"],
-  setupFilesAfterEnv: ["jest-extended"],
+  setupFilesAfterEnv: ["jest-extended/all"],
 };

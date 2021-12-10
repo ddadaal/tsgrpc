@@ -10,6 +10,23 @@ export function parsePlaceholder(str: string, valueObj: object) {
   return str.replace(/\$\{([a-zA-Z0-9_]+)\}/g, (_, p1: string) => valueObj[p1] ?? "");
 }
 
+/**
+ * Replace key1=value1,key2=value2 to { key1: value1, key1: value2 }.
+ * Keys and values are trimmed. Empty values are preserved.
+ *
+ * @param input original input
+ * @returns dict
+ */
+export function parseKeyValue(input: string): Record<string, string> {
+  return input.split(",").reduce((prev, curr) => {
+    const [key, value] = curr.split("=").map((x) => x.trim());
+    if (key) {
+      prev[key] = value ?? "";
+    }
+    return prev;
+  }, {});
+}
+
 function parsePlaceholders(env: Record<string, any>, rawEnv: any) {
   for (const k in env) {
     if (typeof env[k] === "string") {

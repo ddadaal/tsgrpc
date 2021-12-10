@@ -42,7 +42,7 @@ export const envConfig = <T extends object>(
 ) => customCleanEnv(
     envObject, specs,
     (env, rawEnv) =>
-      strictProxyMiddleware(parsePlaceholders(env, rawEnv), rawEnv),
+      strictProxyMiddleware(parsePlaceholders(env, rawEnv) as T, rawEnv),
   );
 
 // eslint-disable-next-line max-len

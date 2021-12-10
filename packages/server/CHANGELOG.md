@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.8.2...@ddadaal/tsgrpc-server@0.9.0) (2021-12-10)
+
+
+### Features
+
+* **server:** remove utils dep ([34c6100](https://github.com/ddadaal/tsgrpc/commit/34c6100e87be1d8ad625963dd5396a2cb6445974))
+
+
+
+
+
+
 ## [0.8.2](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.8.1...@ddadaal/tsgrpc-server@0.8.2) (2021-12-09)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.2](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.9.1...@ddadaal/tsgrpc-server@0.9.2) (2021-12-11)
+
+
+### Bug Fixes
+
+* **server:** fix grpc callback value ([6244575](https://github.com/ddadaal/tsgrpc/commit/6244575939f6610dc6bb63271bee4f3cd2d8a683))
+
+
+
+
+
 ## [0.9.1](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.9.0...@ddadaal/tsgrpc-server@0.9.1) (2021-12-11)
 
 

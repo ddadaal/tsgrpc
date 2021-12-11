@@ -99,7 +99,7 @@ export class Server {
           const ret = await impl[key](request, callback);
           if (ret) {
             logger.trace("Req completed.");
-            callback?.(null, ret);
+            callback?.(null, ...ret);
           }
         } catch (e) {
           if (callback) {

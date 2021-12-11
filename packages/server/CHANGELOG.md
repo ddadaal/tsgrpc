@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.9.0...@ddadaal/tsgrpc-server@0.9.1) (2021-12-11)
+
+
+### Bug Fixes
+
+* **server:** handling all errors when calling handler ([ad68ce2](https://github.com/ddadaal/tsgrpc/commit/ad68ce2ed6fbbf1e93f0a1eec99ab724c0f3cf09))
+
+
+
+
+
 # [0.9.0](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.8.2...@ddadaal/tsgrpc-server@0.9.0) (2021-12-10)
 
 

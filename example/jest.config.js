@@ -4,6 +4,8 @@ const { pathsToModuleNameMapper } = require("ts-jest/utils");
 // which contains the path mapping (ie the `compilerOptions.paths` option):
 const { compilerOptions } = require("./tsconfig");
 
+process.env.PORT = 0;
+
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
   rootDir: ".",

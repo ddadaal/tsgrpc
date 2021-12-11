@@ -32,4 +32,4 @@ it("returns error", async () => {
   await expect(async () => {
     await asyncClientCall(client, "erroredCall", { });
   }).rejects.toThrowError();
-})
+});

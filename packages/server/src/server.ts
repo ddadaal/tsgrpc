@@ -76,7 +76,7 @@ export class Server {
 
       const serviceDef = service[key];
 
-      actualImpl[key] = async (call, callback) => {
+      actualImpl[key] = async (call, callback: grpc.sendUnaryData<any> | undefined) => {
         // logger
         const reqId = this.reqIdGen();
         const logger = this.logger.child({ req: reqId, path: serviceDef.path });
@@ -94,19 +94,20 @@ export class Server {
           await hook(request);
         }
 
-        // @ts-ignore
-        const ret = impl[key](request, callback);
-        if (ret && callback) {
-          ret
-            .then((x) => {
-              logger.trace("Req completed.");
-              if (x) { callback(null, ...x);}
-            })
-            .catch((e) => {
-              logger.error("Returning an error response %o", e);
-              callback(e);
-            });
+        try {
+          // @ts-ignore
+          const ret = await impl[key](request, callback);
+          if (ret) {
+            logger.trace("Req completed.");
+            callback?.(null, ret);
+          }
+        } catch (e) {
+          if (callback) {
+            logger.error("Returning an error response %o", e);
+            callback?.(e);
+          }
         }
+
       };
     }
 

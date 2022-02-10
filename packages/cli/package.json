@@ -14,7 +14,8 @@
     "url": "git+https://github.com/ddadaal/tsgrpc.git"
   },
   "scripts": {
-    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
+    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "genPackagelock": "npm i --package-lock-only"
   },
   "bugs": {
     "url": "https://github.com/ddadaal/tsgrpc/issues"

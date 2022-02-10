@@ -2,7 +2,8 @@
   "name": "@ddadaal/tsgrpc",
   "scripts": {
     "postinstall": "lerna bootstrap",
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "version": "lerna version --no-push && lerna run --parallel genPackagelock"
   },
   "devDependencies": {
     "lerna": "^4.0.0",

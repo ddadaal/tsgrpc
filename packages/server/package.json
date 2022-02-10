@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
+    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "genPackagelock": "npm i --package-lock-only"
   },
   "author": {
     "name": "Chen Junda",

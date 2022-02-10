@@ -13,6 +13,7 @@
   },
   "scripts": {
     "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "genPackagelock": "npm i --package-lock-only",
     "test": "jest"
   },
   "bugs": {

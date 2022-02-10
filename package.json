@@ -3,7 +3,8 @@
   "scripts": {
     "postinstall": "lerna bootstrap",
     "build": "lerna run build",
-    "version": "lerna version --no-push && lerna run --parallel genPackagelock"
+    "version": "lerna version --no-push && lerna run --parallel genPackagelock",
+    "publish": "lerna exec --parallel -- npm publish"
   },
   "devDependencies": {
     "lerna": "^4.0.0",

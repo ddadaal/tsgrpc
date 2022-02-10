@@ -25,12 +25,8 @@
     "@grpc/grpc-js": ">=1.4.0"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "^1.4.3",
-    "@types/jest": "^27.0.2",
-    "jest": "^27.3.1",
-    "jest-extended": "^1.1.0",
-    "ts-jest": "^27.0.7",
-    "ts-node": "^10.4.0"
+    "@grpc/grpc-js": "^1.5.4",
+    "ts-node": "^10.5.0"
   },
   "dependencies": {
     "envalid": "^7.2.2",

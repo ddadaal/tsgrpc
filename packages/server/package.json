@@ -18,19 +18,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@grpc/grpc-js": "^1.4.3",
-    "pino": "^7.2.0",
+    "@grpc/grpc-js": "^1.5.4",
+    "pino": "^7.6.5",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
     "@types/rimraf": "^3.0.2",
-    "@types/yargs": "^17.0.5",
-    "jest": "^27.3.1",
-    "jest-extended": "^1.1.0",
     "rimraf": "^3.0.2",
-    "ts-jest": "^27.0.7",
-    "ts-node": "^10.4.0"
+    "ts-node": "^10.5.0"
   },
   "publishConfig": {
     "access": "public"

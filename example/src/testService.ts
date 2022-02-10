@@ -18,7 +18,7 @@ export const testService = plugin(async (s) => {
     erroredCall: async ({ request }) => {
       throw <ServiceError> {
         code: status.NOT_FOUND,
-      }
-    }
+      };
+    },
   });
 });

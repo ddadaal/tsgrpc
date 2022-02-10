@@ -16,15 +16,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ddadaal/tsgrpc-server": "0.9.2",
-    "@ddadaal/tsgrpc-utils": "0.9.1"
+    "@ddadaal/tsgrpc-server": "../packages/server",
+    "@ddadaal/tsgrpc-utils": "../packages/utils"
   },
   "devDependencies": {
-    "@ddadaal/tsgrpc-cli": "0.8.1",
-    "@types/jest": "^27.0.2",
-    "jest": "^27.3.1",
-    "jest-extended": "^1.1.0",
-    "ts-jest": "^27.0.7",
-    "ts-node": "^10.4.0"
+    "@ddadaal/tsgrpc-cli": "../packages/cli",
+    "ts-node": "^10.4.0",
+    "@grpc/grpc-js": "*",
+    "long": "*",
+    "protobufjs": "*"
   }
 }

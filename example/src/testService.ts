@@ -15,10 +15,14 @@ export const testService = plugin(async (s) => {
       })];
     },
 
-    erroredCall: async ({ request }) => {
+    returnServiceError: async ({ request }) => {
       throw <ServiceError> {
         code: status.NOT_FOUND,
       };
+    },
+
+    throwError: async () => {
+      throw new Error("Something");
     },
   });
 });

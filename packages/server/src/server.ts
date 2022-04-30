@@ -102,7 +102,7 @@ export class Server {
             callback?.(null, ...ret);
           }
         } catch (e) {
-          logger.error("Error occurred. %o", e);
+          logger.error({ err: e }, "Error occurred.");
           callback?.(e);
         }
 

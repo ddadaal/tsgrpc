@@ -28,8 +28,14 @@ it("returns data", async () => {
   expect(reply.enumTest).toBe(EnumTest.A);
 });
 
+it("returns with statusCode", async () => {
+  await expect(async () => {
+    await asyncClientCall(client, "returnServiceError", { });
+  }).rejects.toThrowError();
+});
+
 it("returns error", async () => {
   await expect(async () => {
-    await asyncClientCall(client, "erroredCall", { });
+    await asyncClientCall(client, "throwError", { });
   }).rejects.toThrowError();
 });

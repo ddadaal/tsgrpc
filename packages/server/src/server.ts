@@ -81,7 +81,7 @@ export class Server {
         const reqId = this.reqIdGen();
         const logger = this.logger.child({ req: reqId, path: serviceDef.path });
 
-        logger.trace("Starting req.");
+        logger.info("Starting req.");
 
         const request = {
           ...call,
@@ -98,14 +98,12 @@ export class Server {
           // @ts-ignore
           const ret = await impl[key](request, callback);
           if (ret) {
-            logger.trace("Req completed.");
+            logger.info("Req completed.");
             callback?.(null, ...ret);
           }
         } catch (e) {
-          if (callback) {
-            logger.error("Returning an error response %o", e);
-            callback?.(e);
-          }
+          logger.error("Error occurred. %o", e);
+          callback?.(e);
         }
 
       };

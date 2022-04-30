@@ -1,5 +1,6 @@
 {
   "targetPath": "src/generated",
+  "binPath": "../packages/cli/node_modules/.bin",
   "protos": [
     {
       "path": "./protos",

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.9.2...@ddadaal/tsgrpc-server@0.11.0) (2022-04-30)
+
+
+### Bug Fixes
+
+* **server:** log req start and end as info level ([af2b261](https://github.com/ddadaal/tsgrpc/commit/af2b261c511d9abff8a933ab38112fd6b23243a6))
+* **server:** update error logging ([7544299](https://github.com/ddadaal/tsgrpc/commit/754429979c3f787b5f530b58b58fc9b4728ec805))
+
+
+### Features
+
+* update deps ([074a87b](https://github.com/ddadaal/tsgrpc/commit/074a87bb24fe395080907c0c60a2aaec119d621f))
+
+
+
+
+
 # [0.10.0](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-server@0.9.2...@ddadaal/tsgrpc-server@0.10.0) (2022-02-10)
 
 

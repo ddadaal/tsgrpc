@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-cli@0.8.1...@ddadaal/tsgrpc-cli@0.10.0) (2022-04-30)
+
+
+### Features
+
+* **cli:** allow customization binPath ([713a44c](https://github.com/ddadaal/tsgrpc/commit/713a44cc16e0417ca2a3abe4143dcd7d5fa99f97))
+* update deps ([074a87b](https://github.com/ddadaal/tsgrpc/commit/074a87bb24fe395080907c0c60a2aaec119d621f))
+
+
+
+
+
 # [0.9.0](https://github.com/ddadaal/tsgrpc/compare/@ddadaal/tsgrpc-cli@0.8.1...@ddadaal/tsgrpc-cli@0.9.0) (2022-02-10)
 
 

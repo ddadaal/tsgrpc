@@ -13,11 +13,7 @@ export interface CliConfig {
   }[];
 }
 
-// like: node_modules\ts-proto\build\plugin.js
-const TS_PROTO_SCRIPT_PATH = require.resolve("ts-proto");
-
-// to: node_modules\.bin
-const DOT_BIN_DIR = path.resolve(TS_PROTO_SCRIPT_PATH, "../../../.bin");
+const DOT_BIN_DIR = path.resolve(process.cwd(), "node_modules/.bin");
 
 export const cliConfigSchema = Joi.object({
   targetPath: Joi.string().description("The path protos are generated to. Relative to cwd.")

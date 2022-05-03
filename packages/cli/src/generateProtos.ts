@@ -51,7 +51,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
       "--ts_proto_opt=esModuleInterop=true",
       "--ts_proto_opt=outputServices=grpc-js",
       `--ts_proto_out="${modelDir}"`,
-      "--ts_proto_opt=useOptionals=true",
+      "--ts_proto_opt=useOptionals=messages",
       ...(config.params || []),
       `-I "${I}"`,
       ...resolvedFiles,

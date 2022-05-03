@@ -46,3 +46,22 @@ If `targetPath` is undefined, it defaults to `src/generated`.
 Extra config keys are in [src/config.ts](src/config.ts).
 
 This package is a wrapper around [stephenh/ts-proto](https://github.com/stephenh/ts-proto).
+
+## pnpm Compatibility
+
+Unlike npm and yarn, pnpm [doesn't create a flat node_modules structure](https://pnpm.io/motivation#creating-a-non-flat-node_modules-directory), and as a result, pnpm [doesn't install binaries to dependencies](https://github.com/pnpm/pnpm/issues/3566). 
+
+This behavior makes pnpm incompatible with `@ddadaal/tsgrpc-cli`, since `@ddadaal/tsgrpc-cli` uses `grpc-tools` and `ts-proto` as dependencies and requires their binaries to be installed under `node_modules/.bin`.
+
+ To resolve this, you can use pnpm's [public-host-pattern](`https://pnpm.io/npmrc#public-hoist-pattern`) config to explicitly hoist these binaries under `node_modules/.bin`.
+
+Create a `.npmrc` under the root of your project with following content:
+
+```ini
+public-hoist-pattern[]=ts-proto
+public-hoist-pattern[]=grpc-tools
+; The default value for this config is *eslint* and *prettier*
+; if you are using them, add them back
+public-hoist-pattern[]=*eslint*
+public-hoist-pattern[]=*prettier*
+```

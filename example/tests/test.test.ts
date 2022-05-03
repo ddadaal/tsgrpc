@@ -1,6 +1,7 @@
 import { Server } from "@ddadaal/tsgrpc-server";
-import { ChannelCredentials } from "@grpc/grpc-js";
 import { asyncClientCall } from "@ddadaal/tsgrpc-utils";
+import { ChannelCredentials } from "@grpc/grpc-js";
+
 import { createServer } from "../src/app";
 import { EnumTest, TestServiceClient } from "../src/generated/test";
 

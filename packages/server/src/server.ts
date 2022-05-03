@@ -1,9 +1,9 @@
 import * as grpc from "@grpc/grpc-js";
-import { promisify } from "util";
+import pino from "pino";
 import { Extensions } from "src/extension";
 import { Call, createReqIdGen, RequestDecorator } from "src/request";
 import { Rest } from "src/types";
-import pino from "pino";
+import { promisify } from "util";
 
 export type CloseCallback = () => (void | Promise<void>);
 

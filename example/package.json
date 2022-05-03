@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@ddadaal/tsgrpc-cli": "../packages/cli",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.7.0",
     "@grpc/grpc-js": "*",
     "long": "*",
     "protobufjs": "*"

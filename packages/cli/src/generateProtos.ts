@@ -1,10 +1,9 @@
-import { CliConfig, cliConfigSchema } from "src/config";
-
+import { execSync } from "child_process";
+import fs from "fs";
+import { glob } from "glob";
 import { dirname, join, resolve } from "path";
 import rimraf from "rimraf";
-import fs from "fs";
-import { execSync } from "child_process";
-import { glob } from "glob";
+import { CliConfig, cliConfigSchema } from "src/config";
 
 
 interface GenerateProtosProps {

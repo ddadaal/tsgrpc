@@ -21,17 +21,17 @@
     "url": "https://github.com/ddadaal/tsgrpc/issues"
   },
   "dependencies": {
-    "glob": "^7.2.0",
+    "glob": "^8.0.1",
     "grpc-tools": "^1.11.2",
     "joi": "^17.6.0",
     "rimraf": "^3.0.2",
     "ts-proto": "^1.112.0",
-    "tslib": "^2.3.1",
-    "yargs": "^17.3.1"
+    "tslib": "^2.4.0",
+    "yargs": "^17.4.1"
   },
   "devDependencies": {
     "@types/rimraf": "^3.0.2",
-    "@types/yargs": "^17.0.8"
+    "@types/yargs": "^17.0.10"
   },
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,6 @@
 import { plugin } from "@ddadaal/tsgrpc-server";
 import { ServiceError, status } from "@grpc/grpc-js";
+
 import { EnumTest, TestServiceServer, TestServiceService, UnaryCallReply } from "./generated/test";
 
 export const testService = plugin(async (s) => {

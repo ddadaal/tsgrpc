@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import yargs from "yargs/yargs";
-import { hideBin } from "yargs/helpers";
 import { generateProtos } from "src/generateProtos";
+import { hideBin } from "yargs/helpers";
+import yargs from "yargs/yargs";
 
 yargs(hideBin(process.argv))
   .command("protos", "Generate protos files", (yargs) => {

@@ -12,6 +12,10 @@ Utilities that help to work with gRPC using TypeScript.
 
 A example project is available at [example](example) folder.
 
+# Development
+
+We are using [`pnpm`](https://pnpm.io) for package management. 
+
 # License
 
 MIT

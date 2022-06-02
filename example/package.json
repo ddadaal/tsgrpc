@@ -16,14 +16,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ddadaal/tsgrpc-server": "../packages/server",
-    "@ddadaal/tsgrpc-utils": "../packages/utils"
+    "@ddadaal/tsgrpc-server": "workspace:*",
+    "@ddadaal/tsgrpc-utils": "workspace:*"
   },
   "devDependencies": {
-    "@ddadaal/tsgrpc-cli": "../packages/cli",
-    "ts-node": "^10.7.0",
+    "@ddadaal/tsgrpc-cli": "workspace:*",
     "@grpc/grpc-js": "*",
     "long": "*",
-    "protobufjs": "*"
+    "protobufjs": "*",
+    "tslib": "*"
   }
 }

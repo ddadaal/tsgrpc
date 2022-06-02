@@ -26,8 +26,7 @@
     "@grpc/grpc-js": ">=1.4.0"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "^1.6.7",
-    "ts-node": "^10.7.0"
+    "@grpc/grpc-js": "^1.6.7"
   },
   "dependencies": {
     "tslib": "^2.4.0"

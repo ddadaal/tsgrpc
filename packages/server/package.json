@@ -19,13 +19,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@grpc/grpc-js": "^1.6.7",
-    "pino": "^7.11.0",
-    "tslib": "^2.4.0"
+    "@grpc/grpc-js": "1.6.7",
+    "pino": "7.11.0",
+    "tslib": "2.4.0"
   },
   "devDependencies": {
-    "@types/rimraf": "^3.0.2",
-    "rimraf": "^3.0.2"
+    "@types/rimraf": "3.0.2",
+    "rimraf": "3.0.2"
   },
   "publishConfig": {
     "access": "public"

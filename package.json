@@ -1,7 +1,8 @@
 {
   "name": "@ddadaal/tsgrpc",
   "scripts": {
-    "build": "pnpm -r run build"
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test"
   },
   "devDependencies": {
     "@changesets/cli": "2.22.0",

@@ -1,5 +1,5 @@
-import { ensureNotUndefined } from "src/validations";
 import * as grpc from "@grpc/grpc-js";
+import { ensureNotUndefined } from "src/validations";
 
 it("checks for undefined value", () => {
   interface TestInterface {

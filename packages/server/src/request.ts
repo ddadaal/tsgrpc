@@ -6,7 +6,7 @@ import type pino from "pino";
 export function createReqIdGen() {
   const maxInt = 2147483647;
   let nextReqId = 0;
-  return function genReqId () {
+  return function genReqId() {
     nextReqId = (nextReqId + 1) & maxInt;
     return nextReqId.toString(36);
   };

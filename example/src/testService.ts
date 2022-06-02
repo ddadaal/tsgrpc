@@ -16,7 +16,7 @@ export const testService = plugin(async (s) => {
       })];
     },
 
-    returnServiceError: async ({ request }) => {
+    returnServiceError: async () => {
       throw <ServiceError> {
         code: status.NOT_FOUND,
       };

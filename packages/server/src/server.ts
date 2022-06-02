@@ -13,7 +13,7 @@ export type ServerConfig = {
   logger?: pino.LoggerOptions;
 }
 
-export type ResponseType<T extends (...args: any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
+export type ResponseType<T extends (...args : any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
 
 type RemoveIndex<T> = {
   [ K in keyof T as string extends K ? never : number extends K ? never : K ] : T[K]

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.1
+
+### Patch Changes
+
+- 426fa71: update deps
+
 ## 0.14.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.2
+
+### Patch Changes
+
+- 100bee7: update deps
+
 ## 0.14.1
 
 ### Patch Changes

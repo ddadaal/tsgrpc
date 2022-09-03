@@ -17,8 +17,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@grpc/grpc-js": "1.6.10",
-    "pino": "8.4.1",
+    "@grpc/grpc-js": "1.6.12",
+    "pino": "8.4.2",
     "tslib": "2.4.0"
   },
   "devDependencies": {

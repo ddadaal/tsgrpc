@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.13.4
+
+### Patch Changes
+
+- publish built cli
+
 ## 0.13.3
 
 ### Patch Changes

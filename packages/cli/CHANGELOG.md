@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.13.3
+
+### Patch Changes
+
+- 2e8ef17: update deps
+- 407d0c2: use zod to validate config
+
 ## 0.13.2
 
 ### Patch Changes

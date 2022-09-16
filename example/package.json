@@ -17,13 +17,13 @@
   "license": "ISC",
   "dependencies": {
     "@ddadaal/tsgrpc-server": "workspace:*",
-    "@ddadaal/tsgrpc-utils": "workspace:*"
+    "@ddadaal/tsgrpc-client": "workspace:*",
+    "@grpc/grpc-js": "1.7.0",
+    "long": "*",
+    "protobufjs": "*"
   },
   "devDependencies": {
     "@ddadaal/tsgrpc-cli": "workspace:*",
-    "@grpc/grpc-js": "*",
-    "long": "*",
-    "protobufjs": "*",
     "tslib": "*"
   }
 }

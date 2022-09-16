@@ -43,20 +43,20 @@ importers:
   example:
     specifiers:
       '@ddadaal/tsgrpc-cli': workspace:*
+      '@ddadaal/tsgrpc-client': workspace:*
       '@ddadaal/tsgrpc-server': workspace:*
-      '@ddadaal/tsgrpc-utils': workspace:*
-      '@grpc/grpc-js': '*'
+      '@grpc/grpc-js': 1.7.0
       long: '*'
       protobufjs: '*'
       tslib: '*'
     dependencies:
+      '@ddadaal/tsgrpc-client': link:../packages/client
       '@ddadaal/tsgrpc-server': link:../packages/server
-      '@ddadaal/tsgrpc-utils': link:../packages/utils
-    devDependencies:
-      '@ddadaal/tsgrpc-cli': link:../packages/cli
       '@grpc/grpc-js': 1.7.0
       long: 5.2.0
       protobufjs: 7.1.1
+    devDependencies:
+      '@ddadaal/tsgrpc-cli': link:../packages/cli
       tslib: 2.4.0
 
   packages/cli:
@@ -82,26 +82,22 @@ importers:
       '@types/rimraf': 3.0.2
       '@types/yargs': 17.0.12
 
+  packages/client:
+    specifiers:
+      '@grpc/grpc-js': 1.7.0
+      tslib: 2.4.0
+    dependencies:
+      tslib: 2.4.0
+    devDependencies:
+      '@grpc/grpc-js': 1.7.0
+
   packages/server:
     specifiers:
       '@grpc/grpc-js': 1.7.0
-      '@types/rimraf': 3.0.2
-      pino: 8.5.0
-      rimraf: 3.0.2
-      tslib: 2.4.0
-    dependencies:
-      '@grpc/grpc-js': 1.7.0
       pino: 8.5.0
       tslib: 2.4.0
-    devDependencies:
-      '@types/rimraf': 3.0.2
-      rimraf: 3.0.2
-
-  packages/utils:
-    specifiers:
-      '@grpc/grpc-js': 1.7.0
-      tslib: 2.4.0
     dependencies:
+      pino: 8.5.0
       tslib: 2.4.0
     devDependencies:
       '@grpc/grpc-js': 1.7.0

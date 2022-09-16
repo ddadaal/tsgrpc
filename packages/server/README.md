@@ -1,7 +1,7 @@
 ## server: A minimal gRPC Framework
 
 ```bash
-npm install --save @ddadaal/tsgrpc-server
+npm install --save @ddadaal/tsgrpc-server @grpc/grpc-js
 ```
 
 - Strongly typed
@@ -9,4 +9,4 @@ npm install --save @ddadaal/tsgrpc-server
   - Use `module augmentation` to provide type information to all plugins in the project
 - Graceful shutdown with register-able on close hook
 - Allow writing `async` function as `handleUnaryCall`
-- Integrates with [pino](https://github.com/pinojs/pino) logger
+- Integrated with [pino](https://github.com/pinojs/pino) logger

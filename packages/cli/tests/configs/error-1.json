@@ -1,0 +1,15 @@
+{
+  "targetPath": "src/generated",
+  "binPath": "../packages/cli/node_modules/.bin",
+  "protos": [
+    {
+      "path": "./protos",
+      "files": "./protos/*.proto",
+      "name": "."
+    }
+  ],
+  "params": [
+    "--ts_proto_opt=stringEnums=true"
+  ],
+  "slient": "slient"
+}

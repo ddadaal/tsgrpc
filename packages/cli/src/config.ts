@@ -1,39 +1,28 @@
-import Joi from "joi";
 import path from "path";
-
-export interface CliConfig {
-  slient: boolean;
-  targetPath: string;
-  binPath: string;
-  params?: string[];
-  protos: {
-    files: string;
-    path?: string;
-    name: string;
-  }[];
-}
+import { z } from "zod";
 
 const DOT_BIN_DIR = path.resolve(process.cwd(), "node_modules/.bin");
 
-export const cliConfigSchema = Joi.object({
-  targetPath: Joi.string().description("The path protos are generated to. Relative to cwd.")
+export const cliConfigSchema = z.object({
+  targetPath: z.string({ description: "The path protos are generated to. Relative to cwd." })
     .default("src/generated"),
-  binPath: Joi.string()
-    .description("The path to .bin containing grpc_tools_node_protoc and protoc-gen-ts_proto. Relative to cwd.")
-    .default(DOT_BIN_DIR),
-  protos: Joi.array().items(Joi.object({
-    files: Joi.string().description("Files to be generated. Support glob.")
-      .required(),
-    path: Joi.string().description("The path to the protos. If not specified, path.dirname(files) is used.")
+  binPath: z.string({
+    description: "The path to .bin containing grpc_tools_node_protoc and protoc-gen-ts_proto. Relative to cwd.",
+  }).default(DOT_BIN_DIR),
+  protos: z.array(z.object({
+    files: z.string({ description: "Files to be generated. Support glob." }),
+    path: z.string({ description: "The path to the protos. If not specified, path.dirname(files) is used." })
       .optional(),
-    name: Joi.string().description(`
+    name: z.string({ description: `
         The name of subdir where the protos will be stored.
-        If not specified, files will be stored at targetPath directly.`)
+        If not specified, files will be stored at targetPath directly.` })
       .default("."),
   })),
-  params: Joi.array().items(
-    Joi.string().description("Extra params to be passed when calling protoc"),
+  params: z.array(
+    z.string({ description: "Extra params to be passed when calling protoc" }),
   ).optional(),
-  slient: Joi.boolean().description("Should CLI output messages to console")
+  slient: z.boolean({ description: "Should CLI output messages to console" })
     .default(false),
 });
+
+export type CliConfig = z.infer<typeof cliConfigSchema>;

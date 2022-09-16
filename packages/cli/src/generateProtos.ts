@@ -17,7 +17,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const configFileContent = require(join(process.cwd(), configPath));
-  const config: CliConfig = await cliConfigSchema.validateAsync(configFileContent);
+  const config: CliConfig = cliConfigSchema.parse(configFileContent);
 
   const binPath = resolve(config.binPath);
   log("Using binPath " + binPath);

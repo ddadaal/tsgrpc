@@ -14,7 +14,8 @@
     "url": "git+https://github.com/ddadaal/tsgrpc.git"
   },
   "scripts": {
-    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
+    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/ddadaal/tsgrpc/issues"
@@ -22,7 +23,7 @@
   "dependencies": {
     "glob": "8.0.3",
     "grpc-tools": "1.11.2",
-    "joi": "17.6.0",
+    "zod": "3.19.1",
     "rimraf": "3.0.2",
     "ts-proto": "1.125.0",
     "tslib": "2.4.0",

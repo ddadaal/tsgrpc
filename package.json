@@ -3,6 +3,7 @@
   "scripts": {
     "build": "pnpm --filter \"!tsgrpc-example\" run build",
     "test": "pnpm -r run test",
+    "test:ci": "pnpm -r run test --ci --coverage",
     "publish": "pnpm --filter \"!tsgrpc-example\" publish"
   },
   "devDependencies": {

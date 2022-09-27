@@ -9,7 +9,6 @@
     "build": "tsc",
     "serve": "node build/index.js",
     "protos": "tsgrpc-cli protos",
-    "postinstall": "tsgrpc-cli protos",
     "test": "jest"
   },
   "keywords": [],

@@ -30,7 +30,7 @@ jobs:
         run: pnpm build
 
       - name: Generate protos for example project
-        run: pnpm --filter tsgrpc-example protos
+        run: pnpm i --frozen-lockfile && pnpm --filter tsgrpc-example protos
 
       - name: Run tests
         run: pnpm test:ci

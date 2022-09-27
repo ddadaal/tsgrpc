@@ -25,13 +25,13 @@
     "grpc-tools": "1.11.2",
     "zod": "3.19.1",
     "rimraf": "3.0.2",
-    "ts-proto": "1.125.0",
+    "ts-proto": "1.126.1",
     "tslib": "2.4.0",
     "yargs": "17.5.1"
   },
   "devDependencies": {
     "@types/rimraf": "3.0.2",
-    "@types/yargs": "17.0.12"
+    "@types/yargs": "17.0.13"
   },
   "publishConfig": {
     "access": "public"

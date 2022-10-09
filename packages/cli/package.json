@@ -22,12 +22,12 @@
   },
   "dependencies": {
     "glob": "8.0.3",
-    "grpc-tools": "1.11.2",
+    "grpc-tools": "1.11.3",
     "zod": "3.19.1",
     "rimraf": "3.0.2",
     "ts-proto": "1.126.1",
     "tslib": "2.4.0",
-    "yargs": "17.5.1"
+    "yargs": "17.6.0"
   },
   "devDependencies": {
     "@types/rimraf": "3.0.2",

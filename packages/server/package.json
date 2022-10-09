@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "pino": "8.6.0",
+    "pino": "8.6.1",
     "tslib": "2.4.0"
   },
   "peerDependencies": {

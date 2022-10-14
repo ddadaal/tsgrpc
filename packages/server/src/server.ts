@@ -11,6 +11,12 @@ export type ServerConfig = {
   host?: string;
   port?: number;
   logger?: pino.LoggerOptions;
+
+  /**
+   * The server credentials used when creating gRPC server
+   * If not set, insecure credentials will be used
+   */
+  serverCredentials?: grpc.ServerCredentials;
 }
 
 export type ResponseType<T extends (...args : any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
@@ -139,7 +145,7 @@ export class Server {
 
     this.port = await promisify(this.server.bindAsync.bind(this.server))(
       `${this.config.host}:${this.config.port}`,
-      grpc.ServerCredentials.createInsecure(),
+      this.config.serverCredentials ?? grpc.ServerCredentials.createInsecure(),
     );
 
     this.server.start();

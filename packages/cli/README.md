@@ -1,10 +1,14 @@
-## cli: gRPC code generation with minimal configuration
+# cli: Declarative gRPC code generation 
+
+This package is a wrapper around [stephenh/ts-proto](https://github.com/stephenh/ts-proto) that allows to configure proto generation declaratively.
 
 ```bash
 npm install -D @ddadaal/tsgrpc-cli
 ```
 
-Create `tsgrpc.json` with the following content to specify paths to proto files.
+## Usage
+
+Create `tsgrpc.json` under the project root with the following content to specify paths to proto files.
 
 ```json
 {
@@ -29,23 +33,22 @@ Create `tsgrpc.json` with the following content to specify paths to proto files.
 
 All paths are relative to pwd. 
 
-`name` is optional and is the name of the sub directory containing files of the protos. If not specified, it defaults to `.`.
+| Option         | Required? | Description                                                                                                                     | default                |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `targetPath`   | false     | The root dir where the generated files will be placed                                                                           | `src/generated`        |
+| `protos`       | **true**  | The definitions of the proto files                                                                                              |                        |
+| `protos.files` | **true**  | The path to proto files. Glob is supported. [node-glob](https://github.com/isaacs/node-glob) is used to match files using glob. |                        |
+| `protos.name`  | false     | The directory under `targetPath` where the generated files of this part of proto files will placed.                             | `.`                    |
+| `protos.path`  | false     | Proto files' source directory (maps to `-I` of `protoc` command)                                                                | `path.dirnames(files)` |
+| `params`       | false     | extra parameters to be passed in to `protoc` command                                                                            | `[]`                   |
+| `params`       | false     | extra parameters to be passed in to `protoc` command                                                                            | `[]`                   |
+| `slient`       | false     | don't console.log anything                                                                                                      | `false`                |
 
-`files` is required and is the path to proto files. Glob is supported and [node-glob](https://github.com/isaacs/node-glob) is used to match files using glob.
+Run the following command, and the files will be generated to `${targetPath}/${name}`.
 
-`path` is optional and is the source directory (maps to `-I` of `protoc` command). If not specified, it defaults to `path.dirname(files)`.
-
-`params` is optional and are extra parameters to be passed in when calling `protoc` command.
-
-Set `slient` to `true` to avoid console output. It defaults to `false`.
-
-Run `npx tsgrpc-cli protos`, and the files will be generated to `${targetPath}/${name}`.
-
-If `targetPath` is undefined, it defaults to `src/generated`.
-
-Extra config keys are in [src/config.ts](src/config.ts).
-
-This package is a wrapper around [stephenh/ts-proto](https://github.com/stephenh/ts-proto).
+```bash
+npx tsgrpc-cli protos
+```
 
 ## pnpm Compatibility
 

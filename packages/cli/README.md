@@ -24,6 +24,7 @@ Create `tsgrpc.json` under the project root with the following content to specif
       "name": "management"
     }
   ],
+  "preset": "grpc-js",
   "params": [
     "--ts_proto_opt=stringEnums=true",
   ],
@@ -33,16 +34,16 @@ Create `tsgrpc.json` under the project root with the following content to specif
 
 All paths are relative to pwd. 
 
-| Option         | Required? | Description                                                                                                                     | default                |
-| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `targetPath`   | false     | The root dir where the generated files will be placed                                                                           | `src/generated`        |
-| `protos`       | **true**  | The definitions of the proto files                                                                                              |                        |
-| `protos.files` | **true**  | The path to proto files. Glob is supported. [node-glob](https://github.com/isaacs/node-glob) is used to match files using glob. |                        |
-| `protos.name`  | false     | The directory under `targetPath` where the generated files of this part of proto files will placed.                             | `.`                    |
-| `protos.path`  | false     | Proto files' source directory (maps to `-I` of `protoc` command)                                                                | `path.dirnames(files)` |
-| `params`       | false     | extra parameters to be passed in to `protoc` command                                                                            | `[]`                   |
-| `params`       | false     | extra parameters to be passed in to `protoc` command                                                                            | `[]`                   |
-| `slient`       | false     | don't console.log anything                                                                                                      | `false`                |
+| Option         | Required? | Description                                                                                                                                                                                                                           | default                |
+| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `targetPath`   | false     | The root dir where the generated files will be placed                                                                                                                                                                                 | `src/generated`        |
+| `protos`       | **true**  | The definitions of the proto files                                                                                                                                                                                                    |                        |
+| `protos.files` | **true**  | The path to proto files. Glob is supported. [node-glob](https://github.com/isaacs/node-glob) is used to match files using glob.                                                                                                       |                        |
+| `protos.name`  | false     | The directory under `targetPath` where the generated files of this part of proto files will placed.                                                                                                                                   | `.`                    |
+| `protos.path`  | false     | Proto files' source directory (maps to `-I` of `protoc` command)                                                                                                                                                                      | `path.dirnames(files)` |
+| `preset`       | false     | Parameters preset. Different preset generates files to be used with different framework. Choices: <br/>`nice-grpc` for [nice-grpc](https://github.com/deeplay-io/nice-grpc) <br/>`grpc-js` for `grpc-js` and `@ddadaal/tsgrpc-server` | `grpc-js`              |
+| `params`       | false     | Extra parameters to be passed in to `protoc` command                                                                                                                                                                                  | `[]`                   |
+| `slient`       | false     | Don't console.log anything                                                                                                                                                                                                            | `false`                |
 
 Run the following command, and the files will be generated to `${targetPath}/${name}`.
 

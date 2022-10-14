@@ -18,6 +18,8 @@ export const cliConfigSchema = z.object({
         If not specified, files will be stored at targetPath directly.` })
       .default("."),
   })),
+  preset: z.enum(["grpc-js", "nice-grpc"], { description: "The preset of parameters" })
+    .default("grpc-js"),
   params: z.array(
     z.string({ description: "Extra params to be passed when calling protoc" }),
   ).optional(),

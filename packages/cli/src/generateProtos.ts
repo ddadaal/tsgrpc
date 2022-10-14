@@ -12,6 +12,11 @@ interface GenerateProtosProps {
 
 const log = (msg: string) => console.log("[tsgrpc-cli] " + msg);
 
+const presets = {
+  "nice-grpc":  "--ts_proto_opt=outputServices=nice-grpc,outputServices=generic-definitions",
+  "grpc-js": "--ts_proto_opt=outputServices=grpc-js",
+} as const;
+
 export async function generateProtos({ configPath }: GenerateProtosProps) {
 
 
@@ -48,7 +53,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
     const protoConfig = [
       `--plugin=protoc-gen-ts_proto="${TS_PROTO_PATH}"`,
       "--ts_proto_opt=esModuleInterop=true",
-      "--ts_proto_opt=outputServices=grpc-js",
+      presets[config.preset],
       `--ts_proto_out="${modelDir}"`,
       "--ts_proto_opt=useOptionals=messages",
       ...(config.params || []),

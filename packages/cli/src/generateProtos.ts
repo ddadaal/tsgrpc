@@ -10,7 +10,6 @@ interface GenerateProtosProps {
   configPath: string;
 }
 
-const log = (msg: string) => console.log("[tsgrpc-cli] " + msg);
 
 const presets = {
   "nice-grpc":  "--ts_proto_opt=outputServices=nice-grpc,outputServices=generic-definitions",
@@ -23,6 +22,10 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const configFileContent = require(join(process.cwd(), configPath));
   const config: CliConfig = cliConfigSchema.parse(configFileContent);
+
+  const log = (msg: string) => {
+    if (!config.slient) { console.log("[tsgrpc-cli] " + msg); }
+  };
 
   const binPath = resolve(config.binPath);
   log("Using binPath " + binPath);
@@ -46,9 +49,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
 
     const resolvedFiles = glob.sync(files);
 
-    if (!config.slient) {
-      log(`Generating protobuf files ${files} in path ${I}. Resolved ${resolvedFiles.length} files.`);
-    }
+    log(`Generating protobuf files ${files} in path ${I}. Resolved ${resolvedFiles.length} files.`);
 
     const protoConfig = [
       `--plugin=protoc-gen-ts_proto="${TS_PROTO_PATH}"`,

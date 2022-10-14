@@ -49,6 +49,11 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
 
     const resolvedFiles = glob.sync(files);
 
+    if (resolvedFiles.length === 0) {
+      log(`${files} doesn't match any files.`);
+      return;
+    }
+
     log(`Generating protobuf files ${files} in path ${I}. Resolved ${resolvedFiles.length} files.`);
 
     const protoConfig = [

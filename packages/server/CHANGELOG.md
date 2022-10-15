@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.16.0
+
+### Minor Changes
+
+- 34de016: feat: allow to set server credentials
+
+### Patch Changes
+
+- 3712ea6: chore(deps): update all non-major dependencies
+- e19b0df: update deps
+
 ## 0.15.1
 
 ### Patch Changes

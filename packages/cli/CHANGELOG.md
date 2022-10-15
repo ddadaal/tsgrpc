@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.14.0
+
+### Minor Changes
+
+- 20da4b0: refactor config schema and add git proto generation
+- 2dcc3c6: feat(cli): allow to generate files for nice-grpc
+
+### Patch Changes
+
+- 809d8e5: fix(cli): slient suppresses all logs
+- 3712ea6: chore(deps): update all non-major dependencies
+- d30df24: docs(cli): update readme
+- e19b0df: update deps
+- 28cea1c: refactor cli proto generation to use async
+- 14f9945: fix(cli): add missing @types/glob
+- 5dda14f: fix(cli): warn if no files are matched
+
 ## 0.13.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @ddadaal/tsgrpc-client
 
+## 0.15.2
+
+### Patch Changes
+
+- e19b0df: update deps
+
 ## 0.15.1
 
 ### Patch Changes

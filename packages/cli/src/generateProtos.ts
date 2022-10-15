@@ -1,10 +1,12 @@
-import { execSync } from "child_process";
+import { spawn } from "child_process";
 import fs from "fs";
 import { glob } from "glob";
 import { dirname, join, resolve } from "path";
 import rimraf from "rimraf";
 import { CliConfig, cliConfigSchema } from "src/config";
+import { promisify } from "util";
 
+const spawnAsync = promisify(spawn);
 
 interface GenerateProtosProps {
   configPath: string;
@@ -39,19 +41,18 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
 
   rimraf.sync(config.targetPath);
 
-  config.protos.forEach(({ files, path, name }) => {
-
+  for (const { files, path, name } of config.protos) {
     const modelDir = join(config.targetPath, name);
 
-    fs.mkdirSync(modelDir, { recursive: true });
+    await fs.promises.mkdir(modelDir, { recursive: true });
 
     const I = path ?? dirname(files);
 
-    const resolvedFiles = glob.sync(files);
+    const resolvedFiles = await promisify(glob)(files);
 
     if (resolvedFiles.length === 0) {
       log(`${files} doesn't match any files.`);
-      return;
+      continue;
     }
 
     log(`Generating protobuf files ${files} in path ${I}. Resolved ${resolvedFiles.length} files.`);
@@ -67,6 +68,8 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
       ...resolvedFiles,
     ];
 
-    execSync(`${GRPC_TOOLS_NODE_PROTOC} ${protoConfig.join(" ")}`);
-  });
+
+    await spawnAsync(GRPC_TOOLS_NODE_PROTOC, protoConfig, { stdio: "inherit" });
+  }
+
 }

@@ -27,12 +27,14 @@
     "ts-proto": "1.128.0",
     "tslib": "2.4.0",
     "yargs": "17.6.0",
-    "zod": "3.19.1"
+    "zod": "3.19.1",
+    "shell-quote": "1.7.4"
   },
   "devDependencies": {
     "@types/glob": "8.0.0",
     "@types/rimraf": "3.0.2",
-    "@types/yargs": "17.0.13"
+    "@types/yargs": "17.0.13",
+    "@types/shell-quote": "1.7.1"
   },
   "publishConfig": {
     "access": "public"

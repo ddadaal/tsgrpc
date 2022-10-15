@@ -1,6 +1,9 @@
-# cli: Declarative gRPC code generation 
+# cli: Declarative local and remote gRPC code generation 
 
-This package is a wrapper around [stephenh/ts-proto](https://github.com/stephenh/ts-proto) that allows to configure proto generation declaratively.
+This package is a wrapper around [stephenh/ts-proto](https://github.com/stephenh/ts-proto) that 
+
+- allows to configure proto generation declaratively.
+- supports generating from git repository
 
 ```bash
 npm install -D @ddadaal/tsgrpc-cli
@@ -13,20 +16,29 @@ Create `tsgrpc.json` under the project root with the following content to specif
 ```json
 {
   "targetPath": "src/generated",
+  "binPath": "../packages/cli/node_modules/.bin",
   "protos": [
     {
-      "path": "../protos",
-      "files": "../protos/*.proto",
-      "name": "billing"
+      "source": "local",
+      "local": {
+        "protoPaths": "./protos",
+        "files": "./protos/*.proto"
+      },
+      "target": "local"
     },
     {
-      "files": "../../management/protos/*.proto",
-      "name": "management"
+      "source": "git",
+      "git": {
+        "repo": "git@github.com:ddadaal/tsgrpc",
+        "branch": "master",
+        "files": "example/protos/**/*.proto",
+        "protoPaths": "example/protos"
+      },
+      "target": "git"
     }
   ],
-  "preset": "grpc-js",
   "params": [
-    "--ts_proto_opt=stringEnums=true",
+    "--ts_proto_opt=stringEnums=true"
   ],
   "slient": false
 }
@@ -34,16 +46,23 @@ Create `tsgrpc.json` under the project root with the following content to specif
 
 All paths are relative to pwd. 
 
-| Option         | Required? | Description                                                                                                                                                                                                                           | default                |
-| -------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `targetPath`   | false     | The root dir where the generated files will be placed                                                                                                                                                                                 | `src/generated`        |
-| `protos`       | **true**  | The definitions of the proto files                                                                                                                                                                                                    |                        |
-| `protos.files` | **true**  | The path to proto files. Glob is supported. [node-glob](https://github.com/isaacs/node-glob) is used to match files using glob.                                                                                                       |                        |
-| `protos.name`  | false     | The directory under `targetPath` where the generated files of this part of proto files will placed.                                                                                                                                   | `.`                    |
-| `protos.path`  | false     | Proto files' source directory (maps to `-I` of `protoc` command)                                                                                                                                                                      | `path.dirnames(files)` |
-| `preset`       | false     | Parameters preset. Different preset generates files to be used with different framework. Choices: <br/>`nice-grpc` for [nice-grpc](https://github.com/deeplay-io/nice-grpc) <br/>`grpc-js` for `grpc-js` and `@ddadaal/tsgrpc-server` | `grpc-js`              |
-| `params`       | false     | Extra parameters to be passed in to `protoc` command                                                                                                                                                                                  | `[]`                   |
-| `slient`       | false     | Don't console.log anything                                                                                                                                                                                                            | `false`                |
+| Option                    | Required?                     | Description                                                                                                                                                                                                                           | default                |
+| ------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `targetPath`              | false                         | The root dir where the generated files will be placed                                                                                                                                                                                 | `src/generated`        |
+| `protos`                  | **true**                      | The definitions of the proto files                                                                                                                                                                                                    |                        |
+| `proto.source`            | **true**                      | The source of the proto files. Choices: <br/>`local`: local files <br/> `git`: git repo                                                                                                                                               |
+| `proto.local`             | if `proto.source === "local"` | The local proto file information                                                                                                                                                                                                      |
+| `protos.local.files`      | **true**                      | The path to proto files relative to cwd. Glob is supported. [node-glob](https://github.com/isaacs/node-glob) is used to match files using glob.                                                                                       |                        |
+| `protos.local.protoPaths` | false                         | Proto files' proto paths relative to cwd (maps to `--proto_path` of `protoc` command). Can be `string` or `string[]`                                                                                                                  | `path.dirnames(files)` |
+| `proto.git`               | if `proto.source === "git"`   | The local proto file information                                                                                                                                                                                                      |
+| `protos.local.repo`       | **true**                      | The repo URL                                                                                                                                                                                                                          |                        |
+| `protos.local.branch`     | false                         | The branch or tag of repo. Cannot be commit SHA                                                                                                                                                                                       |                        |
+| `protos.local.files`      | **true**                      | The path to proto files relative to repo root. Glob is supported. [node-glob](https://github.com/isaacs/node-glob) is used to match files using glob.                                                                                 |                        |
+| `protos.local.protoPaths` | false                         | Proto files' proto paths relative to repo root(maps to `--proto_path` of `protoc` command). Can be `string` or `string[]`                                                                                                             | `path.dirnames(files)` |
+| `protos.target`           | false                         | The directory under `targetPath` where the generated files of this part of proto files will placed.                                                                                                                                   | `.`                    |
+| `preset`                  | false                         | Parameters preset. Different preset generates files to be used with different framework. Choices: <br/>`nice-grpc` for [nice-grpc](https://github.com/deeplay-io/nice-grpc) <br/>`grpc-js` for `grpc-js` and `@ddadaal/tsgrpc-server` | `grpc-js`              |
+| `params`                  | false                         | Extra parameters to be passed in to `protoc` command                                                                                                                                                                                  | `[]`                   |
+| `slient`                  | false                         | Don't console.log anything                                                                                                                                                                                                            | `false`                |
 
 Run the following command, and the files will be generated to `${targetPath}/${name}`.
 

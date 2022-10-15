@@ -4,7 +4,7 @@ Utilities that help to work with gRPC using TypeScript.
 
 # Packages
 
-- [cli](./packages/cli/README.md): gRPC code generation with minimal configuration
+- [cli](./packages/cli/README.md): Declarative local and remote gRPC code generation 
 - [server](./packages/server/README.md): A minimal gRPC Framework
 - [client](./packages/client/README.md): functions to call gRPC functions
 

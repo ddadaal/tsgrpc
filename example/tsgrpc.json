@@ -3,9 +3,22 @@
   "binPath": "../packages/cli/node_modules/.bin",
   "protos": [
     {
-      "path": "./protos",
-      "files": "./protos/*.proto",
-      "name": "."
+      "source": "local",
+      "local": {
+        "protoPaths": "./protos",
+        "files": "./protos/*.proto"
+      },
+      "target": "local"
+    },
+    {
+      "source": "git",
+      "git": {
+        "repo": "git@github.com:ddadaal/tsgrpc",
+        "branch": "master",
+        "files": "example/protos/**/*.proto",
+        "protoPaths": "example/protos"
+      },
+      "target": "git"
     }
   ],
   "params": [

@@ -2,10 +2,12 @@
   "binPath": "../../node_modules/.bin",
   "protos": [
     {
-      "source": "local",
-      "local": {
-        "protoPaths": "../../protos",
-        "files": "../../protos/server/**/*.proto"
+      "source": "git",
+      "git": {
+        "repo": "git@github.com:ddadaal/tsgrpc",
+        "branch": "master",
+        "files": "example/protos/**/*.proto",
+        "protoPaths": "example/protos"
       },
       "target": "."
     }

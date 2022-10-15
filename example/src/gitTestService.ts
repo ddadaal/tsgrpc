@@ -1,9 +1,9 @@
 import { plugin } from "@ddadaal/tsgrpc-server";
 import { ServiceError, status } from "@grpc/grpc-js";
 
-import { EnumTest, TestServiceServer, TestServiceService, UnaryCallReply } from "./generated/test";
+import { EnumTest, TestServiceServer, TestServiceService, UnaryCallReply } from "./generated/git/test";
 
-export const testService = plugin(async (s) => {
+export const gitTestService = plugin(async (s) => {
   s.addService<TestServiceServer>(TestServiceService, {
     // key comes from myPlugin
     unaryCall: async ({ request, key, logger }) => {

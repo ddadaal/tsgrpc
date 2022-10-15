@@ -61,6 +61,7 @@ importers:
 
   packages/cli:
     specifiers:
+      '@types/glob': 8.0.0
       '@types/rimraf': 3.0.2
       '@types/yargs': 17.0.13
       glob: 8.0.3
@@ -79,6 +80,7 @@ importers:
       yargs: 17.6.0
       zod: 3.19.1
     devDependencies:
+      '@types/glob': 8.0.0
       '@types/rimraf': 3.0.2
       '@types/yargs': 17.0.13
 

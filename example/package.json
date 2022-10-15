@@ -15,9 +15,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ddadaal/tsgrpc-server": "workspace:*",
     "@ddadaal/tsgrpc-client": "workspace:*",
-    "@grpc/grpc-js": "1.7.1",
+    "@ddadaal/tsgrpc-server": "workspace:*",
+    "@grpc/grpc-js": "1.7.2",
     "long": "*",
     "protobufjs": "*"
   },

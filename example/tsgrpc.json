@@ -13,7 +13,7 @@
     {
       "source": "git",
       "git": {
-        "repo": "git@github.com:ddadaal/tsgrpc",
+        "repo": "https://github.com/ddadaal/tsgrpc",
         "branch": "master",
         "files": "example/protos/**/*.proto",
         "protoPaths": "example/protos"

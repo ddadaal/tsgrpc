@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.17.0
+
+### Minor Changes
+
+- 1d1571b: Add streaming support for server and client
+
 ## 0.16.0
 
 ### Minor Changes

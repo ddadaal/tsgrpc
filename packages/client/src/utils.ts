@@ -3,6 +3,7 @@ import { once } from "events";
 
 export type AugmentedWriter<T> = {
   writeAsync: (data: T) => Promise<void>;
+  endAsync: () => Promise<void>;
 }
 
 export const augmentedWriter = <T>(stream: ObjectWritable<T>): AugmentedWriter<T> => {
@@ -11,6 +12,10 @@ export const augmentedWriter = <T>(stream: ObjectWritable<T>): AugmentedWriter<T
       if (!stream.write(data)) {
         await once(stream, "drain");
       }
+    },
+
+    endAsync: async () => {
+      stream.end();
     },
   };
 };

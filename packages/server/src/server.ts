@@ -1,8 +1,11 @@
 import * as grpc from "@grpc/grpc-js";
+import { once } from "events";
 import pino from "pino";
 import { Extensions } from "src/extension";
-import { Call, createReqIdGen, RequestDecorator } from "src/request";
+import { AugmentedCall, createReqIdGen, RequestDecorator, ServerCall } from "src/request";
 import { Rest } from "src/types";
+import { augmentedWriter } from "src/utils";
+import { finished } from "stream/promises";
 import { promisify } from "util";
 
 export type CloseCallback = () => (void | Promise<void>);
@@ -24,17 +27,27 @@ export type ResponseType<T extends (...args : any[]) => void> = Rest<Parameters<
 type RemoveIndex<T> = {
   [ K in keyof T as string extends K ? never : number extends K ? never : K ] : T[K]
 };
-export declare type TPromisifiedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
+
+export declare type AugmentedServiceImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
     [K in keyof RemoveIndex<TImpl>]: (
-      call: Call<Parameters<RemoveIndex<TImpl>[K]>[0]>,
-       ...rest: Rest<Parameters<RemoveIndex<TImpl>[K]>>
-       ) => (void | Promise<void | ResponseType<RemoveIndex<TImpl>[K]>>);
+      call: AugmentedCall<Parameters<RemoveIndex<TImpl>[K]>[0]>,
+      callback: Parameters<RemoveIndex<TImpl>[K]>[1],
+    ) => (void | Promise<void | ResponseType<RemoveIndex<TImpl>[K]>>);
 };
 
-export declare type ProxifiedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
+export declare type AugmentedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
   [K in keyof RemoveIndex<TImpl>]: grpc.UntypedHandleCall
 }
 
+const isResponseStream = (serviceDef: grpc.MethodDefinition<{}, {}>, _augmentedCall: AugmentedCall<ServerCall>):
+_augmentedCall is AugmentedCall<grpc.ServerWritableStream<any, any> | grpc.ServerDuplexStream<any, any>> => {
+  return serviceDef.responseStream;
+};
+
+const isRequestStream = (serviceDef: grpc.MethodDefinition<{}, {}>, _augmentedCall: AugmentedCall<ServerCall>):
+_augmentedCall is AugmentedCall<grpc.ServerReadableStream<any, any> | grpc.ServerDuplexStream<any, any>> => {
+  return serviceDef.requestStream;
+};
 
 export type Plugin = (server: Server) => (void | Promise<void>);
 
@@ -73,49 +86,71 @@ export class Server {
   };
 
   addService = <TImpl extends grpc.UntypedServiceImplementation>(
-    service: grpc.ServiceDefinition<TImpl>, impl: TPromisifiedImplementation<TImpl>,
+    service: grpc.ServiceDefinition<TImpl>, implementations: AugmentedServiceImplementation<TImpl>,
   ) => {
 
-    const actualImpl = {} as ProxifiedImplementation<TImpl>;
+    const augmentedImplementations = {} as AugmentedImplementation<TImpl>;
 
-    for (const key in impl) {
+    for (const key in implementations) {
 
       const serviceDef = service[key];
 
-      actualImpl[key] = async (call, callback: grpc.sendUnaryData<any> | undefined) => {
+      augmentedImplementations[key] = async (
+        call: ServerCall,
+        // callback exists only when the response is unary
+        callback: grpc.sendUnaryData<{}> | undefined,
+      ) => {
         // logger
         const reqId = this.reqIdGen();
         const logger = this.logger.child({ req: reqId, path: serviceDef.path });
 
-        logger.info("Starting req.");
+        const augmentedCall: AugmentedCall<ServerCall> = call as any;
 
-        const request = {
-          ...call,
-          logger,
-          reqId,
-        };
+        augmentedCall.reqId = reqId;
+        augmentedCall.logger = logger;
+
+        // augmentation functions
+        if (isResponseStream(serviceDef, augmentedCall)) {
+
+          const { writeAsync } = augmentedWriter(augmentedCall);
+
+          augmentedCall.writeAsync = writeAsync;
+        }
+
+        if (isRequestStream(serviceDef, augmentedCall)) {
+          augmentedCall.readAsync = () => {
+            return once(augmentedCall, "data")[0];
+          };
+        }
+
+        logger.info("Starting request");
 
         // apply request decorators
         for (const hook of this.requestHooks) {
-          await hook(request);
+          await hook(augmentedCall);
         }
 
         try {
-          // @ts-ignore
-          const ret = await impl[key](request, callback);
+          const ret = await implementations[key](augmentedCall as any, callback);
           if (ret) {
-            logger.info("Req completed.");
+            logger.info("Request completed.");
             callback?.(null, ...ret);
           }
         } catch (e) {
           logger.error({ err: e }, "Error occurred.");
           callback?.(e);
+        } finally {
+          if (isResponseStream(serviceDef, augmentedCall)) {
+            logger.info("Ending response stream");
+            augmentedCall.end();
+            await finished(augmentedCall);
+          }
         }
 
       };
     }
 
-    this.server.addService(service, actualImpl);
+    this.server.addService(service, augmentedImplementations);
   };
 
   addExtension = (key: PropertyKey, value: any) => {

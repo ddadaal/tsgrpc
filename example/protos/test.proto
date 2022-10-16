@@ -8,37 +8,27 @@ enum EnumTest {
   B = 1;
 }
 
-message AMessage {
-  SharedMessage msg = 1;
-}
+message AMessage { SharedMessage msg = 1; }
 
-message UnaryCallRequest {
-  AMessage msg = 1;
-}
+message UnaryCallRequest { AMessage msg = 1; }
 
 message UnaryCallReply {
   EnumTest enumTest = 1;
   string msg = 2;
 }
 
-message ReturnServiceErrorRequest {
+message ReturnServiceErrorRequest {}
 
-}
+message ReturnServiceErrorReply {}
 
-message ReturnServiceErrorReply {
+message ThrowErrorRequest {}
 
-}
-
-message ThrowErrorRequest {
-
-}
-
-message ThrowErrorReply {
-
-}
+message ThrowErrorReply {}
 
 service TestService {
   rpc UnaryCall(UnaryCallRequest) returns (UnaryCallReply);
-  rpc ReturnServiceError(ReturnServiceErrorRequest) returns (ReturnServiceErrorReply);
+  rpc ReturnServiceError(ReturnServiceErrorRequest)
+      returns (ReturnServiceErrorReply);
   rpc ThrowError(ThrowErrorRequest) returns (ThrowErrorReply);
+
 }

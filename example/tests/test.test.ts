@@ -49,3 +49,26 @@ it("calls local test client", async () => {
 
   expect(reply.msg).toBe("123");
 });
+
+it("tests request stream", async () => {
+
+  localClient.requestStream((err, res) => {
+
+
+  const reply = await asyncClientCall(localClient, "requestStream", );
+});
+
+it("tests response stream", async () => {
+
+  for await (const response of localClient.replyStream({ msg: "123", count: 1 })) {
+
+  }
+
+});
+
+it("tests duplex stream", async () => {
+
+  const stream = localClient.duplexStream();
+
+  const reply = await asyncClientCall(localClient, "requestStream", );
+});

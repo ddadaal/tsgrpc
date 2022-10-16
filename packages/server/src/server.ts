@@ -1,9 +1,13 @@
 import * as grpc from "@grpc/grpc-js";
+import { once } from "events";
 import pino from "pino";
 import { Extensions } from "src/extension";
-import { Call, createReqIdGen, RequestDecorator } from "src/request";
+import { AugmentedCall, createReqIdGen, RequestDecorator, ServerCall } from "src/request";
 import { Rest } from "src/types";
+import { finished } from "stream";
 import { promisify } from "util";
+
+const finishedAsync = promisify(finished);
 
 export type CloseCallback = () => (void | Promise<void>);
 
@@ -24,17 +28,22 @@ export type ResponseType<T extends (...args : any[]) => void> = Rest<Parameters<
 type RemoveIndex<T> = {
   [ K in keyof T as string extends K ? never : number extends K ? never : K ] : T[K]
 };
-export declare type TPromisifiedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
+
+export declare type AugmentedServiceImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
     [K in keyof RemoveIndex<TImpl>]: (
-      call: Call<Parameters<RemoveIndex<TImpl>[K]>[0]>,
-       ...rest: Rest<Parameters<RemoveIndex<TImpl>[K]>>
-       ) => (void | Promise<void | ResponseType<RemoveIndex<TImpl>[K]>>);
+      call: AugmentedCall<Parameters<RemoveIndex<TImpl>[K]>[0]>,
+      callback: Parameters<RemoveIndex<TImpl>[K]>[1],
+    ) => (void | Promise<void | ResponseType<RemoveIndex<TImpl>[K]>>);
 };
 
-export declare type ProxifiedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
+export declare type AugmentedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
   [K in keyof RemoveIndex<TImpl>]: grpc.UntypedHandleCall
 }
 
+const isResponseStream = (serviceDef: grpc.MethodDefinition<{}, {}>, _augmentedCall: AugmentedCall<ServerCall>):
+_augmentedCall is AugmentedCall<grpc.ServerWritableStream<any, any> | grpc.ServerDuplexStream<any, any>> => {
+  return serviceDef.responseStream;
+};
 
 export type Plugin = (server: Server) => (void | Promise<void>);
 
@@ -73,38 +82,53 @@ export class Server {
   };
 
   addService = <TImpl extends grpc.UntypedServiceImplementation>(
-    service: grpc.ServiceDefinition<TImpl>, impl: TPromisifiedImplementation<TImpl>,
+    service: grpc.ServiceDefinition<TImpl>, implementations: AugmentedServiceImplementation<TImpl>,
   ) => {
 
-    const actualImpl = {} as ProxifiedImplementation<TImpl>;
+    const augmentedImplementations = {} as AugmentedImplementation<TImpl>;
 
-    for (const key in impl) {
+    for (const key in implementations) {
 
       const serviceDef = service[key];
 
-      actualImpl[key] = async (call, callback: grpc.sendUnaryData<any> | undefined) => {
+      augmentedImplementations[key] = async (
+        call: ServerCall,
+        callback: grpc.sendUnaryData<{}> | undefined,
+      ) => {
         // logger
         const reqId = this.reqIdGen();
         const logger = this.logger.child({ req: reqId, path: serviceDef.path });
 
-        logger.info("Starting req.");
+        const augmentedCall: AugmentedCall<ServerCall> = call as any;
 
-        const request = {
-          ...call,
-          logger,
-          reqId,
-        };
+        augmentedCall.reqId = reqId;
+        augmentedCall.logger = logger;
+
+        // add async functions for response stream
+        if (isResponseStream(serviceDef, augmentedCall)) {
+          augmentedCall.writeAsync = async (data) => {
+            // backpressure
+            if (!augmentedCall.write(data)) {
+              await once(augmentedCall, "drain");
+            }
+          };
+          augmentedCall.endAsync = async () => {
+            augmentedCall.end();
+            await finishedAsync(augmentedCall);
+          };
+        }
+
+        logger.info("Starting request");
 
         // apply request decorators
         for (const hook of this.requestHooks) {
-          await hook(request);
+          await hook(augmentedCall);
         }
 
         try {
-          // @ts-ignore
-          const ret = await impl[key](request, callback);
+          const ret = await implementations[key](augmentedCall as any, callback);
           if (ret) {
-            logger.info("Req completed.");
+            logger.info("Request completed.");
             callback?.(null, ...ret);
           }
         } catch (e) {
@@ -115,7 +139,7 @@ export class Server {
       };
     }
 
-    this.server.addService(service, actualImpl);
+    this.server.addService(service, augmentedImplementations);
   };
 
   addExtension = (key: PropertyKey, value: any) => {

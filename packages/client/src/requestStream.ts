@@ -1,6 +1,6 @@
 import { CallOptions, Client, ClientWritableStream, Metadata } from "@grpc/grpc-js";
 import { UnaryCallback } from "src/types";
-import { augmentedWriter } from "src/utils";
+import { AugmentedWriter, augmentedWriter } from "src/utils";
 
 type RequestStreamCall<TReq, TRep> = {
   (callback: UnaryCallback<TRep>): ClientWritableStream<TReq>,
@@ -32,7 +32,7 @@ export function asyncRequestStreamCall<
   client: TClient, methodName: TKey,
   writer:
     | AsyncGenerator<TRequest<TClient[TKey]>>
-    | ((write: (data: TRequest<TClient[TKey]>) => Promise<void>) => Promise<void>),
+    | ((write: AugmentedWriter<TRequest<TClient[TKey]>>["writeAsync"]) => Promise<void>),
   extra?: { metadata?: Metadata; options?: Partial<CallOptions>; },
 ): Promise<TReply<TClient[TKey]>> {
 

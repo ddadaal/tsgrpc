@@ -8,7 +8,7 @@ export type AugmentedWriter<T> = {
 
 export const augmentedWriter = <T>(stream: ObjectWritable<T>): AugmentedWriter<T> => {
   return {
-    writeAsync: async (data: T) => {
+    writeAsync: async (data) => {
       if (!stream.write(data)) {
         await once(stream, "drain");
       }
@@ -26,6 +26,6 @@ export type AugmentedReader<T> = {
 
 export const augmentedReader = <T>(stream: ObjectReadable<T>): AugmentedReader<T> => {
   return {
-    readAsync: async () => await once(stream, "data")[0],
+    readAsync: async () => (await once(stream, "data"))[0],
   };
 };

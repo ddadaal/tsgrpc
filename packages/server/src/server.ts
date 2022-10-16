@@ -4,6 +4,7 @@ import pino from "pino";
 import { Extensions } from "src/extension";
 import { AugmentedCall, createReqIdGen, RequestDecorator, ServerCall } from "src/request";
 import { Rest } from "src/types";
+import { augmentedWriter } from "src/utils";
 import { finished } from "stream/promises";
 import { promisify } from "util";
 
@@ -41,6 +42,11 @@ export declare type AugmentedImplementation<TImpl extends grpc.UntypedServiceImp
 const isResponseStream = (serviceDef: grpc.MethodDefinition<{}, {}>, _augmentedCall: AugmentedCall<ServerCall>):
 _augmentedCall is AugmentedCall<grpc.ServerWritableStream<any, any> | grpc.ServerDuplexStream<any, any>> => {
   return serviceDef.responseStream;
+};
+
+const isRequestStream = (serviceDef: grpc.MethodDefinition<{}, {}>, _augmentedCall: AugmentedCall<ServerCall>):
+_augmentedCall is AugmentedCall<grpc.ServerReadableStream<any, any> | grpc.ServerDuplexStream<any, any>> => {
+  return serviceDef.requestStream;
 };
 
 export type Plugin = (server: Server) => (void | Promise<void>);
@@ -91,6 +97,7 @@ export class Server {
 
       augmentedImplementations[key] = async (
         call: ServerCall,
+        // callback exists only when the response is unary
         callback: grpc.sendUnaryData<{}> | undefined,
       ) => {
         // logger
@@ -102,13 +109,17 @@ export class Server {
         augmentedCall.reqId = reqId;
         augmentedCall.logger = logger;
 
-        // add async functions for response stream
+        // augmentation functions
         if (isResponseStream(serviceDef, augmentedCall)) {
-          augmentedCall.writeAsync = async (data) => {
-            // backpressure
-            if (!augmentedCall.write(data)) {
-              await once(augmentedCall, "drain");
-            }
+
+          const { writeAsync } = augmentedWriter(augmentedCall);
+
+          augmentedCall.writeAsync = writeAsync;
+        }
+
+        if (isRequestStream(serviceDef, augmentedCall)) {
+          augmentedCall.readAsync = () => {
+            return once(augmentedCall, "data")[0];
           };
         }
 
@@ -130,6 +141,7 @@ export class Server {
           callback?.(e);
         } finally {
           if (isResponseStream(serviceDef, augmentedCall)) {
+            logger.info("Ending response stream");
             augmentedCall.end();
             await finished(augmentedCall);
           }

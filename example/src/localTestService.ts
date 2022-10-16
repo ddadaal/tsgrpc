@@ -19,6 +19,7 @@ export const localTestService = plugin(async (s) => {
       const data = [] as string[];
 
       for await (const req of call) {
+        call.logger.info("Received %o", req);
         data.push(req.msg);
       }
 

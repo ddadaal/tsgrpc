@@ -1,6 +1,7 @@
 import type { ServerDuplexStream,
   ServerReadableStream, ServerUnaryCall, ServerWritableStream } from "@grpc/grpc-js/build/src/server-call";
 import type pino from "pino";
+import { AugmentedReader, AugmentedWriter } from "src/utils";
 
 // https://github.com/fastify/fastify/blob/7efd2540f1/lib/reqIdGenFactory.js
 export function createReqIdGen() {
@@ -18,17 +19,21 @@ export interface Request {
   reqId: string;
 }
 
-export interface AsyncWritable<T> {
-  writeAsync: (data: T) => Promise<void>;
+export type AugmentedWritable<T> = {
+  writeAsync: AugmentedWriter<T>["writeAsync"];
 }
+
+export type AugmentedReadable<T> = AsyncIterable<T> & {
+  readAsync: AugmentedReader<T>["readAsync"];
+};
 
 export type AugmentedCall<TCall> = TCall & Request & (
   TCall extends ServerDuplexStream<infer TReq, infer TReply>
-    ? AsyncWritable<TReply> & AsyncIterable<TReq>
+    ? AugmentedWritable<TReply> & AugmentedReadable<TReq>
     : TCall extends ServerReadableStream<infer TReq, infer _TReply>
-    ? AsyncIterable<TReq>
+    ? AugmentedReadable<TReq>
     : TCall extends ServerWritableStream<infer _TReq, infer TReply>
-    ? AsyncWritable<TReply>
+    ? AugmentedWritable<TReply>
     : {}
 )
 

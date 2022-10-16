@@ -20,7 +20,6 @@ export interface Request {
 
 export interface AsyncWritable<T> {
   writeAsync: (data: T) => Promise<void>;
-  endAsync: () => Promise<void>;
 }
 
 export type AugmentedCall<TCall> = TCall & Request & (

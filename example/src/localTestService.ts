@@ -32,17 +32,15 @@ export const localTestService = plugin(async (s) => {
       for (let i = 0; i < count; i++) {
         await call.writeAsync({ msg });
       }
-
-      await call.endAsync();
-
     },
 
     duplexStream: async (call) => {
       for await (const req of call) {
+        call.logger.info("Received %o", req);
         await call.writeAsync({ msg: req.msg });
       }
 
-      await call.endAsync();
+      call.logger.info("No more data");
     },
   });
 });

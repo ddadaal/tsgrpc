@@ -4,10 +4,8 @@ import pino from "pino";
 import { Extensions } from "src/extension";
 import { AugmentedCall, createReqIdGen, RequestDecorator, ServerCall } from "src/request";
 import { Rest } from "src/types";
-import { finished } from "stream";
+import { finished } from "stream/promises";
 import { promisify } from "util";
-
-const finishedAsync = promisify(finished);
 
 export type CloseCallback = () => (void | Promise<void>);
 
@@ -112,10 +110,6 @@ export class Server {
               await once(augmentedCall, "drain");
             }
           };
-          augmentedCall.endAsync = async () => {
-            augmentedCall.end();
-            await finishedAsync(augmentedCall);
-          };
         }
 
         logger.info("Starting request");
@@ -134,6 +128,11 @@ export class Server {
         } catch (e) {
           logger.error({ err: e }, "Error occurred.");
           callback?.(e);
+        } finally {
+          if (isResponseStream(serviceDef, augmentedCall)) {
+            augmentedCall.end();
+            await finished(augmentedCall);
+          }
         }
 
       };

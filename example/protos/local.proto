@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package local;
 
-message HelloRequest { string msg = 1; }
+message UnaryRequest { string msg = 1; }
 
-message HelloReply { string msg = 2; }
+message UnaryReply { string msg = 2; }
 
 message RequestStreamRequest { string msg = 1; }
 message RequestStreamReply { repeated string messages = 1; }
@@ -19,7 +19,7 @@ message DuplexStreamRequest { string msg = 1; }
 message DuplexStreamReply { string msg = 1; }
 
 service LocalTestService {
-  rpc Hello(HelloRequest) returns (HelloReply);
+  rpc Unary(UnaryRequest) returns (UnaryReply);
   rpc RequestStream(stream RequestStreamRequest) returns (RequestStreamReply);
   rpc ReplyStream(ReplyStreamRequest) returns (stream ReplyStreamReply);
   rpc DuplexStream(stream DuplexStreamRequest)

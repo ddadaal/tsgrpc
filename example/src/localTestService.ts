@@ -1,15 +1,15 @@
 import { plugin } from "@ddadaal/tsgrpc-server";
 
-import { HelloReply, LocalTestServiceServer, LocalTestServiceService } from "./generated/local/local";
+import { LocalTestServiceServer, LocalTestServiceService, UnaryReply } from "./generated/local/local";
 
 export const localTestService = plugin(async (s) => {
   s.addService<LocalTestServiceServer>(LocalTestServiceService, {
     // key comes from myPlugin
-    hello: async ({ request, logger }) => {
+    unary: async ({ request, logger }) => {
 
       logger.info("Received request %o", request);
 
-      return [HelloReply.fromPartial({
+      return [UnaryReply.fromPartial({
         msg: request.msg,
       })];
     },

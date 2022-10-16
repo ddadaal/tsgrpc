@@ -5,11 +5,9 @@ import { Server } from "@ddadaal/tsgrpc-server";
 import { ChannelCredentials } from "@grpc/grpc-js";
 
 import { createServer } from "../src/app";
-import { EnumTest, TestServiceClient } from "../src/generated/git/test";
 import { LocalTestServiceClient } from "../src/generated/local/local";
 
 let server: Server;
-let testClient: TestServiceClient;
 let localClient: LocalTestServiceClient;
 
 beforeEach(async () => {
@@ -17,9 +15,6 @@ beforeEach(async () => {
 
   await server.start();
 
-  console.log(server.serverAddress);
-
-  testClient = new TestServiceClient(server.serverAddress, ChannelCredentials.createInsecure());
   localClient = new LocalTestServiceClient(server.serverAddress, ChannelCredentials.createInsecure());
 });
 
@@ -27,27 +22,8 @@ afterEach(async () => {
   await server.close();
 });
 
-it("returns data", async () => {
-
-  const reply = await asyncUnaryCall(testClient, "unaryCall", { });
-
-  expect(reply.enumTest).toBe(EnumTest.A);
-});
-
-it("returns with statusCode", async () => {
-  await expect(async () => {
-    await asyncUnaryCall(testClient, "returnServiceError", { });
-  }).rejects.toThrowError();
-});
-
-it("returns error", async () => {
-  await expect(async () => {
-    await asyncUnaryCall(testClient, "throwError", { });
-  }).rejects.toThrowError();
-});
-
 it("calls local test client", async () => {
-  const reply = await asyncUnaryCall(localClient, "hello", { msg: "123" });
+  const reply = await asyncUnaryCall(localClient, "unary", { msg: "123" });
 
   expect(reply.msg).toBe("123");
 });

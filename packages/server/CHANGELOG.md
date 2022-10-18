@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.1
+
+### Patch Changes
+
+- 6e61fa8: fix: server ending response stream doesn't emit end to client
+- 02609d5: server emits error if thrown in a response stream
+
 ## 0.17.0
 
 ### Minor Changes

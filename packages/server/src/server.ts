@@ -146,12 +146,12 @@ export class Server {
           }
         } catch (e) {
           if (responseStream) {
-            logger.info({ error: e }, "Error occurred during response streaming. Emit the error to the stream");
+            logger.error(e, "Error occurred during response streaming. Emit the error to the stream");
             augmentedCall.emit("error", e);
             // cannot use destroy
             // augmentedCall.destroy(e);
           } else {
-            logger.info({ error: e }, "Error occurred. Return the error.");
+            logger.error(e, "Error occurred. Return the error.");
             callback!(e);
           }
         } finally {

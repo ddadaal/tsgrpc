@@ -1,5 +1,13 @@
 # @ddadaal/tsgrpc-client
 
+## 0.16.2
+
+### Patch Changes
+
+- be4a7d7: update jsdoc
+- 6aed72e: requestStream end write stream
+- c503c89: update readAsync implementation
+
 ## 0.16.1
 
 ### Patch Changes

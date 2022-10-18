@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.17.3
+
+### Patch Changes
+
+- c503c89: update readAsync implementation
+
 ## 0.17.2
 
 ### Patch Changes

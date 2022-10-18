@@ -12,10 +12,14 @@ message RequestStreamReply { repeated string messages = 1; }
 message ReplyStreamRequest {
   string msg = 1;
   uint32 count = 2;
+  bool error = 3;
 }
 message ReplyStreamReply { string msg = 1; }
 
-message DuplexStreamRequest { string msg = 1; }
+message DuplexStreamRequest {
+  string msg = 1;
+  bool error = 2;
+}
 message DuplexStreamReply { string msg = 1; }
 
 service LocalTestService {

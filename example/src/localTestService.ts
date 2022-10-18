@@ -1,4 +1,5 @@
 import { plugin } from "@ddadaal/tsgrpc-server";
+import { ServiceError, status } from "@grpc/grpc-js";
 
 import { LocalTestServiceServer, LocalTestServiceService, UnaryReply } from "./generated/local/local";
 
@@ -28,7 +29,11 @@ export const localTestService = plugin(async (s) => {
 
     replyStream: async (call) => {
 
-      const { count, msg } = call.request;
+      const { count, msg, error } = call.request;
+
+      if (error) {
+        throw <ServiceError> { code: status.INTERNAL, message: "Error requested" };
+      }
 
       for (let i = 0; i < count; i++) {
         await call.writeAsync({ msg });
@@ -38,7 +43,11 @@ export const localTestService = plugin(async (s) => {
     duplexStream: async (call) => {
       for await (const req of call) {
         call.logger.info("Received %o", req);
+        if (req.error) {
+          throw <ServiceError> { code: status.INTERNAL, message: "Error requested" };
+        }
         await call.writeAsync({ msg: req.msg });
+
       }
 
       call.logger.info("No more data");

@@ -109,15 +109,18 @@ export class Server {
         augmentedCall.reqId = reqId;
         augmentedCall.logger = logger;
 
+        const responseStream = isResponseStream(serviceDef, augmentedCall);
+        const requestStream = isRequestStream(serviceDef, augmentedCall);
+
         // augmentation functions
-        if (isResponseStream(serviceDef, augmentedCall)) {
+        if (responseStream) {
 
           const { writeAsync } = augmentedWriter(augmentedCall);
 
           augmentedCall.writeAsync = writeAsync;
         }
 
-        if (isRequestStream(serviceDef, augmentedCall)) {
+        if (requestStream) {
           augmentedCall.readAsync = () => {
             return once(augmentedCall, "data")[0];
           };
@@ -137,11 +140,17 @@ export class Server {
             callback?.(null, ...ret);
           }
         } catch (e) {
-          logger.error({ err: e }, "Error occurred.");
-          callback?.(e);
+          if (responseStream) {
+            logger.info({ error: e }, "Error occurred during response streaming. Emit the error to the stream");
+            augmentedCall.emit("error", e);
+            // cannot use destroy
+            // augmentedCall.destroy(e);
+          } else {
+            logger.info({ error: e }, "Error occurred. Return the error.");
+            callback!(e);
+          }
         } finally {
-          if (isResponseStream(serviceDef, augmentedCall)) {
-            logger.info("Ending response stream");
+          if (responseStream) {
             augmentedCall.end();
             await finished(augmentedCall);
           }

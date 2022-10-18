@@ -2,7 +2,7 @@ import {
   asyncDuplexStreamCall, asyncReplyStreamCall, asyncRequestStreamCall, asyncUnaryCall,
 } from "@ddadaal/tsgrpc-client";
 import { Server } from "@ddadaal/tsgrpc-server";
-import { ChannelCredentials } from "@grpc/grpc-js";
+import { ChannelCredentials, ServiceError, status } from "@grpc/grpc-js";
 
 import { createServer } from "../src/app";
 import { LocalTestServiceClient } from "../src/generated/local/local";
@@ -55,10 +55,10 @@ it("tests request stream", async () => {
 
 it("tests response stream", async () => {
 
-  const count = 5, msg = "12";
+  const count = 5, msg = "12", error = false;
 
   let i = 0;
-  for await (const response of asyncReplyStreamCall(localClient, "replyStream", { count, msg })) {
+  for await (const response of asyncReplyStreamCall(localClient, "replyStream", { count, msg, error })) {
     expect(response.msg).toBe(msg);
     i++;
   }
@@ -67,8 +67,26 @@ it("tests response stream", async () => {
 
 });
 
-it.skip("tests duplex stream", async () => {
-  const request = { msg: "23" };
+it("tests response stream getting error", (cb) => {
+
+  const count = 5, msg = "12", error = true;
+
+  const stream = asyncReplyStreamCall(localClient, "replyStream", { count, msg, error });
+
+  stream.on("error", (e: ServiceError) => {
+    expect(e.code).toBe(status.INTERNAL);
+    cb();
+  });
+
+  stream.on("end", () => {
+    cb.fail("Test ended without error");
+  });
+
+});
+
+
+it("tests duplex stream", async () => {
+  const request = { msg: "23", error: false };
 
   const stream = asyncDuplexStreamCall(localClient, "duplexStream");
 
@@ -78,17 +96,13 @@ it.skip("tests duplex stream", async () => {
   expect((await stream.readAsync()).msg).toBe(request.msg);
   expect((await stream.readAsync()).msg).toBe(request.msg);
 
-  const request2 = { msg: "234" };
+  const request2 = { msg: "234", error: false };
 
   await stream.writeAsync(request2);
   await stream.writeAsync(request2);
   await stream.writeAsync(request2);
 
   await stream.endAsync();
-
-  stream.on("end", () => {
-    console.log("end event received");
-  });
 
   let i = 0;
 

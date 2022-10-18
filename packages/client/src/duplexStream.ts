@@ -24,7 +24,7 @@ type AugmentedStream<TReq, TRep> =
 /**
  * Async call a duplex stream rpc.
  * @param client client object
- * @param methodName the methodName of the function
+ * @param methodName the name of the function to call
  * @param extra metadata and options
  * @returns the duplex stream augmented with typed promisified reader and writer
  */

@@ -21,8 +21,9 @@ type TReply<TFunc> =
 
 /**
  * Async call a request stream rpc.
- * @param call the call method
- * @param writer a generator function or a promise function to write to the stream
+ * @param client client object
+ * @param methodName the name of the function to call
+ * @param writer a generator function or a async function to write to the stream
  * @param extra metadata and options
  * @returns reply
  */

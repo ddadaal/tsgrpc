@@ -2,6 +2,7 @@
   "name": "@ddadaal/tsgrpc",
   "scripts": {
     "build": "pnpm --filter \"!tsgrpc-example\" run build",
+    "dev": "pnpm --filter \"!tsgrpc-example\" run build --watch",
     "test": "pnpm -r run test",
     "test:ci": "pnpm -r run test --ci --coverage",
     "publish": "pnpm --filter \"!tsgrpc-example\" publish"

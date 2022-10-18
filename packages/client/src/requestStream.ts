@@ -51,7 +51,7 @@ export function asyncRequestStreamCall<
           : call(extra.metadata, callback)
         : call(extra.options!, callback);
 
-    const { writeAsync, endAsync } = augmentedWriter(stream);
+    const { writeAsync } = augmentedWriter(stream);
 
     try {
       if (typeof writer === "object") {
@@ -63,9 +63,8 @@ export function asyncRequestStreamCall<
       } else {
         await writer(writeAsync);
       }
-    } finally {
-      await endAsync();
+    } catch (e) {
+      rej(e);
     }
-
   });
 }

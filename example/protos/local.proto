@@ -6,7 +6,10 @@ message UnaryRequest { string msg = 1; }
 
 message UnaryReply { string msg = 2; }
 
-message RequestStreamRequest { string msg = 1; }
+message RequestStreamRequest {
+  string msg = 1;
+  bool error = 2;
+}
 message RequestStreamReply { repeated string messages = 1; }
 
 message ReplyStreamRequest {

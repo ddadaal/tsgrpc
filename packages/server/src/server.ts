@@ -1,10 +1,9 @@
 import * as grpc from "@grpc/grpc-js";
-import { once } from "events";
 import pino from "pino";
 import { Extensions } from "src/extension";
 import { AugmentedCall, createReqIdGen, RequestDecorator, ServerCall } from "src/request";
 import { Rest } from "src/types";
-import { augmentedWriter } from "src/utils";
+import { augmentedReader, augmentedWriter } from "src/utils";
 import { finished } from "stream/promises";
 import { promisify } from "util";
 
@@ -126,9 +125,8 @@ export class Server {
         }
 
         if (requestStream) {
-          augmentedCall.readAsync = () => {
-            return once(augmentedCall, "data")[0];
-          };
+          const { readAsync } = augmentedReader(augmentedCall);
+          augmentedCall.readAsync = readAsync;
         }
 
         logger.info("Starting request");

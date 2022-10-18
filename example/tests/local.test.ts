@@ -33,9 +33,9 @@ it("tests request stream", async () => {
   // async generator
   const rep = await asyncRequestStreamCall(
     localClient, "requestStream", async function*() {
-      yield { msg: "1" };
-      yield { msg: "2" };
-      yield { msg: "3" };
+      yield { msg: "1", error: false };
+      yield { msg: "2", error: false };
+      yield { msg: "3", error: false };
     }());
 
   expect(rep.messages).toEqual(["1", "2", "3"]);
@@ -43,14 +43,23 @@ it("tests request stream", async () => {
   // async function
   const rep1 = await asyncRequestStreamCall(
     localClient, "requestStream", async (write) => {
-      await write({ msg: "1" });
-      await write({ msg: "2" });
-      await write({ msg: "3" });
+      await write({ msg: "1", error: false });
+      await write({ msg: "2", error: false });
+      await write({ msg: "3", error: false });
     },
   );
 
   expect(rep1.messages).toEqual(["1", "2", "3"]);
 
+});
+
+it("tests request stream error handling", async () => {
+  await asyncRequestStreamCall(localClient, "requestStream", async function*() {
+    yield { msg: "1", error: true };
+    yield { msg: "1", error: false };
+  }()).then(() => expect("").fail("Request successfully"), (e) => {
+    expect(e.code).toBe(status.INTERNAL);
+  });
 });
 
 it("tests response stream", async () => {
@@ -74,7 +83,7 @@ it("tests response stream", async () => {
 
 });
 
-it("tests response stream getting error", async () => {
+it("tests response stream error handling", async () => {
 
   const count = 5, msg = "12", error = true;
 
@@ -104,7 +113,7 @@ it("tests duplex stream", async () => {
   await stream.writeAsync(request2);
   await stream.writeAsync(request2);
 
-  await stream.endAsync();
+  stream.end();
 
   let i = 0;
 

@@ -3,7 +3,6 @@ import { once } from "events";
 
 export type AugmentedWriter<T> = {
   writeAsync: (data: T) => Promise<void>;
-  endAsync: () => Promise<void>;
 }
 
 export const augmentedWriter = <T>(stream: ObjectWritable<T>): AugmentedWriter<T> => {
@@ -11,11 +10,9 @@ export const augmentedWriter = <T>(stream: ObjectWritable<T>): AugmentedWriter<T
     writeAsync: async (data) => {
       if (!stream.write(data)) {
         await once(stream, "drain");
+      } else {
+        await new Promise((res) => process.nextTick(res));
       }
-    },
-
-    endAsync: async () => {
-      stream.end();
     },
   };
 };
@@ -26,6 +23,9 @@ export type AugmentedReader<T> = {
 
 export const augmentedReader = <T>(stream: ObjectReadable<T>): AugmentedReader<T> => {
   return {
-    readAsync: async () => (await once(stream, "data"))[0],
+    readAsync: async () => {
+      const x = await once(stream, "data");
+      return x[0];
+    },
   };
 };

@@ -24,8 +24,8 @@ export type AugmentedReader<T> = {
 export const augmentedReader = <T>(stream: ObjectReadable<T>): AugmentedReader<T> => {
   return {
     readAsync: async () => {
-      const x = await once(stream, "data");
-      return x[0];
+      await once(stream, "readable");
+      return stream.read();
     },
   };
 };

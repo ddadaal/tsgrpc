@@ -66,6 +66,8 @@ export function asyncRequestStreamCall<
       }
     } catch (e) {
       rej(e);
+    } finally {
+      stream.end();
     }
   });
 }

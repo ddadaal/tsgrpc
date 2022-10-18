@@ -41,6 +41,7 @@ export const localTestService = plugin(async (s) => {
     },
 
     duplexStream: async (call) => {
+
       for await (const req of call) {
         call.logger.info("Received %o", req);
         if (req.error) {
@@ -51,6 +52,7 @@ export const localTestService = plugin(async (s) => {
       }
 
       call.logger.info("No more data");
+      call.emit("end");
     },
   });
 });

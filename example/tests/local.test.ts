@@ -2,7 +2,7 @@ import {
   asyncDuplexStreamCall, asyncReplyStreamCall, asyncRequestStreamCall, asyncUnaryCall,
 } from "@ddadaal/tsgrpc-client";
 import { Server } from "@ddadaal/tsgrpc-server";
-import { ChannelCredentials, ServiceError, status } from "@grpc/grpc-js";
+import { ChannelCredentials, status } from "@grpc/grpc-js";
 
 import { createServer } from "../src/app";
 import { LocalTestServiceClient } from "../src/generated/local/local";
@@ -67,19 +67,14 @@ it("tests response stream", async () => {
 
 });
 
-it("tests response stream getting error", (cb) => {
+it("tests response stream getting error", async () => {
 
   const count = 5, msg = "12", error = true;
 
   const stream = asyncReplyStreamCall(localClient, "replyStream", { count, msg, error });
 
-  stream.on("error", (e: ServiceError) => {
+  await stream.readAsync().then(() => expect("").fail("Read successfully"), (e) => {
     expect(e.code).toBe(status.INTERNAL);
-    cb();
-  });
-
-  stream.on("end", () => {
-    cb.fail("Test ended without error");
   });
 
 });
@@ -106,9 +101,6 @@ it("tests duplex stream", async () => {
 
   let i = 0;
 
-  // This for await loop never ends,
-  // despite the fact that the server has ended
-  // strange
   for await (const response of stream) {
     expect(response.msg).toBe(request2.msg);
     i++;

@@ -118,6 +118,11 @@ export class Server {
           const { writeAsync } = augmentedWriter(augmentedCall);
 
           augmentedCall.writeAsync = writeAsync;
+
+          // https://github.com/grpc/grpc-node/issues/1839
+          augmentedCall.on("end", () => {
+            augmentedCall.end();
+          });
         }
 
         if (requestStream) {
@@ -151,6 +156,7 @@ export class Server {
           }
         } finally {
           if (responseStream) {
+            logger.info("Ending response stream");
             augmentedCall.end();
             await finished(augmentedCall);
           }

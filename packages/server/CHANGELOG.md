@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.2
+
+### Patch Changes
+
+- 014c4ec: fix and test error handling for request stream
+- 1db1d84: use logger.error to log error
+
 ## 0.17.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @ddadaal/tsgrpc-client
 
+## 0.16.1
+
+### Patch Changes
+
+- 014c4ec: fix and test error handling for request stream
+
 ## 0.16.0
 
 ### Minor Changes

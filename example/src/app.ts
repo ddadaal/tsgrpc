@@ -5,7 +5,7 @@ import { localTestService } from "./localTestService";
 import { myPlugin } from "./myPlugin";
 
 export async function createServer() {
-  const server = new Server({ });
+  const server = new Server({ port: 0 });
 
   await server.register(myPlugin);
   await server.register(localTestService);

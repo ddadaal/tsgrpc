@@ -57,13 +57,20 @@ it("tests response stream", async () => {
 
   const count = 5, msg = "12", error = false;
 
+  const stream = asyncReplyStreamCall(localClient, "replyStream", { count, msg, error });
+
+  // test readAsync
+  const data = await stream.readAsync();
+  expect(data.msg).toBe(msg);
+
+
   let i = 0;
-  for await (const response of asyncReplyStreamCall(localClient, "replyStream", { count, msg, error })) {
+  for await (const response of stream) {
     expect(response.msg).toBe(msg);
     i++;
   }
 
-  expect(i).toBe(count);
+  expect(i).toBe(count - 1);
 
 });
 

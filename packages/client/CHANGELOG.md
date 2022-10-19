@@ -1,5 +1,16 @@
 # @ddadaal/tsgrpc-client
 
+## 0.17.0
+
+### Minor Changes
+
+- 8b239e1: separate common package and update api
+
+### Patch Changes
+
+- Updated dependencies [8b239e1]
+  - @ddadaal/tsgrpc-common@0.1.0
+
 ## 0.16.2
 
 ### Patch Changes

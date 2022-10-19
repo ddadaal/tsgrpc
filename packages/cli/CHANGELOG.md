@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.1
+
+### Patch Changes
+
+- 10b12f1: chore(deps): update all non-major dependencies
+
 ## 0.14.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @ddadaal/tsgrpc-client
 
+## 0.17.1
+
+### Patch Changes
+
+- f645e91: fix ClientDuplexStream type
+
 ## 0.17.0
 
 ### Minor Changes

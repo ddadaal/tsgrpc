@@ -26,11 +26,15 @@ export const localTestService = plugin(async (s) => {
 
       const first = await call.readAsync();
 
+      if (!first) {
+        return [{ messages: []}];
+      }
+
       throwIfRequested(first);
 
       const data = [first.msg] as string[];
 
-      for await (const req of call) {
+      for await (const req of call.iter()) {
         call.logger.info("Received %o", req);
         throwIfRequested(req);
 
@@ -49,18 +53,20 @@ export const localTestService = plugin(async (s) => {
       }
 
       for (let i = 0; i < count; i++) {
+        call.logger.info("Write %s the %d/%d time", msg, i, count);
         await call.writeAsync({ msg });
       }
     },
 
     duplexStream: async (call) => {
 
-      for await (const req of call) {
+      for await (const req of call.iter()) {
         call.logger.info("Received %o", req);
         if (req.error) {
           throw <ServiceError> { code: status.INTERNAL, message: "Error requested" };
         }
         await call.writeAsync({ msg: req.msg });
+        call.logger.info("Written %o", req.msg);
 
       }
 

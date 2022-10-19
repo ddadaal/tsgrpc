@@ -13,7 +13,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "tslib": "2.4.0"
+    "tslib": "2.4.0",
+    "@ddadaal/tsgrpc-common": "workspace:*"
   },
   "peerDependencies": {
     "@grpc/grpc-js": ">=1.7.0"

@@ -1,12 +1,11 @@
 {
-  "name": "@ddadaal/tsgrpc-server",
-  "version": "0.17.3",
-  "description": "A simple gRPC Server Framework for TypeScript Node.js",
+  "name": "@ddadaal/tsgrpc-common",
+  "version": "0.0.0",
+  "description": "Common utilities for tsgrpc server and client",
   "main": "lib/index.js",
   "scripts": {
     "dev": "tsc -p tsconfig.build.json --watch && ts-alias -p tsconfig.build.json",
-    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json",
-    "test": "jest"
+    "build": "rimraf lib && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json"
   },
   "author": {
     "name": "Chen Junda",
@@ -15,12 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "pino": "8.6.1",
-    "tslib": "2.4.0",
-    "@ddadaal/tsgrpc-common": "workspace:*"
-  },
-  "peerDependencies": {
-    "@grpc/grpc-js": ">=1.7.0"
+    "tslib": "2.4.0"
   },
   "devDependencies": {
     "@grpc/grpc-js": "1.7.2"

@@ -42,10 +42,10 @@ it("tests request stream", async () => {
 
   // async function
   const rep1 = await asyncRequestStreamCall(
-    localClient, "requestStream", async (write) => {
-      await write({ msg: "1", error: false });
-      await write({ msg: "2", error: false });
-      await write({ msg: "3", error: false });
+    localClient, "requestStream", async ({ writeAsync }) => {
+      await writeAsync({ msg: "1", error: false });
+      await writeAsync({ msg: "2", error: false });
+      await writeAsync({ msg: "3", error: false });
     },
   );
 
@@ -70,11 +70,10 @@ it("tests response stream", async () => {
 
   // test readAsync
   const data = await stream.readAsync();
-  expect(data.msg).toBe(msg);
-
+  expect(data?.msg).toBe(msg);
 
   let i = 0;
-  for await (const response of stream) {
+  for await (const response of stream.iter()) {
     expect(response.msg).toBe(msg);
     i++;
   }
@@ -104,8 +103,8 @@ it("tests duplex stream", async () => {
   await stream.writeAsync(request);
   await stream.writeAsync(request);
 
-  expect((await stream.readAsync()).msg).toBe(request.msg);
-  expect((await stream.readAsync()).msg).toBe(request.msg);
+  expect((await stream.readAsync())?.msg).toBe(request.msg);
+  expect((await stream.readAsync())?.msg).toBe(request.msg);
 
   const request2 = { msg: "234", error: false };
 
@@ -117,7 +116,7 @@ it("tests duplex stream", async () => {
 
   let i = 0;
 
-  for await (const response of stream) {
+  for await (const response of stream.iter()) {
     expect(response.msg).toBe(request2.msg);
     i++;
   }

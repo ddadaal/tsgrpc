@@ -1,9 +1,9 @@
+import { createReaderExtensions, createWriterExtensions } from "@ddadaal/tsgrpc-common";
 import * as grpc from "@grpc/grpc-js";
 import pino from "pino";
 import { Extensions } from "src/extension";
 import { AugmentedCall, createReqIdGen, RequestDecorator, ServerCall } from "src/request";
 import { Rest } from "src/types";
-import { augmentedReader, augmentedWriter } from "src/utils";
 import { finished } from "stream/promises";
 import { promisify } from "util";
 
@@ -114,7 +114,7 @@ export class Server {
         // augmentation functions
         if (responseStream) {
 
-          const { writeAsync } = augmentedWriter(augmentedCall);
+          const { writeAsync } = createWriterExtensions(augmentedCall);
 
           augmentedCall.writeAsync = writeAsync;
 
@@ -125,7 +125,8 @@ export class Server {
         }
 
         if (requestStream) {
-          const { readAsync } = augmentedReader(augmentedCall);
+          const { readAsync, iter } = createReaderExtensions(augmentedCall);
+          augmentedCall.iter = iter;
           augmentedCall.readAsync = readAsync;
         }
 

@@ -1,6 +1,6 @@
+import { createWriterExtensions, WriterExtensions } from "@ddadaal/tsgrpc-common";
 import { CallOptions, Client, ClientWritableStream, Metadata } from "@grpc/grpc-js";
 import { UnaryCallback } from "src/types";
-import { AugmentedWriter, augmentedWriter } from "src/utils";
 
 type RequestStreamCall<TReq, TRep> = {
   (callback: UnaryCallback<TRep>): ClientWritableStream<TReq>,
@@ -32,8 +32,11 @@ export function asyncRequestStreamCall<
 >(
   client: TClient, methodName: TKey,
   writer:
-    | AsyncGenerator<TRequest<TClient[TKey]>>
-    | ((write: AugmentedWriter<TRequest<TClient[TKey]>>["writeAsync"]) => Promise<void>),
+    | (AsyncGenerator<TRequest<TClient[TKey]>>)
+    | ((
+      ext: WriterExtensions<TRequest<TClient[TKey]>>,
+      stream: ClientWritableStream<TRequest<TClient[TKey]>>
+    ) => Promise<void>),
   extra?: { metadata?: Metadata; options?: Partial<CallOptions>; },
 ): Promise<TReply<TClient[TKey]>> {
 
@@ -52,17 +55,17 @@ export function asyncRequestStreamCall<
           : call(extra.metadata, callback)
         : call(extra.options!, callback);
 
-    const { writeAsync } = augmentedWriter(stream);
+    const writerExt = createWriterExtensions(stream);
 
     try {
       if (typeof writer === "object") {
         let result = await writer.next();
         while (!result.done) {
-          await writeAsync(result.value);
+          await writerExt.writeAsync(result.value);
           result = await writer.next();
         }
       } else {
-        await writer(writeAsync);
+        await writer(writerExt, stream);
       }
     } catch (e) {
       rej(e);

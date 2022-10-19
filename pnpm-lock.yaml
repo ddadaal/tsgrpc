@@ -90,6 +90,17 @@ importers:
 
   packages/client:
     specifiers:
+      '@ddadaal/tsgrpc-common': workspace:*
+      '@grpc/grpc-js': 1.7.2
+      tslib: 2.4.0
+    dependencies:
+      '@ddadaal/tsgrpc-common': link:../common
+      tslib: 2.4.0
+    devDependencies:
+      '@grpc/grpc-js': 1.7.2
+
+  packages/common:
+    specifiers:
       '@grpc/grpc-js': 1.7.2
       tslib: 2.4.0
     dependencies:
@@ -99,10 +110,12 @@ importers:
 
   packages/server:
     specifiers:
+      '@ddadaal/tsgrpc-common': workspace:*
       '@grpc/grpc-js': 1.7.2
       pino: 8.6.1
       tslib: 2.4.0
     dependencies:
+      '@ddadaal/tsgrpc-common': link:../common
       pino: 8.6.1
       tslib: 2.4.0
     devDependencies:

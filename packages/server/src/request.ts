@@ -1,7 +1,7 @@
+import { ReaderExtensions, WriterExtensions } from "@ddadaal/tsgrpc-common";
 import type { ServerDuplexStream,
   ServerReadableStream, ServerUnaryCall, ServerWritableStream } from "@grpc/grpc-js/build/src/server-call";
 import type pino from "pino";
-import { AugmentedReader, AugmentedWriter } from "src/utils";
 
 // https://github.com/fastify/fastify/blob/7efd2540f1/lib/reqIdGenFactory.js
 export function createReqIdGen() {
@@ -20,11 +20,10 @@ export interface Request {
 }
 
 export type AugmentedWritable<T> = {
-  writeAsync: AugmentedWriter<T>["writeAsync"];
+  writeAsync: WriterExtensions<T>["writeAsync"];
 }
 
-export type AugmentedReadable<T> = AsyncIterable<T> & {
-  readAsync: AugmentedReader<T>["readAsync"];
+export type AugmentedReadable<T> = ReaderExtensions<T> & {
 };
 
 export type AugmentedCall<TCall> = TCall & Request & (

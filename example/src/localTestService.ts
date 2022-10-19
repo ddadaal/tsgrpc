@@ -65,7 +65,7 @@ export const localTestService = plugin(async (s) => {
         if (req.error) {
           throw <ServiceError> { code: status.INTERNAL, message: "Error requested" };
         }
-        await call.writeAsync({ msg: req.msg });
+        await call.writeAsync({ msg: req.msg, reply: true });
         call.logger.info("Written %o", req.msg);
 
       }

@@ -23,7 +23,7 @@ message DuplexStreamRequest {
   string msg = 1;
   bool error = 2;
 }
-message DuplexStreamReply { string msg = 1; }
+message DuplexStreamReply { string msg = 1; bool reply = 2; }
 
 service LocalTestService {
   rpc Unary(UnaryRequest) returns (UnaryReply);

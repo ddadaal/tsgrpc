@@ -21,7 +21,7 @@ type TReply<TFunc> =
 
 
 type AugmentedClientDuplexStream<TReq, TRep> =
-  WriterExtensions<TReq> & ReaderExtensions<TRep> & ClientDuplexStream<TRep, TReq>;
+  WriterExtensions<TReq> & ReaderExtensions<TRep> & ClientDuplexStream<TReq, TRep>;
 
 /**
  * Async call a duplex stream rpc.

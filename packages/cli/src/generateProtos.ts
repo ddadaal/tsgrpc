@@ -21,8 +21,20 @@ const presets = {
   "grpc-js": "--ts_proto_opt=outputServices=grpc-js",
 } as const;
 
+const windows = process.platform === "win32";
+
 // https://github.com/improbable-eng/ts-protoc-gen/issues/15#issuecomment-317063814
-const exeExt = process.platform === "win32" ? ".cmd" : "";
+const exeExt = windows ? ".cmd" : "";
+
+// https://github.com/isaacs/node-glob#windows
+const globResolve = (...pathSegments: string[]) => {
+  const result = resolve(...pathSegments);
+  if (windows) {
+    return result.replaceAll(/\\/g, "/");
+  } else {
+    return result;
+  }
+};
 
 export async function generateProtos({ configPath }: GenerateProtosProps) {
 
@@ -61,7 +73,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
 
     await fs.promises.mkdir(modelDir, { recursive: true });
 
-    const resolvedFiles = await promisify(glob)(files);
+    const resolvedFiles = await promisify(glob)(globResolve(files));
 
     if (resolvedFiles.length === 0) {
       log(`${files} doesn't match any files.`);
@@ -76,7 +88,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
       presets[config.preset],
       `--ts_proto_out=${modelDir}`,
       "--ts_proto_opt=useOptionals=messages",
-      ...protoPaths.map((protoPath) => `--proto_path=${protoPath}`),
+      ...protoPaths.map((protoPath) => `--proto_path=${globResolve(protoPath)}`),
       ...(config.params || []),
       ...resolvedFiles,
     ];

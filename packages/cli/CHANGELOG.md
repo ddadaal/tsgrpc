@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.14.2
+
+### Patch Changes
+
+- 71751b3: remove shell-quote and use execFile to execute command
+- fb38663: handle glob in windows
+
 ## 0.14.1
 
 ### Patch Changes

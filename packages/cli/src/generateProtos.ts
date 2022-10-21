@@ -21,6 +21,9 @@ const presets = {
   "grpc-js": "--ts_proto_opt=outputServices=grpc-js",
 } as const;
 
+// https://github.com/improbable-eng/ts-protoc-gen/issues/15#issuecomment-317063814
+const exeExt = process.platform === "win32" ? ".cmd" : "";
+
 export async function generateProtos({ configPath }: GenerateProtosProps) {
 
 
@@ -35,12 +38,9 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
   const binPath = resolve(config.binPath);
   log("Using binPath " + binPath);
 
-  const GRPC_TOOLS_NODE_PROTOC = resolve(binPath, "grpc_tools_node_protoc");
+  const GRPC_TOOLS_NODE_PROTOC = resolve(binPath, "grpc_tools_node_protoc" + exeExt);
 
-  const TS_PROTO_PATH = resolve(binPath, "./protoc-gen-ts_proto")
-    // https://github.com/improbable-eng/ts-protoc-gen/issues/15#issuecomment-317063814
-    + (process.platform === "win32" ? ".cmd" : "");
-
+  const TS_PROTO_PATH = resolve(binPath, "./protoc-gen-ts_proto" + exeExt);
 
   await promisify(rimraf)(config.targetPath);
 

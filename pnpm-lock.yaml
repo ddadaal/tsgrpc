@@ -46,9 +46,9 @@ importers:
       '@ddadaal/tsgrpc-client': workspace:*
       '@ddadaal/tsgrpc-server': workspace:*
       '@grpc/grpc-js': 1.7.2
-      long: '*'
-      protobufjs: '*'
-      tslib: '*'
+      long: 5.2.0
+      protobufjs: 7.1.2
+      tslib: 2.4.0
     dependencies:
       '@ddadaal/tsgrpc-client': link:../packages/client
       '@ddadaal/tsgrpc-server': link:../packages/server

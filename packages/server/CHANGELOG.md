@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.18.1
+
+### Patch Changes
+
+- 5726458: chore(deps): update all non-major dependencies
+- Updated dependencies [5726458]
+- Updated dependencies [3227018]
+  - @ddadaal/tsgrpc-common@0.2.0
+
 ## 0.18.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
 ## server: A minimal gRPC Framework
 
 ```bash
-npm install --save @ddadaal/tsgrpc-server @grpc/grpc-js
+npm install --save @ddadaal/tsgrpc-server @ddadaal/tsgrpc-common @grpc/grpc-js
 ```
 
 - Strongly typed

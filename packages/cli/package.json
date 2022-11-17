@@ -24,9 +24,9 @@
     "glob": "8.0.3",
     "grpc-tools": "1.11.3",
     "rimraf": "3.0.2",
-    "ts-proto": "1.129.0",
-    "tslib": "2.4.0",
-    "yargs": "17.6.0",
+    "ts-proto": "1.132.1",
+    "tslib": "2.4.1",
+    "yargs": "17.6.2",
     "zod": "3.19.1"
   },
   "devDependencies": {

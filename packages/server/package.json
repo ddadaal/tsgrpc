@@ -15,15 +15,15 @@
   },
   "license": "MIT",
   "dependencies": {
-    "pino": "8.6.1",
-    "tslib": "2.4.0",
+    "pino": "8.7.0",
+    "tslib": "2.4.1",
     "@ddadaal/tsgrpc-common": "workspace:*"
   },
   "peerDependencies": {
     "@grpc/grpc-js": ">=1.7.0"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "1.7.2"
+    "@grpc/grpc-js": "1.7.3"
   },
   "publishConfig": {
     "access": "public"

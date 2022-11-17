@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package errortest;
+
+message ReturnServiceErrorRequest {}
+
+message ReturnServiceErrorReply {}
+
+message ThrowErrorRequest {}
+
+message ThrowErrorReply {}
+
+service ErrorTestService {
+  rpc ReturnServiceError(ReturnServiceErrorRequest)
+      returns (ReturnServiceErrorReply);
+  rpc ThrowError(ThrowErrorRequest) returns (ThrowErrorReply);
+}

@@ -17,6 +17,7 @@
   "dependencies": {
     "@ddadaal/tsgrpc-client": "workspace:*",
     "@ddadaal/tsgrpc-server": "workspace:*",
+    "@ddadaal/tsgrpc-common": "workspace:*",
     "@grpc/grpc-js": "1.7.2",
     "long": "*",
     "protobufjs": "*"

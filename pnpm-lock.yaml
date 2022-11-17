@@ -44,6 +44,7 @@ importers:
     specifiers:
       '@ddadaal/tsgrpc-cli': workspace:*
       '@ddadaal/tsgrpc-client': workspace:*
+      '@ddadaal/tsgrpc-common': workspace:*
       '@ddadaal/tsgrpc-server': workspace:*
       '@grpc/grpc-js': 1.7.2
       long: '*'
@@ -51,6 +52,7 @@ importers:
       tslib: '*'
     dependencies:
       '@ddadaal/tsgrpc-client': link:../packages/client
+      '@ddadaal/tsgrpc-common': link:../packages/common
       '@ddadaal/tsgrpc-server': link:../packages/server
       '@grpc/grpc-js': 1.7.2
       long: 5.2.0

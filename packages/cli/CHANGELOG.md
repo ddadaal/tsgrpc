@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.14.4
+
+### Patch Changes
+
+- 22f9636: update deps
+- 5fc843d: use rimraf v4
+
 ## 0.14.3
 
 ### Patch Changes

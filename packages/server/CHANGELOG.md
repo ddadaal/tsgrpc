@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.18.2
+
+### Patch Changes
+
+- 22f9636: update deps
+- Updated dependencies [22f9636]
+  - @ddadaal/tsgrpc-common@0.2.1
+
 ## 0.18.1
 
 ### Patch Changes

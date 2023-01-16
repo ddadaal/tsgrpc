@@ -20,7 +20,7 @@
     "@grpc/grpc-js": ">=1.7.0"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "1.7.3"
+    "@grpc/grpc-js": "1.8.4"
   },
   "publishConfig": {
     "access": "public"

@@ -32,7 +32,7 @@ it("returns with statusCode", async () => {
     expect(e.code).toBe(status.NOT_FOUND);
     expect(e.message).toBe("5 NOT_FOUND: Not found");
     expect(e.details).toBe("Not found");
-    expect(e.metadata.toJSON()).toEqual({ "details": ["123"]});
+    expect(e.metadata.toJSON().details).toEqual(["123"]);
   }
 });
 

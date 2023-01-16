@@ -1,5 +1,11 @@
 # @ddadaal/tsgrpc-common
 
+## 0.2.1
+
+### Patch Changes
+
+- 22f9636: update deps
+
 ## 0.2.0
 
 ### Minor Changes

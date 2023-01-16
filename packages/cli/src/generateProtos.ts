@@ -1,7 +1,7 @@
 import fs from "fs";
 import { glob } from "glob";
 import { dirname, join, resolve } from "path";
-import rimraf from "rimraf";
+import { rimraf } from "rimraf";
 import { CliConfig, cliConfigSchema } from "src/config";
 import { clone } from "src/git";
 import { executeCommand } from "src/utils";
@@ -54,7 +54,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
 
   const TS_PROTO_PATH = resolve(binPath, "./protoc-gen-ts_proto" + exeExt);
 
-  await promisify(rimraf)(config.targetPath);
+  await rimraf(config.targetPath);
 
   for (const proto of config.protos) {
     let files: string;

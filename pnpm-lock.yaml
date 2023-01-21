@@ -13,7 +13,7 @@ importers:
       eslint: 8.32.0
       eslint-import-resolver-typescript: 3.5.3
       eslint-plugin-import: 2.27.4
-      eslint-plugin-simple-import-sort: 8.0.0
+      eslint-plugin-simple-import-sort: 9.0.0
       jest: 29.3.1
       jest-extended: 3.2.3
       rimraf: 4.0.7
@@ -23,7 +23,7 @@ importers:
       typescript: 4.9.4
     devDependencies:
       '@changesets/cli': 2.26.0
-      '@ddadaal/eslint-config': 1.9.0_c54xeuqq5svitvhb63djf7j5oy
+      '@ddadaal/eslint-config': 1.9.0_k7gqbzryyu56qgk3tdrfpgyspu
       '@types/jest': 29.2.5
       '@types/node': 18.11.18
       '@typescript-eslint/eslint-plugin': 5.48.1_oomjohfipuyaxs2zyomcx4f5by
@@ -31,7 +31,7 @@ importers:
       eslint: 8.32.0
       eslint-import-resolver-typescript: 3.5.3_yx6e7nyocrpjlofwba2pq5a2ny
       eslint-plugin-import: 2.27.4_26i2w5mui4ucix7iyirx6fcd3i
-      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.32.0
+      eslint-plugin-simple-import-sort: 9.0.0_eslint@8.32.0
       jest: 29.3.1_zfha7dvnw4nti6zkbsmhmn6xo4
       jest-extended: 3.2.3_jest@29.3.1
       rimraf: 4.0.7
@@ -656,7 +656,7 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@ddadaal/eslint-config/1.9.0_c54xeuqq5svitvhb63djf7j5oy:
+  /@ddadaal/eslint-config/1.9.0_k7gqbzryyu56qgk3tdrfpgyspu:
     resolution: {integrity: sha512-k6RKAT1FUGBEpyB5rRS/RuF20pA/H8u0cBNUf7xKDxHcTk/yR3oN0FjtxmAPkZhVuKjoUWvGniSlEeg1zE3K2g==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '>=5.37.0'
@@ -670,7 +670,7 @@ packages:
       eslint: 8.32.0
       eslint-import-resolver-typescript: 3.5.3_yx6e7nyocrpjlofwba2pq5a2ny
       eslint-plugin-import: 2.27.4_26i2w5mui4ucix7iyirx6fcd3i
-      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.32.0
+      eslint-plugin-simple-import-sort: 9.0.0_eslint@8.32.0
     optionalDependencies:
       eslint-plugin-react: 7.31.10_eslint@8.32.0
     transitivePeerDependencies:
@@ -2286,8 +2286,8 @@ packages:
     dev: true
     optional: true
 
-  /eslint-plugin-simple-import-sort/8.0.0_eslint@8.32.0:
-    resolution: {integrity: sha512-bXgJQ+lqhtQBCuWY/FUWdB27j4+lqcvXv5rUARkzbeWLwea+S5eBZEQrhnO+WgX3ZoJHVj0cn943iyXwByHHQw==}
+  /eslint-plugin-simple-import-sort/9.0.0_eslint@8.32.0:
+    resolution: {integrity: sha512-PtrLjyXP8kjRneWT1n0b99y/2Fyup37we7FVoWsI61/O7x4ztLohzhep/pxI/cYlECr/cQ2j6utckdvWpVwXNA==}
     peerDependencies:
       eslint: '>=5.0.0'
     dependencies:

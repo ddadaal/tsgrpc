@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.19.0
+
+### Minor Changes
+
+- e3fcaf3: allow pass in an existing logger when creating server
+
+### Patch Changes
+
+- 99f28ca: don't create a child logger
+
 ## 0.18.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.5
+
+### Patch Changes
+
+- 3f9fbd6: update to glob v9
+
 ## 0.14.4
 
 ### Patch Changes

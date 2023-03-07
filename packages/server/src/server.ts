@@ -70,7 +70,7 @@ export class Server {
   port: number = -1;
 
   constructor(private config: ServerConfig) {
-    this.logger = pino(config.logger).child({ component: "server" });
+    this.logger = pino(config.logger);
 
     this.config.host = this.config.host ?? "0.0.0.0";
     this.config.port = this.config.port ?? 5000;

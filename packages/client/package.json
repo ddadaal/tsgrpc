@@ -13,14 +13,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "tslib": "2.4.1",
+    "tslib": "2.5.0",
     "@ddadaal/tsgrpc-common": "workspace:*"
   },
   "peerDependencies": {
     "@grpc/grpc-js": ">=1.7.0"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "1.8.4"
+    "@grpc/grpc-js": "1.8.11"
   },
   "publishConfig": {
     "access": "public"

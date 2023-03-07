@@ -18,7 +18,7 @@
     "@ddadaal/tsgrpc-client": "workspace:*",
     "@ddadaal/tsgrpc-server": "workspace:*",
     "@ddadaal/tsgrpc-common": "workspace:*",
-    "@grpc/grpc-js": "1.8.4",
+    "@grpc/grpc-js": "1.8.11",
     "long": "*",
     "protobufjs": "*"
   },

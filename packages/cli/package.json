@@ -21,7 +21,7 @@
     "url": "https://github.com/ddadaal/tsgrpc/issues"
   },
   "dependencies": {
-    "glob": "8.1.0",
+    "glob": "9.2.1",
     "grpc-tools": "1.12.4",
     "rimraf": "4.3.1",
     "ts-proto": "1.140.0",
@@ -30,7 +30,6 @@
     "zod": "3.21.4"
   },
   "devDependencies": {
-    "@types/glob": "8.1.0",
     "@types/yargs": "17.0.22"
   },
   "publishConfig": {

@@ -5,8 +5,6 @@ import { rimraf } from "rimraf";
 import { CliConfig, cliConfigSchema } from "src/config";
 import { clone } from "src/git";
 import { executeCommand } from "src/utils";
-import { promisify } from "util";
-
 
 interface GenerateProtosProps {
   configPath: string;
@@ -73,7 +71,7 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
 
     await fs.promises.mkdir(modelDir, { recursive: true });
 
-    const resolvedFiles = await promisify(glob)(globResolve(files));
+    const resolvedFiles = await glob(globResolve(files));
 
     if (resolvedFiles.length === 0) {
       log(`${files} doesn't match any files.`);

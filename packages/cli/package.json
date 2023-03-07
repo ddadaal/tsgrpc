@@ -1,6 +1,6 @@
 {
   "name": "@ddadaal/tsgrpc-cli",
-  "version": "0.14.4",
+  "version": "0.14.5",
   "description": "CLI",
   "author": "Chen Junda <ddadaal@outlook.com>",
   "homepage": "https://github.com/ddadaal/tsgrpc#readme",

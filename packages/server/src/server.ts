@@ -12,7 +12,7 @@ export type CloseCallback = () => (void | Promise<void>);
 export type ServerConfig = {
   host?: string;
   port?: number;
-  logger?: pino.LoggerOptions;
+  logger?: pino.LoggerOptions | pino.Logger;
 
   /**
    * The server credentials used when creating gRPC server

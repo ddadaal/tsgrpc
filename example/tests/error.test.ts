@@ -2,7 +2,7 @@ import {
   asyncUnaryCall,
 } from "@ddadaal/tsgrpc-client";
 import { Server } from "@ddadaal/tsgrpc-server";
-import { ChannelCredentials, status } from "@grpc/grpc-js";
+import { ChannelCredentials, Metadata, status } from "@grpc/grpc-js";
 
 import { createServer } from "../src/app";
 import { ErrorTestServiceClient } from "../src/generated/local/error";
@@ -46,3 +46,17 @@ it("returns error", async () => {
   }
 });
 
+it("returns error from request hook", async () => {
+  try {
+
+    const metadata = new Metadata();
+
+    metadata.add("THROW_ERROR", "1");
+
+    await asyncUnaryCall(client, "throwError", {}, { metadata, options: {} });
+    expect("").fail("Should not reach here");
+  } catch (e) {
+    expect(e.code).toBe(status.INVALID_ARGUMENT);
+    expect(e.message).toBe("3 INVALID_ARGUMENT: Throw error header is set with value 1");
+  }
+});

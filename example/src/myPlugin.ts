@@ -1,4 +1,6 @@
+import { ServiceError } from "@ddadaal/tsgrpc-common";
 import { plugin } from "@ddadaal/tsgrpc-server";
+import { status } from "@grpc/grpc-js";
 
 // Use module augmentation to define extra properties
 declare module "@ddadaal/tsgrpc-server" {
@@ -19,6 +21,17 @@ export const myPlugin = plugin(async (s) => {
 
   // Add a request hook, which will be executed at the start of every request
   s.addRequestHook(async (req) => {
-    req.key = KEY + req.reqId;
+
+    const metadata = req.metadata.get("THROW_ERROR");
+
+    if (metadata.length === 1) {
+      throw new ServiceError({
+        code: status.INVALID_ARGUMENT,
+        details: "Throw error header is set with value " + metadata[0],
+      });
+    }
+
+    if (req.metadata.get(""))
+      req.key = KEY + req.reqId;
   });
 });

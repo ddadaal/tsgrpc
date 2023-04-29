@@ -17,7 +17,7 @@
     "tslib": "2.5.0"
   },
   "devDependencies": {
-    "@grpc/grpc-js": "1.8.11"
+    "@grpc/grpc-js": "1.8.14"
   },
   "publishConfig": {
     "access": "public"

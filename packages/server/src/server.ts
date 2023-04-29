@@ -21,10 +21,10 @@ export type ServerConfig = {
   serverCredentials?: grpc.ServerCredentials;
 }
 
-export type ResponseType<T extends (...args : any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
+export type ResponseType<T extends (...args: any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
 
 type RemoveIndex<T> = {
-  [ K in keyof T as string extends K ? never : number extends K ? never : K ] : T[K]
+  [ K in keyof T as string extends K ? never : number extends K ? never : K ]: T[K]
 };
 
 export declare type AugmentedServiceImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
@@ -132,13 +132,15 @@ export class Server {
 
         logger.info("Starting request");
 
-        // apply request decorators
-        for (const hook of this.requestHooks) {
-          await hook(augmentedCall);
-        }
-
         try {
+
+          // apply request decorators
+          for (const hook of this.requestHooks) {
+            await hook(augmentedCall);
+          }
+
           const ret = await implementations[key](augmentedCall as any, callback);
+
           if (ret) {
             logger.info("Request completed.");
             callback?.(null, ...ret);

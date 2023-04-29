@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.19.1
+
+### Patch Changes
+
+- 36aeb3c: update deps
+- 1f51701: support throwing error from request hooks
+- Updated dependencies [36aeb3c]
+  - @ddadaal/tsgrpc-common@0.2.2
+
 ## 0.19.0
 
 ### Minor Changes

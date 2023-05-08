@@ -141,8 +141,8 @@ importers:
         specifier: workspace:*
         version: link:../common
       pino:
-        specifier: 8.12.1
-        version: 8.12.1
+        specifier: 8.14.1
+        version: 8.14.1
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -4294,8 +4294,8 @@ packages:
     resolution: {integrity: sha512-IWgSzUL8X1w4BIWTwErRgtV8PyOGOOi60uqv0oKuS/fOA8Nco/OeI6lBuc4dyP8MMfdFwyHqTMcBIA7nDiqEqA==}
     dev: false
 
-  /pino@8.12.1:
-    resolution: {integrity: sha512-n4F7nrEUDH0u5pjlUPkrvsN6oZOhScZWwpWPniwVkMnO6a2DhpnMNWDUlW0SawVICgrNhOf0yTNgw2lYQBsPYA==}
+  /pino@8.14.1:
+    resolution: {integrity: sha512-8LYNv7BKWXSfS+k6oEc6occy5La+q2sPwU3q2ljTX5AZk7v+5kND2o5W794FyRaqha6DJajmkNRsWtPpFyMUdw==}
     hasBin: true
     dependencies:
       atomic-sleep: 1.0.0

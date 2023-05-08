@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.19.2
+
+### Patch Changes
+
+- 0e65a2c: update dependencies
+- Updated dependencies [0e65a2c]
+  - @ddadaal/tsgrpc-common@0.2.3
+
 ## 0.19.1
 
 ### Patch Changes

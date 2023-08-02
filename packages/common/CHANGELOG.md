@@ -1,5 +1,11 @@
 # @ddadaal/tsgrpc-common
 
+## 0.2.4
+
+### Patch Changes
+
+- 57c97ae: update deps
+
 ## 0.2.3
 
 ### Patch Changes

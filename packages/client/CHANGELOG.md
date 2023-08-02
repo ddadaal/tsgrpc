@@ -1,5 +1,13 @@
 # @ddadaal/tsgrpc-client
 
+## 0.17.6
+
+### Patch Changes
+
+- 57c97ae: update deps
+- Updated dependencies [57c97ae]
+  - @ddadaal/tsgrpc-common@0.2.4
+
 ## 0.17.5
 
 ### Patch Changes

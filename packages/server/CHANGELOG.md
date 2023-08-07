@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.19.4
+
+### Patch Changes
+
+- d2510a6: chore(deps): update all non-major dependencies
+
 ## 0.19.3
 
 ### Patch Changes

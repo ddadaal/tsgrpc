@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.19.5
+
+### Patch Changes
+
+- 4c60a43: update deps
+- Updated dependencies [4c60a43]
+  - @ddadaal/tsgrpc-common@0.2.5
+
 ## 0.19.4
 
 ### Patch Changes

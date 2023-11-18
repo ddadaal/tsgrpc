@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.9
+
+### Patch Changes
+
+- 4c60a43: update deps
+
 ## 0.14.8
 
 ### Patch Changes

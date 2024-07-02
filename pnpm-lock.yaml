@@ -13,7 +13,7 @@ importers:
         version: 2.26.2
       '@ddadaal/eslint-config':
         specifier: 1.9.0
-        version: 1.9.0(@typescript-eslint/eslint-plugin@6.11.0)(eslint-import-resolver-typescript@3.6.1)(eslint-plugin-import@2.29.0)(eslint-plugin-simple-import-sort@10.0.0)(eslint@8.54.0)(typescript@5.2.2)
+        version: 1.9.0(@typescript-eslint/eslint-plugin@6.11.0)(eslint-import-resolver-typescript@3.6.1)(eslint-plugin-import@2.29.0)(eslint-plugin-simple-import-sort@12.1.1)(eslint@8.54.0)(typescript@5.2.2)
       '@types/jest':
         specifier: 29.5.8
         version: 29.5.8
@@ -36,8 +36,8 @@ importers:
         specifier: 2.29.0
         version: 2.29.0(@typescript-eslint/parser@6.11.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.54.0)
       eslint-plugin-simple-import-sort:
-        specifier: 10.0.0
-        version: 10.0.0(eslint@8.54.0)
+        specifier: 12.1.1
+        version: 12.1.1(eslint@8.54.0)
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@20.9.1)(ts-node@10.9.1)
@@ -701,7 +701,7 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@ddadaal/eslint-config@1.9.0(@typescript-eslint/eslint-plugin@6.11.0)(eslint-import-resolver-typescript@3.6.1)(eslint-plugin-import@2.29.0)(eslint-plugin-simple-import-sort@10.0.0)(eslint@8.54.0)(typescript@5.2.2):
+  /@ddadaal/eslint-config@1.9.0(@typescript-eslint/eslint-plugin@6.11.0)(eslint-import-resolver-typescript@3.6.1)(eslint-plugin-import@2.29.0)(eslint-plugin-simple-import-sort@12.1.1)(eslint@8.54.0)(typescript@5.2.2):
     resolution: {integrity: sha512-k6RKAT1FUGBEpyB5rRS/RuF20pA/H8u0cBNUf7xKDxHcTk/yR3oN0FjtxmAPkZhVuKjoUWvGniSlEeg1zE3K2g==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '>=5.37.0'
@@ -715,7 +715,7 @@ packages:
       eslint: 8.54.0
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@6.11.0)(eslint-plugin-import@2.29.0)(eslint@8.54.0)
       eslint-plugin-import: 2.29.0(@typescript-eslint/parser@6.11.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.54.0)
-      eslint-plugin-simple-import-sort: 10.0.0(eslint@8.54.0)
+      eslint-plugin-simple-import-sort: 12.1.1(eslint@8.54.0)
     optionalDependencies:
       eslint-plugin-react: 7.32.2(eslint@8.54.0)
     transitivePeerDependencies:
@@ -2575,8 +2575,8 @@ packages:
     dev: true
     optional: true
 
-  /eslint-plugin-simple-import-sort@10.0.0(eslint@8.54.0):
-    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
+  /eslint-plugin-simple-import-sort@12.1.1(eslint@8.54.0):
+    resolution: {integrity: sha512-6nuzu4xwQtE3332Uz0to+TxDQYRLTKRESSc2hefVT48Zc8JthmN23Gx9lnYhu0FtkRSL1oxny3kJ2aveVhmOVA==}
     peerDependencies:
       eslint: '>=5.0.0'
     dependencies:

@@ -88,3 +88,10 @@ public-hoist-pattern[]=grpc-tools
 public-hoist-pattern[]=*eslint*
 public-hoist-pattern[]=*prettier*
 ```
+
+## `ts-proto` v2 migration from `v0.15`
+
+From v0.15, this package uses `ts-proto` v2 to generate ts files from protos. From v2 `ts-proto` has migrated to use `@bufbuild/protobuf` instead of the old `protobufjs` package for protobuf encoding and decoding ([changelog](https://github.com/stephenh/ts-proto?tab=readme-ov-file#ts-proto-2x-release-notes)), so after you updated the package, you need to migrate your package.json as follows:
+
+1. Remove `protobufjs` and `long` packages
+2. Add `@bufbuild/protobuf` package

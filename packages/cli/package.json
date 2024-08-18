@@ -23,7 +23,7 @@
   "dependencies": {
     "glob": "10.3.10",
     "grpc-tools": "1.12.4",
-    "rimraf": "5.0.5",
+    "rimraf": "6.0.1",
     "ts-proto": "1.164.0",
     "tslib": "2.6.2",
     "yargs": "17.7.2",

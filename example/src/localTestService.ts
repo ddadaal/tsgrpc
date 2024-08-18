@@ -20,7 +20,7 @@ export const localTestService = plugin(async (s) => {
 
       function throwIfRequested(req: RequestStreamRequest) {
         if (req.error) {
-          throw <ServiceError> { code: status.INTERNAL, message: "Error requested" };
+          throw { code: status.INTERNAL, message: "Error requested" } as ServiceError;
         }
       }
 
@@ -49,7 +49,7 @@ export const localTestService = plugin(async (s) => {
       const { count, msg, error } = call.request;
 
       if (error) {
-        throw <ServiceError> { code: status.INTERNAL, message: "Error requested" };
+        throw { code: status.INTERNAL, message: "Error requested" } as ServiceError;
       }
 
       for (let i = 0; i < count; i++) {
@@ -63,7 +63,7 @@ export const localTestService = plugin(async (s) => {
       for await (const req of call.iter()) {
         call.logger.info("Received %o", req);
         if (req.error) {
-          throw <ServiceError> { code: status.INTERNAL, message: "Error requested" };
+          throw { code: status.INTERNAL, message: "Error requested" } as ServiceError;
         }
         await call.writeAsync({ msg: req.msg, reply: true });
         call.logger.info("Written %o", req.msg);

@@ -27,7 +27,7 @@ export const myPlugin = plugin(async (s) => {
     if (metadata.length === 1) {
       throw new ServiceError({
         code: status.INVALID_ARGUMENT,
-        details: "Throw error header is set with value " + metadata[0],
+        details: `Throw error header is set with value ${metadata[0] as string}`,
       });
     }
 

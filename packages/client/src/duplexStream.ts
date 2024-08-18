@@ -2,22 +2,22 @@ import { createReaderExtensions, createWriterExtensions,
   ReaderExtensions, WriterExtensions } from "@ddadaal/tsgrpc-common";
 import { CallOptions, Client, ClientDuplexStream, Metadata } from "@grpc/grpc-js";
 
-type DuplexStreamCall<TReq, TRep> = {
+interface DuplexStreamCall<TReq, TRep> {
   (): ClientDuplexStream<TReq, TRep>,
   (options: Partial<CallOptions>): ClientDuplexStream<TReq, TRep>,
   (metadata: Metadata, options?: Partial<CallOptions>): ClientDuplexStream<TReq, TRep>,
 
-}
+};
 
 type TRequest<TFunc> =
   TFunc extends DuplexStreamCall<infer TReq, infer _TReply>
-  ? TReq
-  : never;
+    ? TReq
+    : never;
 
 type TReply<TFunc> =
   TFunc extends DuplexStreamCall<infer _TReq, infer TReply>
-  ? TReply
-  : never;
+    ? TReply
+    : never;
 
 
 type AugmentedClientDuplexStream<TReq, TRep> =

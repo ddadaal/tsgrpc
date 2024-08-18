@@ -37,7 +37,7 @@ const globResolve = (...pathSegments: string[]) => {
 export async function generateProtos({ configPath }: GenerateProtosProps) {
 
 
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
+
   const configFileContent = require(join(process.cwd(), configPath));
   const config: CliConfig = cliConfigSchema.parse(configFileContent);
 
@@ -78,7 +78,8 @@ export async function generateProtos({ configPath }: GenerateProtosProps) {
       continue;
     }
 
-    log(`Generating ${files} (${resolvedFiles.length} files) with proto_paths ${protoPaths} to ${modelDir}.`);
+    log(`Generating ${files} (${resolvedFiles.length} files)
+      with proto_paths [${protoPaths.join(",")}] to ${modelDir}.`);
 
     const protoConfig = [
       `--plugin=protoc-gen-ts_proto=${TS_PROTO_PATH}`,

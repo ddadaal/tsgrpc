@@ -1,3 +1,3 @@
 import { createServer } from "./app";
 
-createServer().then((x) => x.start());
+void createServer().then((x) => x.start());

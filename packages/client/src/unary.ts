@@ -2,21 +2,21 @@ import { CallOptions, Client, Metadata } from "@grpc/grpc-js";
 import { SurfaceCall } from "@grpc/grpc-js/build/src/call";
 import { UnaryCallback } from "src/types";
 
-type UnaryCall<TReq, TReply> = {
-  (req: TReq, callback: UnaryCallback<TReply>) : SurfaceCall;
+interface UnaryCall<TReq, TReply> {
+  (req: TReq, callback: UnaryCallback<TReply>): SurfaceCall;
   (req: TReq, metadata: Metadata, callback: UnaryCallback<TReply>): SurfaceCall;
   (req: TReq, metadata: Metadata, options: Partial<CallOptions>, callback: UnaryCallback<TReply>): SurfaceCall;
-}
+};
 
 type TRequest<TFunc> =
   TFunc extends UnaryCall<infer TReq, infer _TReply>
-  ? TReq
-  : never;
+    ? TReq
+    : never;
 
 type TReply<TFunc> =
   TFunc extends UnaryCall<infer _TReq, infer TReply>
-  ? TReply
-  : never;
+    ? TReply
+    : never;
 
 /**
  * Async call a unary call.

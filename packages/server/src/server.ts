@@ -9,7 +9,7 @@ import { promisify } from "util";
 
 export type CloseCallback = () => (void | Promise<void>);
 
-export type ServerConfig = {
+export interface ServerConfig {
   host?: string;
   port?: number;
   logger?: pino.LoggerOptions | pino.Logger;
@@ -19,7 +19,7 @@ export type ServerConfig = {
    * If not set, insecure credentials will be used
    */
   serverCredentials?: grpc.ServerCredentials;
-}
+};
 
 export type ResponseType<T extends (...args: any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
 
@@ -28,15 +28,15 @@ type RemoveIndex<T> = {
 };
 
 export declare type AugmentedServiceImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
-    [K in keyof RemoveIndex<TImpl>]: (
-      call: AugmentedCall<Parameters<RemoveIndex<TImpl>[K]>[0]>,
-      callback: Parameters<RemoveIndex<TImpl>[K]>[1],
-    ) => (void | Promise<void | ResponseType<RemoveIndex<TImpl>[K]>>);
+  [K in keyof RemoveIndex<TImpl>]: (
+    call: AugmentedCall<Parameters<RemoveIndex<TImpl>[K]>[0]>,
+    callback: Parameters<RemoveIndex<TImpl>[K]>[1],
+  ) => (void | Promise<void | ResponseType<RemoveIndex<TImpl>[K]>>);
 };
 
 export declare type AugmentedImplementation<TImpl extends grpc.UntypedServiceImplementation> = {
   [K in keyof RemoveIndex<TImpl>]: grpc.UntypedHandleCall
-}
+};
 
 const isResponseStream = (serviceDef: grpc.MethodDefinition<{}, {}>, _augmentedCall: AugmentedCall<ServerCall>):
 _augmentedCall is AugmentedCall<grpc.ServerWritableStream<any, any> | grpc.ServerDuplexStream<any, any>> => {
@@ -94,7 +94,7 @@ export class Server {
 
       const serviceDef = service[key];
 
-      augmentedImplementations[key] = async (
+      augmentedImplementations[key] = (
         call: ServerCall,
         // callback exists only when the response is unary
         callback: grpc.sendUnaryData<{}> | undefined,
@@ -132,36 +132,38 @@ export class Server {
 
         logger.info("Starting request");
 
-        try {
+        void (async () => {
+          try {
 
-          // apply request decorators
-          for (const hook of this.requestHooks) {
-            await hook(augmentedCall);
-          }
+            // apply request decorators
+            for (const hook of this.requestHooks) {
+              await hook(augmentedCall);
+            }
 
-          const ret = await implementations[key](augmentedCall as any, callback);
+            const ret = await implementations[key](augmentedCall as any, callback);
 
-          if (ret) {
-            logger.info("Request completed.");
-            callback?.(null, ...ret);
-          }
-        } catch (e) {
-          if (responseStream) {
-            logger.error(e, "Error occurred during response streaming. Emit the error to the stream");
-            augmentedCall.emit("error", e);
+            if (ret) {
+              logger.info("Request completed.");
+              callback?.(null, ...ret);
+            }
+          } catch (e) {
+            if (responseStream) {
+              logger.error(e, "Error occurred during response streaming. Emit the error to the stream");
+              augmentedCall.emit("error", e);
             // cannot use destroy
             // augmentedCall.destroy(e);
-          } else {
-            logger.error(e, "Error occurred. Return the error.");
-            callback!(e);
+            } else {
+              logger.error(e, "Error occurred. Return the error.");
+              callback!(e);
+            }
+          } finally {
+            if (responseStream) {
+              logger.info("Ending response stream");
+              augmentedCall.end();
+              await finished(augmentedCall);
+            }
           }
-        } finally {
-          if (responseStream) {
-            logger.info("Ending response stream");
-            augmentedCall.end();
-            await finished(augmentedCall);
-          }
-        }
+        })();
 
       };
     }
@@ -179,7 +181,7 @@ export class Server {
     this.logger.info("gRPC Server has been shutdown.");
 
     let callback: CloseCallback | undefined = undefined;
-    while (callback = this.closeHooks.pop()) {
+    while ((callback = this.closeHooks.pop())) {
       await callback();
     }
   };
@@ -212,7 +214,7 @@ export class Server {
 
     const shutdown = (signal: string, code: number) => {
       this.logger.info(`Received ${signal}. Exiting`);
-      this.close().then(() => process.exit(128 + code));
+      void this.close().then(() => process.exit(128 + code));
     };
 
     Object.keys(signals).forEach((signal) => {

@@ -18,12 +18,12 @@
     "@ddadaal/tsgrpc-client": "workspace:*",
     "@ddadaal/tsgrpc-common": "workspace:*",
     "@ddadaal/tsgrpc-server": "workspace:*",
-    "@grpc/grpc-js": "1.9.11",
-    "long": "^5.2.3",
-    "protobufjs": "^7.2.3"
+    "@grpc/grpc-js": "1.11.1",
+    "long": "5.2.3",
+    "protobufjs": "7.3.2"
   },
   "devDependencies": {
     "@ddadaal/tsgrpc-cli": "workspace:*",
-    "tslib": "^2.5.0"
+    "tslib": "2.6.3"
   }
 }

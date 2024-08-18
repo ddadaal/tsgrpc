@@ -1,22 +1,22 @@
 import { createReaderExtensions, ReaderExtensions } from "@ddadaal/tsgrpc-common";
 import { CallOptions, Client, ClientReadableStream, Metadata } from "@grpc/grpc-js";
 
-type ReplyStreamCall<TReq, TRep> = {
+interface ReplyStreamCall<TReq, TRep> {
   (request: TReq, options?: Partial<CallOptions>): ClientReadableStream<TRep>,
   (request: TReq, metadata?: Metadata, options?: Partial<CallOptions>): ClientReadableStream<TRep>,
-}
+};
 
 type AugmentedClientReadableStream<TReply> = ReaderExtensions<TReply> & ClientReadableStream<TReply>;
 
 type TRequest<TFunc> =
   TFunc extends ReplyStreamCall<infer TReq, infer _TReply>
-  ? TReq
-  : never;
+    ? TReq
+    : never;
 
 type TReply<TFunc> =
   TFunc extends ReplyStreamCall<infer _TReq, infer TReply>
-  ? TReply
-  : never;
+    ? TReply
+    : never;
 
 
 /**

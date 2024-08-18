@@ -2,22 +2,22 @@ import { createWriterExtensions, WriterExtensions } from "@ddadaal/tsgrpc-common
 import { CallOptions, Client, ClientWritableStream, Metadata } from "@grpc/grpc-js";
 import { UnaryCallback } from "src/types";
 
-type RequestStreamCall<TReq, TRep> = {
+interface RequestStreamCall<TReq, TRep> {
   (callback: UnaryCallback<TRep>): ClientWritableStream<TReq>,
   (metadata: Metadata, callback: UnaryCallback<TRep>): ClientWritableStream<TReq>,
   (options: Partial<CallOptions>, callback: UnaryCallback<TRep>): ClientWritableStream<TReq>,
   (metadata: Metadata, options: Partial<CallOptions>, callback: UnaryCallback<TRep>): ClientWritableStream<TReq>,
-}
+};
 
 type TRequest<TFunc> =
   TFunc extends RequestStreamCall<infer TReq, infer _TReply>
-  ? TReq
-  : never;
+    ? TReq
+    : never;
 
 type TReply<TFunc> =
   TFunc extends RequestStreamCall<infer _TReq, infer TReply>
-  ? TReply
-  : never;
+    ? TReply
+    : never;
 
 /**
  * Async call a request stream rpc.
@@ -28,7 +28,7 @@ type TReply<TFunc> =
  * @returns reply
  */
 export function asyncRequestStreamCall<
-  TClient extends Client, TKey extends keyof TClient
+  TClient extends Client, TKey extends keyof TClient,
 >(
   client: TClient, methodName: TKey,
   writer:
@@ -44,7 +44,7 @@ export function asyncRequestStreamCall<
 
   const call: Call = (client[methodName] as Call).bind(client);
 
-  return new Promise(async (res, rej) => {
+  return new Promise((res, rej) => {
     const callback: UnaryCallback<TReply<TClient[TKey]>> = (err, reply) => err ? rej(err) : res(reply);
 
     const stream = (!extra || (!extra.metadata && !extra.options))
@@ -57,20 +57,22 @@ export function asyncRequestStreamCall<
 
     const writerExt = createWriterExtensions(stream);
 
-    try {
-      if (typeof writer === "object") {
-        let result = await writer.next();
-        while (!result.done) {
-          await writerExt.writeAsync(result.value);
-          result = await writer.next();
+    void (async () => {
+      try {
+        if (typeof writer === "object") {
+          let result = await writer.next();
+          while (!result.done) {
+            await writerExt.writeAsync(result.value);
+            result = await writer.next();
+          }
+        } else {
+          await writer(writerExt, stream);
         }
-      } else {
-        await writer(writerExt, stream);
+      } catch (e) {
+        rej(e as Error);
+      } finally {
+        stream.end();
       }
-    } catch (e) {
-      rej(e);
-    } finally {
-      stream.end();
-    }
+    })();
   });
 }

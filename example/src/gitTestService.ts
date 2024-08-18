@@ -17,9 +17,9 @@ export const gitTestService = plugin(async (s) => {
     },
 
     returnServiceError: async () => {
-      throw <ServiceError> {
+      throw {
         code: status.NOT_FOUND,
-      };
+      } as ServiceError;
     },
 
     throwError: async () => {

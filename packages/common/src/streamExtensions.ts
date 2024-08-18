@@ -2,12 +2,12 @@ import type { ObjectReadable, ObjectWritable } from "@grpc/grpc-js/build/src/obj
 import { once } from "events";
 import { createAsyncIterable } from "src/readableToAsyncIterable";
 
-export type WriterExtensions<T> = {
+export interface WriterExtensions<T> {
   /**
    * Write data into the stream with backpressure handling
    */
   writeAsync: (data: T) => Promise<void>;
-}
+};
 
 export const createWriterExtensions = <T>(stream: ObjectWritable<T>): WriterExtensions<T> => {
   return {
@@ -21,7 +21,7 @@ export const createWriterExtensions = <T>(stream: ObjectWritable<T>): WriterExte
   };
 };
 
-export type ReaderExtensions<T> = {
+export interface ReaderExtensions<T> {
   /**
    * Read one object from stream.
    * @returns one object or undefined for no data is read
@@ -32,7 +32,7 @@ export type ReaderExtensions<T> = {
    * Create a AsyncIterable
    */
   iter: () => AsyncIterable<T>;
-}
+};
 
 export const createReaderExtensions = <T>(stream: ObjectReadable<T>): ReaderExtensions<T> => {
 

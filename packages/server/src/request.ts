@@ -19,9 +19,9 @@ export interface Request {
   reqId: string;
 }
 
-export type AugmentedWritable<T> = {
+export interface AugmentedWritable<T> {
   writeAsync: WriterExtensions<T>["writeAsync"];
-}
+};
 
 export type AugmentedReadable<T> = ReaderExtensions<T> & {
 };
@@ -30,11 +30,11 @@ export type AugmentedCall<TCall> = TCall & Request & (
   TCall extends ServerDuplexStream<infer TReq, infer TReply>
     ? AugmentedWritable<TReply> & AugmentedReadable<TReq>
     : TCall extends ServerReadableStream<infer TReq, infer _TReply>
-    ? AugmentedReadable<TReq>
-    : TCall extends ServerWritableStream<infer _TReq, infer TReply>
-    ? AugmentedWritable<TReply>
-    : {}
-)
+      ? AugmentedReadable<TReq>
+      : TCall extends ServerWritableStream<infer _TReq, infer TReply>
+        ? AugmentedWritable<TReply>
+        : {}
+);
 
 export type ServerCall =
   ServerUnaryCall<{}, {}> | ServerReadableStream<{}, {}> | ServerWritableStream<{}, {}> | ServerDuplexStream<{}, {}>;

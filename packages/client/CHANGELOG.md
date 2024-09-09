@@ -1,5 +1,13 @@
 # @ddadaal/tsgrpc-client
 
+## 0.17.8
+
+### Patch Changes
+
+- e12d678: update dependencies
+- Updated dependencies [e12d678]
+  - @ddadaal/tsgrpc-common@0.2.6
+
 ## 0.17.7
 
 ### Patch Changes

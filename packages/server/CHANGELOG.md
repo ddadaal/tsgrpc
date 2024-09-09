@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.19.6
+
+### Patch Changes
+
+- e12d678: update dependencies
+- df75490: remove stream.finished to avoid error
+- Updated dependencies [e12d678]
+  - @ddadaal/tsgrpc-common@0.2.6
+
 ## 0.19.5
 
 ### Patch Changes

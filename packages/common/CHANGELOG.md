@@ -1,5 +1,11 @@
 # @ddadaal/tsgrpc-common
 
+## 0.2.6
+
+### Patch Changes
+
+- e12d678: update dependencies
+
 ## 0.2.5
 
 ### Patch Changes

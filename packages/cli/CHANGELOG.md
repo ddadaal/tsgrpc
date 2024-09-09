@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.15.0
+
+### Minor Changes
+
+- e12d678: use ts-proto v2 for proto generation
+
+### Patch Changes
+
+- e12d678: update dependencies
+
 ## 0.14.9
 
 ### Patch Changes

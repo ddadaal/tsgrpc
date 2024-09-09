@@ -160,7 +160,6 @@ export class Server {
             if (responseStream) {
               logger.info("Ending response stream");
               augmentedCall.end();
-              await finished(augmentedCall);
             }
           }
         })();

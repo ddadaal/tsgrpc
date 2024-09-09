@@ -4,7 +4,6 @@ import pino from "pino";
 import { Extensions } from "src/extension";
 import { AugmentedCall, createReqIdGen, RequestDecorator, ServerCall } from "src/request";
 import { Rest } from "src/types";
-import { finished } from "stream/promises";
 import { promisify } from "util";
 
 export type CloseCallback = () => (void | Promise<void>);

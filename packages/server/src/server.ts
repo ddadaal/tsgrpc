@@ -18,6 +18,11 @@ export interface ServerConfig {
    * If not set, insecure credentials will be used
    */
   serverCredentials?: grpc.ServerCredentials;
+
+  /**
+   * The server options for grpc-js
+   */
+  grpcServerOptions?: grpc.ServerOptions;
 };
 
 export type ResponseType<T extends (...args: any[]) => void> = Rest<Parameters<Parameters<T>[1]>>;
@@ -62,7 +67,7 @@ export class Server {
 
   ext: Extensions = {} as any;
 
-  server: grpc.Server = new grpc.Server();
+  server: grpc.Server;
 
   requestHooks: RequestDecorator[] = [];
 
@@ -73,6 +78,8 @@ export class Server {
 
     this.config.host = this.config.host ?? "0.0.0.0";
     this.config.port = this.config.port ?? 5000;
+
+    this.server = new grpc.Server(config.grpcServerOptions);
   }
 
   addRequestHook = (hook: RequestDecorator) => {

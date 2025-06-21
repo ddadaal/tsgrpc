@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.19.7
+
+### Patch Changes
+
+- 2abd740: allow passing grpc ServerOptions to server
+
 ## 0.19.6
 
 ### Patch Changes

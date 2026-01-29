@@ -47,32 +47,40 @@ export async function* createAsyncIterable<T>(
   let endEmitted = state.endEmitted;
   let closeEmitted = state.closeEmitted;
 
+  // Create cleanup function to ensure listeners are always removed
+  const cleanup = () => {
+    stream
+      .removeListener("readable", next)
+      .removeListener("error", onError)
+      .removeListener("end", onEnd)
+      .removeListener("close", onClose);
+  };
+
   stream
     .on("readable", next)
     .on("error", onError)
     .on("end", onEnd)
     .on("close", onClose);
 
-  while (true) {
-    const chunk = stream.destroyed ? null : stream.read();
-    if (chunk !== null) {
-      yield chunk;
-    } else if (errorEmitted) {
-      throw error;
-    } else if (endEmitted) {
-      break;
-    } else if (closeEmitted) {
-      break;
-    } else {
-      await new Promise(next);
+  try {
+    while (true) {
+      const chunk = stream.destroyed ? null : stream.read();
+      if (chunk !== null) {
+        yield chunk;
+      } else if (errorEmitted) {
+        throw error;
+      } else if (endEmitted) {
+        break;
+      } else if (closeEmitted) {
+        break;
+      } else {
+        await new Promise(next);
+      }
     }
+  } finally {
+    // Ensure cleanup is called even if iteration is aborted
+    cleanup();
   }
-
-  stream
-    .removeListener("readable", next)
-    .removeListener("error", onError)
-    .removeListener("end", onEnd)
-    .removeListener("close", onClose);
 
 }
 

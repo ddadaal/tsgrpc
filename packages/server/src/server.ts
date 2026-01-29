@@ -125,9 +125,22 @@ export class Server {
           augmentedCall.writeAsync = writeAsync;
 
           // https://github.com/grpc/grpc-node/issues/1839
-          augmentedCall.on("end", () => {
+          const endHandler = () => {
             augmentedCall.end();
-          });
+          };
+
+          augmentedCall.on("end", endHandler);
+
+          // Create a cleanup function to prevent memory leaks
+          const cleanupEndHandler = () => {
+            augmentedCall.removeListener("end", endHandler);
+          };
+
+          // Clean up on error to prevent memory leaks
+          augmentedCall.on("error", cleanupEndHandler);
+          
+          // Also cleanup when the response stream naturally ends
+          augmentedCall.once("finish", cleanupEndHandler);
         }
 
         if (requestStream) {

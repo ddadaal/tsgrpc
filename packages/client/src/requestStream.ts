@@ -58,6 +58,8 @@ export function asyncRequestStreamCall<
     const writerExt = createWriterExtensions(stream);
 
     void (async () => {
+      let isCompleted = false;
+      
       try {
         if (typeof writer === "object") {
           let result = await writer.next();
@@ -68,10 +70,19 @@ export function asyncRequestStreamCall<
         } else {
           await writer(writerExt, stream);
         }
+        isCompleted = true;
       } catch (e) {
+        // Ensure we don't call both rej and stream.end() if stream already errored
+        if (!stream.destroyed) {
+          stream.destroy();
+        }
         rej(e as Error);
+        return;
       } finally {
-        stream.end();
+        // Only end the stream if it wasn't destroyed due to an error
+        if (isCompleted && !stream.destroyed) {
+          stream.end();
+        }
       }
     })();
   });

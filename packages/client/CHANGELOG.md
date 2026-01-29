@@ -1,5 +1,13 @@
 # @ddadaal/tsgrpc-client
 
+## 0.17.9
+
+### Patch Changes
+
+- 87f18ec: fix memory leaks in client and server
+- Updated dependencies [87f18ec]
+  - @ddadaal/tsgrpc-common@0.2.7
+
 ## 0.17.8
 
 ### Patch Changes

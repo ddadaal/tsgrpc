@@ -1,6 +1,6 @@
 {
   "name": "@ddadaal/tsgrpc-client",
-  "version": "0.17.8",
+  "version": "0.17.9",
   "description": "Clien utilities for ts to call gRPC services",
   "main": "lib/index.js",
   "scripts": {

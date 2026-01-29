@@ -1,6 +1,7 @@
 ---
 "@ddadaal/tsgrpc-client": patch
 "@ddadaal/tsgrpc-common": patch
+"@ddadaal/tsgrpc-server": patch
 ---
 
-fix client stream memory leak
+fix memory leaks in client and server

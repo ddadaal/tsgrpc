@@ -39,7 +39,7 @@ jobs:
         run: pnpm test:ci
 
       - name: Upload test converage
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           files: ./packages/cli/coverage/test/lcov.info,./packages/server/coverage/test/lcov.info,./example/coverage/test/lcov.info
 
